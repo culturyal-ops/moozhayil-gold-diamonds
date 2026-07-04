@@ -1,0 +1,7 @@
+# Copy to key.properties when ready to sign release builds.
+# Do not commit key.properties.
+
+storePassword=
+keyPassword=
+keyAlias=
+storeFile=

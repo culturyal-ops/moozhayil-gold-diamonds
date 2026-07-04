@@ -39,18 +39,19 @@ moozhayil/
 ├── apps/
 │   ├── mobile/   # Flutter iOS + Android app (primary product)
 │   ├── api/      # Node.js 20 LTS + TypeScript + Express 4 + Prisma backend
+│   ├── admin/    # Operator portal (Phase 10)
 │   └── web/      # Public marketing + catalog companion site
 ├── packages/     # Shared, reusable packages across surfaces
 ├── docs/         # Locked product, design, and architecture documentation
+├── runbooks/     # Operational runbooks (Phase 10)
 ├── .nvmrc        # Pinned Node version (20)
 ├── .gitignore
 └── README.md
 ```
 
 > `apps/web` and `packages/` extend the `apps/mobile` + `apps/api` layout defined
-> in `docs/14-final-architecture.md` §3.1, added intentionally for the public web
-> surface and shared code. `apps/admin` (operator portal) is introduced later per
-> the roadmap (`docs/15-development-roadmap.md`, Phase 10).
+> in `docs/14-final-architecture.md` §3.1. `apps/admin` is the operator portal
+> introduced in Phase 10 (`docs/15-development-roadmap.md`).
 
 ---
 
@@ -84,7 +85,42 @@ Install and verify the full toolchain before building any app code:
 
 ## Status
 
-Phase 0 — repository foundation initialized (structure, ignore rules, Node pin,
-documentation organized under `docs/`). Application scaffolding (Phase 1 of
-`docs/15-development-roadmap.md`) begins once the toolchain above is installed
-and verified.
+Production hardening is complete in code: Docker staging, S3 storage adapter, inventory/refund fixes, worker jobs, admin operations tooling, and CI production builds.
+
+**Still required before go-live:** live provider credentials and hosting — see [`PRODUCTION_HANDOFF.md`](./PRODUCTION_HANDOFF.md).
+
+**API quick start (Docker — recommended)**
+
+```bash
+docker compose up --build
+cd apps/api && npm run seed:admin   # once, with ADMIN_SEED_* env vars
+```
+
+**API quick start (local Node)**
+
+```bash
+cp .env.example apps/api/.env
+cd apps/api && npm ci && npx prisma migrate deploy && npm run seed:admin && npm run dev
+cd apps/api && npm run worker          # separate terminal
+```
+
+**Admin portal**
+
+```bash
+cd apps/admin && npm ci && npm run dev # http://localhost:5180
+```
+
+**Mobile app**
+
+```bash
+cd apps/mobile && flutter pub get && flutter run -d chrome
+```
+
+Release builds require `--dart-define=API_BASE_URL=https://api.example.com/v1`. Push requires `PUSH_ENABLED=true` plus Firebase dart-defines — see `apps/mobile/.env.production.example`.
+
+Set `API_BASE_URL` / `VITE_API_BASE` to your local API (`http://localhost:3080`) when running clients against the backend. See [`config/local-ports.md`](./config/local-ports.md) — Moozhayil uses **3080–3081** and **5180**, not `3000–3005`.
+
+**SMS OTP (local):** `SMS_PROVIDER_MODE=mock` logs the 6-digit code to the API console in development. Tests use `TEST_OTP_CODE` (default `123456`). Production requires `SMS_PROVIDER_MODE=live` plus MSG91 `MSG91_AUTH_KEY` and `MSG91_OTP_TEMPLATE_ID` (DLT-approved OTP template).
+
+**Deployment:** see [`runbooks/DEPLOYMENT.md`](./runbooks/DEPLOYMENT.md)  
+**Release sign-off:** see [`runbooks/RELEASE_CHECKLIST.md`](./runbooks/RELEASE_CHECKLIST.md)

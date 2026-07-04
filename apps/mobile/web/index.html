@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Moozhayil Gold & Diamonds">
+
+  <!-- Mobile viewport — matches a typical customer phone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Moozhayil">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Moozhayil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    :root {
+      --phone-w: 390px;
+      --phone-h: 844px;
+      --frame-bg: #0e0c0a;
+      --frame-border: rgba(201, 169, 98, 0.18);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--frame-bg);
+      overflow: hidden;
+    }
+
+    /* Desktop / wide screens: centre a phone-sized viewport */
+    @media (min-width: 420px) {
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+
+      /* Flutter web root layers */
+      flt-glass-pane,
+      flutter-view,
+      #flutter_target {
+        width: min(var(--phone-w), 100vw) !important;
+        height: min(var(--phone-h), 100dvh) !important;
+        max-width: var(--phone-w) !important;
+        max-height: var(--phone-h) !important;
+        position: relative !important;
+        inset: auto !important;
+        transform: none !important;
+        border-radius: 36px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px var(--frame-border),
+          0 0 0 10px #161310,
+          0 32px 80px rgba(0, 0, 0, 0.55);
+      }
+
+      /* Notch hint */
+      body::before {
+        content: '';
+        position: fixed;
+        top: calc(50% - min(var(--phone-h), 100dvh) / 2 + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 28px;
+        background: #161310;
+        border-radius: 0 0 18px 18px;
+        z-index: 999999;
+        pointer-events: none;
+      }
+    }
+
+    /* Actual phones: full bleed, no frame */
+    @media (max-width: 419px) {
+      flt-glass-pane,
+      flutter-view,
+      #flutter_target {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

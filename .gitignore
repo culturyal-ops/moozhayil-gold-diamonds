@@ -6,6 +6,8 @@
 .env
 .env.*
 !.env.example
+!.env.production.example
+!**/.env.production.example
 *.pem
 *.key
 
@@ -41,6 +43,7 @@ coverage/
 # Prisma generated client (schema and migrations ARE committed)
 apps/api/src/generated/
 **/.prisma/
+apps/api/uploads/
 
 # ---------------------------------------------------------------------------
 # Mobile (apps/mobile - Flutter / Dart)
