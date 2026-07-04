@@ -22,9 +22,8 @@ class AmountScreen extends ConsumerWidget {
     final maxRupees = scheme.maxAmountPaise ~/ 100;
     final stepRupees = scheme.stepPaise ~/ 100;
     final amountRupees = draft.monthlyAmountPaise ~/ 100;
-    final snappedRupees =
-        ((amountRupees / stepRupees).round() * stepRupees)
-            .clamp(minRupees, maxRupees);
+    final snappedRupees = ((amountRupees / stepRupees).round() * stepRupees)
+        .clamp(minRupees, maxRupees);
 
     return Scaffold(
       backgroundColor: AppColors.paper,
@@ -37,8 +36,7 @@ class AmountScreen extends ConsumerWidget {
             GoalEnrollmentStepHeader(
               step: GoalEnrollmentStep.amount,
               title: draft.amountLabel,
-              subtitle:
-                  'Minimum ₹$minRupees · multiples of ₹$stepRupees',
+              subtitle: 'Minimum ₹$minRupees · multiples of ₹$stepRupees',
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
@@ -63,9 +61,8 @@ class AmountScreen extends ConsumerWidget {
                 divisions: (maxRupees - minRupees) ~/ stepRupees,
                 label: '₹$snappedRupees',
                 onChanged: (value) {
-                  final amount =
-                      ((value / stepRupees).round() * stepRupees)
-                          .clamp(minRupees, maxRupees);
+                  final amount = ((value / stepRupees).round() * stepRupees)
+                      .clamp(minRupees, maxRupees);
                   ref
                       .read(goalCreateDraftStoreProvider.notifier)
                       .setMonthlyAmount(amount * 100);
@@ -95,17 +92,17 @@ class AmountScreen extends ConsumerWidget {
   }
 
   String _termsCopy(GoldenWishSchemeType scheme) => switch (scheme) {
-        GoldenWishSchemeType.aura =>
-          '11 monthly installments · maturity after 11 payments · redemption window from day 332\n\n'
+    GoldenWishSchemeType.aura =>
+      '11 monthly installments · maturity after 11 payments · redemption window from day 332\n\n'
           'Making-charge benefit (Aura only): 0% on jewellery when checking out with My Gold '
           'during the redemption window (days 332–352), after all 11 installments are paid.\n\n'
           'Two consecutive missed monthly installments will discontinue your Aura Plan. '
           'Gold accumulated so far stays in your My Gold balance.',
-        GoldenWishSchemeType.crest =>
-          'Single advance payment · gold weight locked immediately at today\u2019s rate',
-        GoldenWishSchemeType.dhanam =>
-          '12-month booking · lower of booking-day or redemption-day rate applies',
-        GoldenWishSchemeType.goldNidhi =>
-          'Open-ended plan · deposit any time from ₹500 · no fixed maturity',
-      };
+    GoldenWishSchemeType.crest =>
+      'Single advance payment · gold weight locked immediately at today\u2019s rate',
+    GoldenWishSchemeType.dhanam =>
+      '12-month booking · lower of booking-day or redemption-day rate applies',
+    GoldenWishSchemeType.goldNidhi =>
+      'Open-ended plan · deposit any time from ₹500 · no fixed maturity',
+  };
 }

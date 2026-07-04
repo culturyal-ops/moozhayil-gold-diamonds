@@ -67,7 +67,10 @@ class _GoalDetailScreenState extends ConsumerState<GoalDetailScreen> {
       ref.invalidate(goalDetailProvider(goalId));
 
       if (!mounted) return;
-      showPremiumSnackBar(context, 'Plan closed. Your gold remains in My Gold.');
+      showPremiumSnackBar(
+        context,
+        'Plan closed. Your gold remains in My Gold.',
+      );
       context.pop();
     } catch (error) {
       if (!mounted) return;
@@ -152,8 +155,8 @@ class _GoalDetailScreenState extends ConsumerState<GoalDetailScreen> {
                                 value: goal.mcWaiverActive
                                     ? 'Active — 0% on jewellery via My Gold checkout'
                                     : goal.mcWaiverEligible
-                                        ? 'Eligible — opens ${goal.redemptionWindowStart ?? 'at maturity'} (My Gold checkout)'
-                                        : 'Not yet eligible',
+                                    ? 'Eligible — opens ${goal.redemptionWindowStart ?? 'at maturity'} (My Gold checkout)'
+                                    : 'Not yet eligible',
                               ),
                             ] else
                               _InfoRow(
@@ -170,8 +173,9 @@ class _GoalDetailScreenState extends ConsumerState<GoalDetailScreen> {
                         PrimaryButton(
                           label: 'Make a contribution',
                           isFullWidth: true,
-                          onTap: () =>
-                              context.push('/goals/${widget.goalId}/contribute'),
+                          onTap: () => context.push(
+                            '/goals/${widget.goalId}/contribute',
+                          ),
                         ),
                       ],
                       if (_canClosePlan(goal)) ...[
@@ -193,7 +197,9 @@ class _GoalDetailScreenState extends ConsumerState<GoalDetailScreen> {
                         const SizedBox(height: AppSpacing.md),
                         ...response.contributions.map(
                           (item) => Padding(
-                            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                            padding: const EdgeInsets.only(
+                              bottom: AppSpacing.sm,
+                            ),
                             child: EditorialPanel(
                               child: Row(
                                 children: [
@@ -206,14 +212,15 @@ class _GoalDetailScreenState extends ConsumerState<GoalDetailScreen> {
                                           '₹${(item.amountPaise / 100).round()}',
                                           style: AppTypography.uiBodyMD
                                               .copyWith(
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                         ),
                                         Text(
                                           item.contributionMonth,
-                                          style: AppTypography.uiBodySM.copyWith(
-                                            color: AppColors.textSecondary,
-                                          ),
+                                          style: AppTypography.uiBodySM
+                                              .copyWith(
+                                                color: AppColors.textSecondary,
+                                              ),
                                         ),
                                       ],
                                     ),

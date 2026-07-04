@@ -32,10 +32,7 @@ class OurWorkItem {
       title: product.name.toUpperCase(),
       category: product.category?.name ?? 'Jewellery',
       productId: product.id,
-      imageUrl: CatalogImagery.resolveProduct(
-        product.primaryImage,
-        product.id,
-      ),
+      imageUrl: CatalogImagery.resolveProduct(product.primaryImage, product.id),
     );
   }
 }
@@ -80,10 +77,7 @@ const _fallbackWorks = <OurWorkItem>[
 
 /// Premium portfolio carousel — center-focused editorial showcase.
 class OurWorksShowcaseCarousel extends StatefulWidget {
-  const OurWorksShowcaseCarousel({
-    super.key,
-    required this.items,
-  });
+  const OurWorksShowcaseCarousel({super.key, required this.items});
 
   final List<OurWorkItem> items;
 
@@ -204,7 +198,7 @@ class _OurWorksShowcaseCarouselState extends State<OurWorksShowcaseCarousel> {
                     itemBuilder: (context, index) {
                       final page = _controller.hasClients
                           ? (_controller.page ??
-                              _controller.initialPage.toDouble())
+                                _controller.initialPage.toDouble())
                           : _controller.initialPage.toDouble();
                       final delta = (page - index).abs();
                       final focus = (1 - delta.clamp(0.0, 1.0));
@@ -337,8 +331,9 @@ class _ShowcaseCard extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: AppColors.cream.withValues(alpha: 0.14),
-                          borderRadius:
-                              BorderRadius.circular(AppRadius.showcaseCard),
+                          borderRadius: BorderRadius.circular(
+                            AppRadius.showcaseCard,
+                          ),
                           border: Border.all(
                             color: AppColors.cream.withValues(alpha: 0.35),
                             width: 0.5,

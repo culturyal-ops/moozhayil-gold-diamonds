@@ -199,7 +199,8 @@ GoRouter createAppRouter({AuthState? authState}) => GoRouter(
                 ),
                 GoRoute(
                   path: 'product-discovery',
-                  builder: (context, state) => const AuraProductDiscoveryScreen(),
+                  builder: (context, state) =>
+                      const AuraProductDiscoveryScreen(),
                 ),
                 GoRoute(
                   path: 'gold-insights',
@@ -229,8 +230,7 @@ GoRouter createAppRouter({AuthState? authState}) => GoRouter(
                       routes: [
                         GoRoute(
                           path: 'otp',
-                          builder: (context, state) =>
-                              const AadhaarOtpScreen(),
+                          builder: (context, state) => const AadhaarOtpScreen(),
                         ),
                       ],
                     ),
@@ -262,8 +262,7 @@ GoRouter createAppRouter({AuthState? authState}) => GoRouter(
                 ),
                 GoRoute(
                   path: 'payment-methods',
-                  builder: (context, state) =>
-                      const PaymentMethodsScreen(),
+                  builder: (context, state) => const PaymentMethodsScreen(),
                 ),
               ],
             ),
@@ -339,15 +338,13 @@ GoRouter createAppRouter({AuthState? authState}) => GoRouter(
 
     GoRoute(
       path: '/goals/:goalId',
-      builder: (context, state) => GoalDetailScreen(
-        goalId: state.pathParameters['goalId']!,
-      ),
+      builder: (context, state) =>
+          GoalDetailScreen(goalId: state.pathParameters['goalId']!),
       routes: [
         GoRoute(
           path: 'contribute',
-          builder: (context, state) => ContributeScreen(
-            goalId: state.pathParameters['goalId']!,
-          ),
+          builder: (context, state) =>
+              ContributeScreen(goalId: state.pathParameters['goalId']!),
         ),
       ],
     ),
@@ -402,9 +399,8 @@ GoRouter createAppRouter({AuthState? authState}) => GoRouter(
         ),
         GoRoute(
           path: ':orderId',
-          builder: (context, state) => OrderDetailScreen(
-            orderId: state.pathParameters['orderId']!,
-          ),
+          builder: (context, state) =>
+              OrderDetailScreen(orderId: state.pathParameters['orderId']!),
         ),
       ],
     ),

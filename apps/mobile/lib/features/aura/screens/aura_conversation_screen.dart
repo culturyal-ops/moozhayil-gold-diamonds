@@ -26,7 +26,8 @@ class AuraConversationScreen extends ConsumerStatefulWidget {
       _AuraConversationScreenState();
 }
 
-class _AuraConversationScreenState extends ConsumerState<AuraConversationScreen> {
+class _AuraConversationScreenState
+    extends ConsumerState<AuraConversationScreen> {
   final _controller = TextEditingController();
   bool _isSending = false;
 
@@ -96,10 +97,7 @@ class _AuraConversationScreenState extends ConsumerState<AuraConversationScreen>
                               'Ask about Schemes, gold rates, gifting, or wedding jewellery.',
                         ),
                       ),
-                      _QuickPromptBar(
-                        prompts: _quickPrompts,
-                        onPrompt: _send,
-                      ),
+                      _QuickPromptBar(prompts: _quickPrompts, onPrompt: _send),
                     ],
                   );
                 }
@@ -114,15 +112,11 @@ class _AuraConversationScreenState extends ConsumerState<AuraConversationScreen>
                         itemCount: items.length,
                         separatorBuilder: (_, _) =>
                             const SizedBox(height: AppSpacing.md),
-                        itemBuilder: (context, index) => AuraConversationCard(
-                          message: items[index],
-                        ),
+                        itemBuilder: (context, index) =>
+                            AuraConversationCard(message: items[index]),
                       ),
                     ),
-                    _QuickPromptBar(
-                      prompts: _quickPrompts,
-                      onPrompt: _send,
-                    ),
+                    _QuickPromptBar(prompts: _quickPrompts, onPrompt: _send),
                   ],
                 );
               },
@@ -131,12 +125,11 @@ class _AuraConversationScreenState extends ConsumerState<AuraConversationScreen>
                 itemCount: 3,
                 separatorBuilder: (_, _) =>
                     const SizedBox(height: AppSpacing.md),
-                itemBuilder: (_, _) => const LoadingShimmer(
-                  width: double.infinity,
-                  height: 72,
-                ),
+                itemBuilder: (_, _) =>
+                    const LoadingShimmer(width: double.infinity, height: 72),
               ),
-              error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
+              error: (error, _) =>
+                  ErrorState(body: CustomerErrorCopy.message(error)),
             ),
           ),
           SafeArea(
@@ -220,10 +213,7 @@ class _AuraConversationScreenState extends ConsumerState<AuraConversationScreen>
 }
 
 class _QuickPromptBar extends StatelessWidget {
-  const _QuickPromptBar({
-    required this.prompts,
-    required this.onPrompt,
-  });
+  const _QuickPromptBar({required this.prompts, required this.onPrompt});
 
   final List<String> prompts;
   final void Function(String prompt) onPrompt;

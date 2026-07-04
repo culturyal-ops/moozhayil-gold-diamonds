@@ -25,17 +25,20 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
     (
       key: 'onboard-1',
       title: 'Own gold,\nbeautifully',
-      body: 'Plan milestones and grow your balance with calm, transparent pricing.',
+      body:
+          'Plan milestones and grow your balance with calm, transparent pricing.',
     ),
     (
       key: 'onboard-2',
       title: 'Curated for\nyour moments',
-      body: 'Discover editorial collections crafted for weddings, festivals, and everyday grace.',
+      body:
+          'Discover editorial collections crafted for weddings, festivals, and everyday grace.',
     ),
     (
       key: 'onboard-3',
       title: 'A maison\nyou can trust',
-      body: 'KYC-backed purchases, live gold rates, and pieces made to last generations.',
+      body:
+          'KYC-backed purchases, live gold rates, and pieces made to last generations.',
     ),
   ];
 
@@ -145,8 +148,9 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                   ),
                   const SizedBox(height: AppSpacing.xl),
                   PrimaryButton(
-                    label:
-                        _page == _slides.length - 1 ? 'Get started' : 'Continue',
+                    label: _page == _slides.length - 1
+                        ? 'Get started'
+                        : 'Continue',
                     isFullWidth: true,
                     onTap: () {
                       if (_page < _slides.length - 1) {

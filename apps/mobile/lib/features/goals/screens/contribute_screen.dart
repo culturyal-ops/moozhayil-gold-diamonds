@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
 import '../../../components/buttons/primary_button.dart';
 
 import '../../../components/feedback/premium_snackbar.dart';
@@ -27,64 +25,38 @@ import '../../goals/providers/goals_provider.dart';
 
 import '../../my_gold/providers/gold_balance_provider.dart';
 
-
-
 class ContributeScreen extends ConsumerStatefulWidget {
-
   const ContributeScreen({super.key, required this.goalId});
-
-
 
   final String goalId;
 
-
-
   @override
-
   ConsumerState<ContributeScreen> createState() => _ContributeScreenState();
-
 }
 
-
-
 class _ContributeScreenState extends ConsumerState<ContributeScreen> {
-
   var _amountPaise = 300000;
 
   var _submitting = false;
 
   late final RazorpayCheckout _razorpayCheckout;
 
-
-
   @override
-
   void initState() {
-
     super.initState();
 
     _razorpayCheckout = RazorpayCheckout();
-
   }
 
-
-
   @override
-
   void dispose() {
-
     _razorpayCheckout.dispose();
 
     super.dispose();
-
   }
 
-
-
   Future<void> _showContributionSuccess(String amountDisplay) async {
-
     await showDialog<void>(
-
       context: context,
 
       barrierDismissible: false,
@@ -92,34 +64,22 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
       barrierColor: AppColors.warmIvory,
 
       builder: (dialogContext) => LuxurySuccessOverlay(
-
         title: amountDisplay,
 
         subtitle: CustomerCopy.contributionMovingForward,
 
         onDone: () => Navigator.of(dialogContext).pop(),
-
       ),
-
     );
-
   }
 
-
-
   Future<void> _submit() async {
-
     setState(() => _submitting = true);
 
     try {
-
-      final result = await ref.read(goalsRepositoryProvider).contribute(
-
-            goalId: widget.goalId,
-
-            amountPaise: _amountPaise,
-
-          );
+      final result = await ref
+          .read(goalsRepositoryProvider)
+          .contribute(goalId: widget.goalId, amountPaise: _amountPaise);
 
       ref.invalidate(goalDetailProvider(widget.goalId));
 
@@ -129,20 +89,14 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
 
       if (!mounted) return;
 
-
-
       if (result.paymentRequired) {
-
         final keyId = result.razorpayKeyId;
 
         final rzpOrderId = result.razorpayOrderId;
 
         final sessionId = result.paymentSessionId;
 
-
-
         if (keyId == null || rzpOrderId == null || sessionId == null) {
-
           showPremiumSnackBar(
             context,
             'Payment configuration error. Please contact support.',
@@ -150,13 +104,11 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
           );
 
           return;
-
         }
 
-
-
-        final captured = await ref.read(razorpayServiceProvider).pay(
-
+        final captured = await ref
+            .read(razorpayServiceProvider)
+            .pay(
               context: context,
 
               checkout: _razorpayCheckout,
@@ -170,16 +122,10 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
               paymentSessionId: sessionId,
 
               description: 'Gold contribution',
-
             );
 
-
-
         if (!mounted || !captured) return;
-
       }
-
-
 
       AppHaptics.light();
 
@@ -188,51 +134,34 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
       if (!mounted) return;
 
       Navigator.of(context).pop();
-
     } catch (_) {
-
       if (!mounted) return;
 
       showPremiumSnackBar(context, CustomerCopy.paymentError, haptic: false);
-
     } finally {
-
       if (mounted) setState(() => _submitting = false);
-
     }
-
   }
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
     final rupees = _amountPaise ~/ 100;
 
-
-
     return Scaffold(
-
       backgroundColor: AppColors.warmIvory,
 
       appBar: AppTopBar.detail(title: 'Contribute'),
 
       body: Padding(
-
         padding: const EdgeInsets.all(AppSpacing.screenPadding),
 
         child: Column(
-
           crossAxisAlignment: CrossAxisAlignment.stretch,
 
           children: [
-
             Text('Contribution amount', style: AppTypography.headingMD),
 
             Slider(
-
               value: rupees.toDouble().clamp(1000, 50000),
 
               min: 1000,
@@ -244,9 +173,7 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
               label: '₹$rupees',
 
               onChanged: (value) =>
-
                   setState(() => _amountPaise = value.round() * 100),
-
             ),
 
             Text('₹$rupees', style: AppTypography.headingSM),
@@ -254,23 +181,13 @@ class _ContributeScreenState extends ConsumerState<ContributeScreen> {
             const Spacer(),
 
             PrimaryButton(
-
               label: _submitting ? 'Processing…' : 'Contribute now',
 
               onTap: _submitting ? null : _submit,
-
             ),
-
           ],
-
         ),
-
       ),
-
     );
-
   }
-
 }
-
-

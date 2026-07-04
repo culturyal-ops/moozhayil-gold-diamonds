@@ -48,12 +48,12 @@ class ShopBrowseRoute {
   }
 
   String get fallbackTitle => switch (kind) {
-        ShopBrowseKind.search => 'Search',
-        ShopBrowseKind.category => 'Category',
-        ShopBrowseKind.collection => 'Collection',
-        ShopBrowseKind.occasion => 'Occasion',
-        ShopBrowseKind.product => 'Piece',
-      };
+    ShopBrowseKind.search => 'Search',
+    ShopBrowseKind.category => 'Category',
+    ShopBrowseKind.collection => 'Collection',
+    ShopBrowseKind.occasion => 'Occasion',
+    ShopBrowseKind.product => 'Piece',
+  };
 
   bool get hidesBottomNav => true;
 }

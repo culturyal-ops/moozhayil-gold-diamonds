@@ -16,9 +16,7 @@ class ProductImagePlaceholder extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: AppColors.pearl,
-        border: Border(
-          bottom: BorderSide(color: AppColors.border, width: 0.5),
-        ),
+        border: Border(bottom: BorderSide(color: AppColors.border, width: 0.5)),
       ),
       child: Center(
         child: Text(

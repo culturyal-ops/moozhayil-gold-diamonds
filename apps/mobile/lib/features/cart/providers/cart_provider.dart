@@ -87,7 +87,9 @@ class CartActions extends _$CartActions {
   }
 
   Future<CartSummary> removeProduct(String productId) async {
-    final summary = await ref.read(cartRepositoryProvider).removeItem(productId);
+    final summary = await ref
+        .read(cartRepositoryProvider)
+        .removeItem(productId);
     ref.invalidate(cartSummaryProvider);
     return summary;
   }

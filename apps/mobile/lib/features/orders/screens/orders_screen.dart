@@ -70,9 +70,8 @@ class OrdersScreen extends ConsumerWidget {
                       const SizedBox(height: AppSpacing.md),
                   itemBuilder: (context, index) => _OrderCard(
                     order: response.data[index],
-                    onTap: () => context.push(
-                      '/orders/${response.data[index].id}',
-                    ),
+                    onTap: () =>
+                        context.push('/orders/${response.data[index].id}'),
                   ),
                 ),
               );
@@ -108,31 +107,32 @@ class _OrderCard extends StatelessWidget {
     return EditorialPanel(
       onTap: onTap,
       child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(order.orderNumber, style: AppTypography.uiBodyMD),
-                  Text(
-                    order.statusDisplay,
-                    style: AppTypography.uiCaption.copyWith(
-                      color: AppColors.gold,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(order.totalDisplay, style: AppTypography.priceMD.copyWith(
-                color: AppColors.gold,
-              )),
-              const SizedBox(height: AppSpacing.xxs),
+              Text(order.orderNumber, style: AppTypography.uiBodyMD),
               Text(
-                '${order.items.length} item${order.items.length == 1 ? '' : 's'}',
-                style: AppTypography.uiCaption,
+                order.statusDisplay,
+                style: AppTypography.uiCaption.copyWith(
+                  color: AppColors.gold,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            order.totalDisplay,
+            style: AppTypography.priceMD.copyWith(color: AppColors.gold),
+          ),
+          const SizedBox(height: AppSpacing.xxs),
+          Text(
+            '${order.items.length} item${order.items.length == 1 ? '' : 's'}',
+            style: AppTypography.uiCaption,
+          ),
+        ],
       ),
     );
   }

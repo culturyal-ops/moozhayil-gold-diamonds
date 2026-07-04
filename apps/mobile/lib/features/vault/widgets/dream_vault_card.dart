@@ -170,13 +170,12 @@ class _DreamVaultPreviewCard extends StatelessWidget {
             height: AppSpacing.x3l,
             width: double.infinity,
             child: product.primaryImage == null
-                  ? const ProductImagePlaceholder()
-                  : CachedNetworkImage(
-                      imageUrl: product.primaryImage!,
-                      fit: BoxFit.cover,
-                      errorWidget: (_, _, _) =>
-                          const ProductImagePlaceholder(),
-                    ),
+                ? const ProductImagePlaceholder()
+                : CachedNetworkImage(
+                    imageUrl: product.primaryImage!,
+                    fit: BoxFit.cover,
+                    errorWidget: (_, _, _) => const ProductImagePlaceholder(),
+                  ),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(

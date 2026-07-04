@@ -18,8 +18,7 @@ class StoreLocatorScreen extends ConsumerStatefulWidget {
   const StoreLocatorScreen({super.key});
 
   @override
-  ConsumerState<StoreLocatorScreen> createState() =>
-      _StoreLocatorScreenState();
+  ConsumerState<StoreLocatorScreen> createState() => _StoreLocatorScreenState();
 }
 
 class _StoreLocatorScreenState extends ConsumerState<StoreLocatorScreen> {
@@ -63,10 +62,7 @@ class _StoreLocatorScreenState extends ConsumerState<StoreLocatorScreen> {
                   ),
                 ),
                 const SizedBox(width: AppSpacing.sm),
-                IconButton(
-                  onPressed: _search,
-                  icon: const Icon(Icons.search),
-                ),
+                IconButton(onPressed: _search, icon: const Icon(Icons.search)),
               ],
             ),
           ),
@@ -97,9 +93,8 @@ class _StoreLocatorScreenState extends ConsumerState<StoreLocatorScreen> {
                     itemCount: response.stores.length,
                     separatorBuilder: (_, _) =>
                         const SizedBox(height: AppSpacing.md),
-                    itemBuilder: (context, index) => _StoreCard(
-                      store: response.stores[index],
-                    ),
+                    itemBuilder: (context, index) =>
+                        _StoreCard(store: response.stores[index]),
                   ),
                 );
               },
@@ -141,9 +136,7 @@ class _StoreCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Expanded(
-                child: Text(store.name, style: AppTypography.headingSM),
-              ),
+              Expanded(child: Text(store.name, style: AppTypography.headingSM)),
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppSpacing.sm,

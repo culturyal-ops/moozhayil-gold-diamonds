@@ -168,22 +168,24 @@ class AuraScreen extends ConsumerWidget {
     }
 
     try {
-      final sessionId =
-          await ref.read(auraActionsProvider.notifier).startChatSession();
+      final sessionId = await ref
+          .read(auraActionsProvider.notifier)
+          .startChatSession();
       if (!context.mounted) return;
       context.push('/aura/conversation/$sessionId');
     } catch (error) {
       if (!context.mounted) return;
-      showPremiumSnackBar(context, CustomerErrorCopy.message(error), haptic: false);
+      showPremiumSnackBar(
+        context,
+        CustomerErrorCopy.message(error),
+        haptic: false,
+      );
     }
   }
 }
 
 class _InsightBanner extends StatelessWidget {
-  const _InsightBanner({
-    required this.insightText,
-    required this.onExplore,
-  });
+  const _InsightBanner({required this.insightText, required this.onExplore});
 
   final String insightText;
   final VoidCallback onExplore;

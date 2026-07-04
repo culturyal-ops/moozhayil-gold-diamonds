@@ -224,7 +224,11 @@ class _IconButton extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            AppIcon(icon, size: AppIconography.sizeSm, color: AppIconography.subtle),
+            AppIcon(
+              icon,
+              size: AppIconography.sizeSm,
+              color: AppIconography.subtle,
+            ),
           ],
         ),
       ),

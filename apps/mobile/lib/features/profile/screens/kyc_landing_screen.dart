@@ -73,7 +73,10 @@ class KycLandingScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Verification unsuccessful', style: AppTypography.headingMD),
+                  Text(
+                    'Verification unsuccessful',
+                    style: AppTypography.headingMD,
+                  ),
                   const SizedBox(height: AppSpacing.sm),
                   if (kyc.rejectionReason != null)
                     Text(
@@ -91,7 +94,9 @@ class KycLandingScreen extends ConsumerWidget {
                   ],
                   const SizedBox(height: AppSpacing.lg),
                   PrimaryButton(
-                    label: cooldown == null ? 'Resubmit verification' : 'Back to profile',
+                    label: cooldown == null
+                        ? 'Resubmit verification'
+                        : 'Back to profile',
                     isFullWidth: true,
                     onTap: cooldown == null
                         ? () => context.push(AppRoutes.profileKycAadhaar)

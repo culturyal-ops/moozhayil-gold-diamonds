@@ -8,15 +8,13 @@ abstract final class CustomerCopy {
   static const bagEmptyCta = 'Explore Jewellery';
   static const addedToBag = 'Added to Bag';
   static const viewBag = 'View Bag';
-  static const addToBagError =
-      'Something went wrong while adding to Bag.';
+  static const addToBagError = 'Something went wrong while adding to Bag.';
   static const productLoadError = 'We couldn\u2019t load this piece.';
   static const paymentError = 'Payment could not be completed.';
   static const planStartError =
       'We couldn\u2019t start your plan. Please try again.';
   static const contributionReceived = 'Installment received.';
-  static const contributionMovingForward =
-      'Your Aura Plan is moving forward.';
+  static const contributionMovingForward = 'Your Aura Plan is moving forward.';
 
   // Dream Vault
   static const dreamVaultTitle = 'Dream Vault';
@@ -47,8 +45,7 @@ abstract final class CustomerCopy {
       'Explore Schemes to start saving toward your next piece.';
 
   // Scheme enrollment
-  static const linkPieceOptional =
-      'Optional: link a dream piece to your plan.';
+  static const linkPieceOptional = 'Optional: link a dream piece to your plan.';
 
   // Profile / KYC
   static const kycUnlockSchemes = 'Optional — required to join Schemes';

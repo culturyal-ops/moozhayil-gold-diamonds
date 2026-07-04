@@ -82,7 +82,9 @@ class _SelfieScreenState extends ConsumerState<SelfieScreen> {
             const SizedBox(height: AppSpacing.sm),
             Text(
               'Face the camera in good lighting. Your photo stays encrypted and private.',
-              style: AppTypography.uiBodySM.copyWith(color: AppColors.slateMist),
+              style: AppTypography.uiBodySM.copyWith(
+                color: AppColors.slateMist,
+              ),
             ),
             const SizedBox(height: AppSpacing.lg),
             Container(

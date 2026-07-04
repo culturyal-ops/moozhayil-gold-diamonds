@@ -70,10 +70,7 @@ class DevScreenGallery extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Preview mode',
-                    style: AppTypography.headingSM,
-                  ),
+                  Text('Preview mode', style: AppTypography.headingSM),
                   const SizedBox(height: AppSpacing.xs),
                   Text(
                     'Signed in as Nikita Liby — no OTP or API needed. '

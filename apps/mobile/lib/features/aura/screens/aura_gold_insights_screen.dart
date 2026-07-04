@@ -74,7 +74,8 @@ class AuraGoldInsightsScreen extends ConsumerWidget {
                   width: double.infinity,
                   height: AppSpacing.x3l * 2,
                 ),
-                error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
+                error: (error, _) =>
+                    ErrorState(body: CustomerErrorCopy.message(error)),
               ),
             ),
             ShopSectionInset(

@@ -90,27 +90,27 @@ class GoalCreateDraft {
   }
 
   String get amountLabel => switch (schemeType) {
-        GoldenWishSchemeType.aura => 'Monthly installment',
-        GoldenWishSchemeType.crest => 'Advance amount',
-        GoldenWishSchemeType.dhanam => 'Booking advance',
-        GoldenWishSchemeType.goldNidhi => 'Minimum deposit',
-      };
+    GoldenWishSchemeType.aura => 'Monthly installment',
+    GoldenWishSchemeType.crest => 'Advance amount',
+    GoldenWishSchemeType.dhanam => 'Booking advance',
+    GoldenWishSchemeType.goldNidhi => 'Minimum deposit',
+  };
 
   String get successTitle => switch (schemeType) {
-        GoldenWishSchemeType.aura => 'Your Aura Plan has started.',
-        _ => 'Your ${schemeType.displayName} has started.',
-      };
+    GoldenWishSchemeType.aura => 'Your Aura Plan has started.',
+    _ => 'Your ${schemeType.displayName} has started.',
+  };
 
   String get successSubtitle => switch (schemeType) {
-        GoldenWishSchemeType.aura =>
-          'Your plan is active. Make your first contribution from My Plans whenever you are ready.',
-        GoldenWishSchemeType.crest =>
-          'Your Crest plan is created. Pay your advance from Contribute to lock gold weight at today\u2019s rate.',
-        GoldenWishSchemeType.dhanam =>
-          'Your Dhanam booking is created. Pay your booking advance from Contribute to lock today\u2019s rate.',
-        GoldenWishSchemeType.goldNidhi =>
-          'Your Swarna Nidhi account is open. Deposit whenever you wish from Contribute.',
-      };
+    GoldenWishSchemeType.aura =>
+      'Your plan is active. Make your first contribution from My Plans whenever you are ready.',
+    GoldenWishSchemeType.crest =>
+      'Your Crest plan is created. Pay your advance from Contribute to lock gold weight at today\u2019s rate.',
+    GoldenWishSchemeType.dhanam =>
+      'Your Dhanam booking is created. Pay your booking advance from Contribute to lock today\u2019s rate.',
+    GoldenWishSchemeType.goldNidhi =>
+      'Your Swarna Nidhi account is open. Deposit whenever you wish from Contribute.',
+  };
 }
 
 @riverpod

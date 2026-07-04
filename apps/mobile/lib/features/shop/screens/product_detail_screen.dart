@@ -115,8 +115,7 @@ class _ProductDetailBodyState extends ConsumerState<_ProductDetailBody> {
       orElse: () => widget.item,
     );
 
-    final eyebrow =
-        displayItem.collection?.name ?? displayItem.category?.name;
+    final eyebrow = displayItem.collection?.name ?? displayItem.category?.name;
     return Scaffold(
       backgroundColor: AppColors.paper,
       body: ListView(
@@ -187,19 +186,18 @@ class _ProductDetailBodyState extends ConsumerState<_ProductDetailBody> {
                 const SizedBox(height: AppSpacing.lg),
                 ProductDetailAccordion(
                   title: 'About',
-                  body: displayItem.description ??
+                  body:
+                      displayItem.description ??
                       'Hand-finished in our Pala atelier.',
                   initiallyExpanded: true,
                 ),
                 ProductDetailAccordion(
                   title: 'Care',
-                  body:
-                      'Store in the provided pouch. Clean with a soft cloth.',
+                  body: 'Store in the provided pouch. Clean with a soft cloth.',
                 ),
                 ProductDetailAccordion(
                   title: 'Shipping & returns',
-                  body:
-                      'Insured delivery across India. Returns within 7 days.',
+                  body: 'Insured delivery across India. Returns within 7 days.',
                   onActionTap: () => showPriceBreakdownSheet(
                     context: context,
                     product: displayItem,
@@ -219,10 +217,8 @@ class _ProductDetailBodyState extends ConsumerState<_ProductDetailBody> {
         onAddToBag: !displayItem.stockAvailable
             ? null
             : () => _addToBag(context, displayItem.id),
-        onBookVideoCall: () => showProductVideoCallBottomSheet(
-          context,
-          product: displayItem,
-        ),
+        onBookVideoCall: () =>
+            showProductVideoCallBottomSheet(context, product: displayItem),
         onToggleVault: () => handleVaultSave(context, ref, displayItem.id),
       ),
     );
@@ -234,9 +230,7 @@ class _ProductDetailBodyState extends ConsumerState<_ProductDetailBody> {
       context.push(
         Uri(
           path: AppRoutes.auth,
-          queryParameters: {
-            'from': GoRouterState.of(context).uri.toString(),
-          },
+          queryParameters: {'from': GoRouterState.of(context).uri.toString()},
         ).toString(),
       );
       return;
@@ -262,4 +256,3 @@ class _ProductDetailBodyState extends ConsumerState<_ProductDetailBody> {
     }
   }
 }
-

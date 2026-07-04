@@ -35,7 +35,10 @@ class AddressesRepository {
     }
   }
 
-  Future<UserAddress> update(String addressId, Map<String, dynamic> payload) async {
+  Future<UserAddress> update(
+    String addressId,
+    Map<String, dynamic> payload,
+  ) async {
     try {
       final response = await _apiService.client.patch<Map<String, dynamic>>(
         '/addresses/$addressId',

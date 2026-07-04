@@ -77,9 +77,6 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(seconds: 2));
 
-    expect(
-      find.bySemanticsLabel('Moozhayil Gold & Diamonds'),
-      findsOneWidget,
-    );
+    expect(find.bySemanticsLabel('Moozhayil Gold & Diamonds'), findsOneWidget);
   });
 }

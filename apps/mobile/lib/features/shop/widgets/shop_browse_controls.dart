@@ -44,18 +44,9 @@ class ShopBrowseControls extends StatelessWidget {
           spacing: AppSpacing.xs,
           runSpacing: AppSpacing.xs,
           children: [
-            _FilterChip(
-              label: sort.label,
-              onTap: () => _pickSort(context),
-            ),
-            _FilterChip(
-              label: purity.label,
-              onTap: () => _pickPurity(context),
-            ),
-            _FilterChip(
-              label: stock.label,
-              onTap: () => _pickStock(context),
-            ),
+            _FilterChip(label: sort.label, onTap: () => _pickSort(context)),
+            _FilterChip(label: purity.label, onTap: () => _pickPurity(context)),
+            _FilterChip(label: stock.label, onTap: () => _pickStock(context)),
           ],
         ),
       ],

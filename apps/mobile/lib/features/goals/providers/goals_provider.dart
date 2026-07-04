@@ -65,9 +65,7 @@ class GoalsRepository {
           'target_amount_paise': ?targetAmountPaise,
           'payment_method_id': ?paymentMethodId,
         },
-        options: Options(
-          headers: {'Idempotency-Key': _idempotencyKey()},
-        ),
+        options: Options(headers: {'Idempotency-Key': _idempotencyKey()}),
       );
       return CreateGoalResponse.fromJson(response.data!);
     } on DioException catch (error) {
@@ -83,9 +81,7 @@ class GoalsRepository {
       final response = await _apiService.client.post<Map<String, dynamic>>(
         '/goals/$goalId/contribute',
         data: {'amount_paise': amountPaise},
-        options: Options(
-          headers: {'Idempotency-Key': _idempotencyKey()},
-        ),
+        options: Options(headers: {'Idempotency-Key': _idempotencyKey()}),
       );
       return ContributeResponse.fromJson(response.data!);
     } on DioException catch (error) {

@@ -9,25 +9,25 @@ import 'package:moozhayil/core/models/order.dart';
 
 /// Minimal Order for tests.
 Order _dummyOrder(String id) => Order(
-      id: id,
-      orderNumber: 'ORD-001',
-      status: 'pending_payment',
-      statusDisplay: 'Pending Payment',
-      totalPaise: 500000,
-      totalDisplay: '₹5,000',
-      paymentMethod: 'upi',
-      goldBalanceUsedGrams: '0.0000',
-      items: const [],
-      orderedAt: '2026-06-27T00:00:00Z',
-    );
+  id: id,
+  orderNumber: 'ORD-001',
+  status: 'pending_payment',
+  statusDisplay: 'Pending Payment',
+  totalPaise: 500000,
+  totalDisplay: '₹5,000',
+  paymentMethod: 'upi',
+  goldBalanceUsedGrams: '0.0000',
+  items: const [],
+  orderedAt: '2026-06-27T00:00:00Z',
+);
 
 /// Minimal ContributionResult for tests.
 ContributionResult _dummyContrib() => const ContributionResult(
-      id: 'contrib-001',
-      status: 'pending_payment',
-      amountPaise: 100000,
-      amountDisplay: '₹1,000',
-    );
+  id: 'contrib-001',
+  status: 'pending_payment',
+  amountPaise: 100000,
+  amountDisplay: '₹1,000',
+);
 
 // ---------------------------------------------------------------------------
 // Tests
@@ -150,21 +150,18 @@ void main() {
       },
     );
 
-    test(
-      'ContributeResponse.paymentRequired false for direct-debit order',
-      () {
-        final response = ContributeResponse(
-          contribution: _dummyContrib(),
-          paymentRequired: false,
-          paymentSessionId: null,
-          razorpayOrderId: null,
-          razorpayKeyId: null,
-        );
+    test('ContributeResponse.paymentRequired false for direct-debit order', () {
+      final response = ContributeResponse(
+        contribution: _dummyContrib(),
+        paymentRequired: false,
+        paymentSessionId: null,
+        razorpayOrderId: null,
+        razorpayKeyId: null,
+      );
 
-        expect(response.paymentRequired, isFalse);
-        expect(response.razorpayOrderId, isNull);
-      },
-    );
+      expect(response.paymentRequired, isFalse);
+      expect(response.razorpayOrderId, isNull);
+    });
   });
 
   group('Model: payment guard — null safety', () {

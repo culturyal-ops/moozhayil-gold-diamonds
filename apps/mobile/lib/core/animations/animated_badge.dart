@@ -28,23 +28,24 @@ class _AnimatedBadgeState extends State<AnimatedBadge>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: AppMotion.normal,
-    );
+    _controller = AnimationController(vsync: this, duration: AppMotion.normal);
     _scale = _buildScale();
   }
 
   Animation<double> _buildScale() {
     return TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween(begin: 0.85, end: 1.1)
-            .chain(CurveTween(curve: AppMotion.standard)),
+        tween: Tween(
+          begin: 0.85,
+          end: 1.1,
+        ).chain(CurveTween(curve: AppMotion.standard)),
         weight: 55,
       ),
       TweenSequenceItem(
-        tween: Tween(begin: 1.1, end: 1.0)
-            .chain(CurveTween(curve: AppMotion.standard)),
+        tween: Tween(
+          begin: 1.1,
+          end: 1.0,
+        ).chain(CurveTween(curve: AppMotion.standard)),
         weight: 45,
       ),
     ]).animate(_controller);
@@ -124,23 +125,24 @@ class _AnimatedPulseDotState extends State<AnimatedPulseDot>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: AppMotion.normal,
-    );
+    _controller = AnimationController(vsync: this, duration: AppMotion.normal);
     _scale = _buildScale();
   }
 
   Animation<double> _buildScale() {
     return TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween(begin: 0.85, end: 1.1)
-            .chain(CurveTween(curve: AppMotion.standard)),
+        tween: Tween(
+          begin: 0.85,
+          end: 1.1,
+        ).chain(CurveTween(curve: AppMotion.standard)),
         weight: 55,
       ),
       TweenSequenceItem(
-        tween: Tween(begin: 1.1, end: 1.0)
-            .chain(CurveTween(curve: AppMotion.standard)),
+        tween: Tween(
+          begin: 1.1,
+          end: 1.0,
+        ).chain(CurveTween(curve: AppMotion.standard)),
         weight: 45,
       ),
     ]).animate(_controller);
@@ -176,10 +178,7 @@ class _AnimatedPulseDotState extends State<AnimatedPulseDot>
       child: Container(
         width: widget.size,
         height: widget.size,
-        decoration: BoxDecoration(
-          color: widget.color,
-          shape: BoxShape.circle,
-        ),
+        decoration: BoxDecoration(color: widget.color, shape: BoxShape.circle),
       ),
     );
   }

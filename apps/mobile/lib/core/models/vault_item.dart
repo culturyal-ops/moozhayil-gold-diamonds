@@ -13,7 +13,8 @@ abstract class VaultAffordability with _$VaultAffordability {
     @JsonKey(name: 'can_afford_now') required bool canAffordNow,
     @JsonKey(name: 'percent_complete') required int percentComplete,
     @JsonKey(name: 'grams_needed_display') required String gramsNeededDisplay,
-    @JsonKey(name: 'suggested_monthly_paise') required int suggestedMonthlyPaise,
+    @JsonKey(name: 'suggested_monthly_paise')
+    required int suggestedMonthlyPaise,
     @JsonKey(name: 'suggested_monthly_display')
     required String suggestedMonthlyDisplay,
     @JsonKey(name: 'months_to_afford') required int monthsToAfford,
@@ -26,7 +27,8 @@ abstract class VaultAffordability with _$VaultAffordability {
 @freezed
 abstract class GoalSuggestion with _$GoalSuggestion {
   const factory GoalSuggestion({
-    @JsonKey(name: 'suggested_monthly_paise') required int suggestedMonthlyPaise,
+    @JsonKey(name: 'suggested_monthly_paise')
+    required int suggestedMonthlyPaise,
     @JsonKey(name: 'suggested_monthly_display')
     required String suggestedMonthlyDisplay,
     @JsonKey(name: 'months_to_complete') required int monthsToComplete,

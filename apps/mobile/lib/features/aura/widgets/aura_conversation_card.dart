@@ -28,8 +28,9 @@ class AuraConversationCard extends StatelessWidget {
           maxWidth: MediaQuery.sizeOf(context).width * 0.82,
         ),
         child: Column(
-          crossAxisAlignment:
-              isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          crossAxisAlignment: isUser
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
           children: [
             if (!isUser) ...[
               Text(
@@ -89,8 +90,8 @@ class AuraConversationCard extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               AuraOptionButton(
                 label: message.action!.ctaLabel,
-                onPressed: onActionTap ??
-                    () => context.push(message.action!.route),
+                onPressed:
+                    onActionTap ?? () => context.push(message.action!.route),
               ),
             ],
           ],

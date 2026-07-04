@@ -97,10 +97,7 @@ class _NavigationShellState extends ConsumerState<NavigationShell> {
       extendBody: !hideBottomNav,
       drawerScrimColor: const Color(0x6617120F),
       appBar: appBar,
-      drawer: AppNavigationDrawer(
-        userName: userName,
-        memberSince: memberSince,
-      ),
+      drawer: AppNavigationDrawer(userName: userName, memberSince: memberSince),
       body: Column(
         children: [
           // Global offline indicator — shown below TopAppBar per spec.

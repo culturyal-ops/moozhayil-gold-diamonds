@@ -96,7 +96,9 @@ class PaymentMethodActions extends _$PaymentMethodActions {
     required String displayLabel,
     bool isDefault = false,
   }) async {
-    final method = await ref.read(paymentsRepositoryProvider).createMethod(
+    final method = await ref
+        .read(paymentsRepositoryProvider)
+        .createMethod(
           type: 'upi',
           providerToken: upiId,
           displayLabel: displayLabel,

@@ -101,7 +101,9 @@ class AuthController extends _$AuthController {
       );
     });
     state = result;
-    unawaited(ref.read(pushRegistrationServiceProvider).registerDeviceIfNeeded());
+    unawaited(
+      ref.read(pushRegistrationServiceProvider).registerDeviceIfNeeded(),
+    );
     return result.requireValue.user!;
   }
 

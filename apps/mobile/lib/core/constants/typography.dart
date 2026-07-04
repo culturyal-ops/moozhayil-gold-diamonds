@@ -114,10 +114,7 @@ abstract final class AppTypography {
   }
 
   /// Legacy drawer nav alias — now sans-serif for retail navigation.
-  static TextStyle drawerNav({
-    Color? color,
-    double fontSize = 18,
-  }) {
+  static TextStyle drawerNav({Color? color, double fontSize = 18}) {
     return _inter(
       fontSize: fontSize,
       fontWeight: FontWeight.w500,

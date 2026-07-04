@@ -17,8 +17,7 @@ abstract class StoreLocation with _$StoreLocation {
     required String phone,
     required double latitude,
     required double longitude,
-    @JsonKey(name: 'opening_hours')
-    required Map<String, String> openingHours,
+    @JsonKey(name: 'opening_hours') required Map<String, String> openingHours,
     @JsonKey(name: 'is_open_now') required bool isOpenNow,
     @JsonKey(name: 'distance_km') double? distanceKm,
   }) = _StoreLocation;
@@ -29,9 +28,8 @@ abstract class StoreLocation with _$StoreLocation {
 
 @freezed
 abstract class StoresListResponse with _$StoresListResponse {
-  const factory StoresListResponse({
-    required List<StoreLocation> stores,
-  }) = _StoresListResponse;
+  const factory StoresListResponse({required List<StoreLocation> stores}) =
+      _StoresListResponse;
 
   factory StoresListResponse.fromJson(Map<String, dynamic> json) =>
       _$StoresListResponseFromJson(json);
@@ -39,9 +37,8 @@ abstract class StoresListResponse with _$StoresListResponse {
 
 @freezed
 abstract class StoreDetailResponse with _$StoreDetailResponse {
-  const factory StoreDetailResponse({
-    required StoreLocation store,
-  }) = _StoreDetailResponse;
+  const factory StoreDetailResponse({required StoreLocation store}) =
+      _StoreDetailResponse;
 
   factory StoreDetailResponse.fromJson(Map<String, dynamic> json) =>
       _$StoreDetailResponseFromJson(json);

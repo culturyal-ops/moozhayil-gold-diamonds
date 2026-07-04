@@ -22,10 +22,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: SizedBox(
-            width: 180,
-            child: ProductCard(product: _product()),
-          ),
+          body: SizedBox(width: 180, child: ProductCard(product: _product())),
         ),
       ),
     );

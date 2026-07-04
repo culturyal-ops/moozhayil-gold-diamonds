@@ -66,7 +66,9 @@ class _AadhaarScreenState extends ConsumerState<AadhaarScreen> {
             const SizedBox(height: AppSpacing.sm),
             Text(
               'We send a one-time OTP to the mobile linked with Aadhaar.',
-              style: AppTypography.uiBodySM.copyWith(color: AppColors.slateMist),
+              style: AppTypography.uiBodySM.copyWith(
+                color: AppColors.slateMist,
+              ),
             ),
             const SizedBox(height: AppSpacing.lg),
             AppTextInput(

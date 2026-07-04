@@ -38,10 +38,12 @@ abstract class Goal with _$Goal {
     @JsonKey(name: 'current_value_display') required String currentValueDisplay,
     @JsonKey(name: 'percent_complete') required int percentComplete,
     @JsonKey(name: 'monthly_amount_paise') required int monthlyAmountPaise,
-    @JsonKey(name: 'monthly_amount_display') required String monthlyAmountDisplay,
+    @JsonKey(name: 'monthly_amount_display')
+    required String monthlyAmountDisplay,
     @JsonKey(name: 'duration_months') required int durationMonths,
     @JsonKey(name: 'start_date') required String startDate,
-    @JsonKey(name: 'next_contribution_date') required String nextContributionDate,
+    @JsonKey(name: 'next_contribution_date')
+    required String nextContributionDate,
     @JsonKey(name: 'estimated_completion_date')
     required String estimatedCompletionDate,
     @JsonKey(name: 'months_remaining') required int monthsRemaining,

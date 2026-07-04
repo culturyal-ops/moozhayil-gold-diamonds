@@ -58,12 +58,9 @@ Future<StoresListResponse> storesList(
   double? lng,
   int? radiusKm,
 }) async {
-  return ref.watch(storesRepositoryProvider).list(
-        q: q,
-        lat: lat,
-        lng: lng,
-        radiusKm: radiusKm,
-      );
+  return ref
+      .watch(storesRepositoryProvider)
+      .list(q: q, lat: lat, lng: lng, radiusKm: radiusKm);
 }
 
 @riverpod

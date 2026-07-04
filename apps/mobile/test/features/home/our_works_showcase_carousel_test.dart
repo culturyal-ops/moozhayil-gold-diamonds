@@ -7,9 +7,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: OurWorksShowcaseCarousel(
-            items: ourWorksFromProducts(const []),
-          ),
+          body: OurWorksShowcaseCarousel(items: ourWorksFromProducts(const [])),
         ),
       ),
     );

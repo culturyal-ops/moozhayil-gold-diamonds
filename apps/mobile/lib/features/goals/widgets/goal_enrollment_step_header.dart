@@ -22,11 +22,11 @@ class GoalEnrollmentStepHeader extends StatelessWidget {
   static const _totalSteps = 4;
 
   int get _stepIndex => switch (step) {
-        GoalEnrollmentStep.moment => 1,
-        GoalEnrollmentStep.piece => 2,
-        GoalEnrollmentStep.amount => 3,
-        GoalEnrollmentStep.payment => 4,
-      };
+    GoalEnrollmentStep.moment => 1,
+    GoalEnrollmentStep.piece => 2,
+    GoalEnrollmentStep.amount => 3,
+    GoalEnrollmentStep.payment => 4,
+  };
 
   @override
   Widget build(BuildContext context) {

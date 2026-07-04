@@ -51,8 +51,7 @@ class _OrderConfirmationScreenState
           detailLine: 'Order ${response.order.orderNumber}',
           majorSuccess: true,
           primaryActionLabel: 'View Order',
-          onPrimaryAction: () =>
-              context.go('/orders/${widget.orderId}'),
+          onPrimaryAction: () => context.go('/orders/${widget.orderId}'),
           secondaryActionLabel: 'Continue Shopping',
           onSecondaryAction: () => context.go(AppRoutes.shop),
           onDone: () {

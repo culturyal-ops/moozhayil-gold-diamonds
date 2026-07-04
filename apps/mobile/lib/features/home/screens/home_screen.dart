@@ -51,7 +51,9 @@ class HomeScreen extends ConsumerWidget {
     );
 
     final bottomInset =
-        MediaQuery.paddingOf(context).bottom + _bottomNavHeight + _scrollBottomInset;
+        MediaQuery.paddingOf(context).bottom +
+        _bottomNavHeight +
+        _scrollBottomInset;
 
     return ColoredBox(
       color: AppColors.paper,
@@ -74,15 +76,9 @@ class HomeScreen extends ConsumerWidget {
               child: HeroBannerCarousel(banners: heroBanners),
             ),
 
-            const SectionReveal(
-              index: 2,
-              child: CategoryPopCarousel(),
-            ),
+            const SectionReveal(index: 2, child: CategoryPopCarousel()),
 
-            const SectionReveal(
-              index: 3,
-              child: SchemesBannerCarousel(),
-            ),
+            const SectionReveal(index: 3, child: SchemesBannerCarousel()),
 
             SectionReveal(
               index: 4,
@@ -118,10 +114,7 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
 
-            const SectionReveal(
-              index: 8,
-              child: EditorialFooter(),
-            ),
+            const SectionReveal(index: 8, child: EditorialFooter()),
           ],
         ),
       ),

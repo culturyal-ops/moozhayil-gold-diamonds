@@ -140,7 +140,9 @@ class EditorialCmsFeatureBand extends StatelessWidget {
     );
     final titleParts = banner.title.split('\n');
     final lineOne = titleParts.first;
-    final lineTwo = titleParts.length > 1 ? titleParts.sublist(1).join(' ') : null;
+    final lineTwo = titleParts.length > 1
+        ? titleParts.sublist(1).join(' ')
+        : null;
 
     return GestureDetector(
       onTap: () => navigateCmsRoute(context, banner.ctaRoute),

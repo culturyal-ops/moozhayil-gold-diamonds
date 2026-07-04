@@ -46,8 +46,9 @@ class _ReferralsScreenState extends ConsumerState<ReferralsScreen> {
     });
 
     try {
-      final response =
-          await ref.read(referralActionsProvider.notifier).apply(code);
+      final response = await ref
+          .read(referralActionsProvider.notifier)
+          .apply(code);
       setState(() => _applyMessage = response.reward);
       _codeController.clear();
     } catch (error) {
@@ -203,16 +204,14 @@ class _ReferralCodeCard extends StatelessWidget {
           Row(
             children: [
               OutlinedButton(
-                onPressed: () => Clipboard.setData(
-                  ClipboardData(text: data.referralCode),
-                ),
+                onPressed: () =>
+                    Clipboard.setData(ClipboardData(text: data.referralCode)),
                 child: const Text('Copy code'),
               ),
               const SizedBox(width: AppSpacing.sm),
               OutlinedButton(
-                onPressed: () => Clipboard.setData(
-                  ClipboardData(text: data.shareUrl),
-                ),
+                onPressed: () =>
+                    Clipboard.setData(ClipboardData(text: data.shareUrl)),
                 child: const Text('Copy link'),
               ),
             ],

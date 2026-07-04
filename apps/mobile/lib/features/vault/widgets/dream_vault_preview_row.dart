@@ -63,7 +63,8 @@ class DreamVaultPreviewRow extends ConsumerWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: previewItems.length,
-                separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.sm),
+                separatorBuilder: (_, _) =>
+                    const SizedBox(width: AppSpacing.sm),
                 itemBuilder: (context, index) {
                   final item = previewItems[index];
                   return GestureDetector(

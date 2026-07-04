@@ -30,24 +30,24 @@ List<CatalogRef> _sampleCategories() {
 /// Resolves a catalogue ref name for browse screens and shell titles.
 final catalogBrowseRefProvider =
     FutureProvider.family<CatalogRef?, CatalogBrowseKey>((ref, key) async {
-  switch (key.kind) {
-    case CatalogBrowseKind.category:
-      final live = await ref.watch(categoriesProvider.future);
-      return _findById(live, key.id) ??
-          _findById(_sampleCategories(), key.id);
-    case CatalogBrowseKind.collection:
-      final live = await ref.watch(featuredCollectionsProvider.future);
-      return _findById(live, key.id) ??
-          _findById(SampleCatalog.collections, key.id);
-    case CatalogBrowseKind.occasion:
-      final live = await ref.watch(occasionsProvider.future);
-      return _findById(live, key.id) ??
-          _findById(SampleCatalog.occasions, key.id);
-  }
-});
+      switch (key.kind) {
+        case CatalogBrowseKind.category:
+          final live = await ref.watch(categoriesProvider.future);
+          return _findById(live, key.id) ??
+              _findById(_sampleCategories(), key.id);
+        case CatalogBrowseKind.collection:
+          final live = await ref.watch(featuredCollectionsProvider.future);
+          return _findById(live, key.id) ??
+              _findById(SampleCatalog.collections, key.id);
+        case CatalogBrowseKind.occasion:
+          final live = await ref.watch(occasionsProvider.future);
+          return _findById(live, key.id) ??
+              _findById(SampleCatalog.occasions, key.id);
+      }
+    });
 
 String catalogBrowseEyebrow(CatalogBrowseKind kind) => switch (kind) {
-      CatalogBrowseKind.category => 'Category',
-      CatalogBrowseKind.collection => 'Collection',
-      CatalogBrowseKind.occasion => 'Occasion',
-    };
+  CatalogBrowseKind.category => 'Category',
+  CatalogBrowseKind.collection => 'Collection',
+  CatalogBrowseKind.occasion => 'Occasion',
+};

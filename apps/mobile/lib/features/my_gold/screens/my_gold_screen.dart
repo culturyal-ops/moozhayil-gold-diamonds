@@ -59,10 +59,8 @@ class MyGoldScreen extends ConsumerWidget {
               const SizedBox(height: AppSpacing.md),
               ledger.when(
                 data: (entries) => GoldLedgerList(entries: entries.data),
-                loading: () => const LoadingShimmer(
-                  width: double.infinity,
-                  height: 120,
-                ),
+                loading: () =>
+                    const LoadingShimmer(width: double.infinity, height: 120),
                 error: (error, _) => ErrorState(
                   body: CustomerErrorCopy.message(error),
                   onRetry: () => ref.invalidate(goldLedgerProvider),
@@ -100,10 +98,8 @@ class MyGoldScreen extends ConsumerWidget {
                     ),
                   );
                 },
-                loading: () => const LoadingShimmer(
-                  width: double.infinity,
-                  height: 80,
-                ),
+                loading: () =>
+                    const LoadingShimmer(width: double.infinity, height: 80),
                 error: (_, _) => const SizedBox.shrink(),
               ),
               const SizedBox(height: AppSpacing.lg),
@@ -222,15 +218,14 @@ class RedeemScreen extends ConsumerWidget {
                   itemBuilder: (context, index) => VaultAwareProductCard(
                     product: products[index],
                     variant: ProductCardVariant.horizontal,
-                    onTap: () => _redeemProduct(
-                      context,
-                      ref,
-                      products[index].id,
-                    ),
+                    onTap: () =>
+                        _redeemProduct(context, ref, products[index].id),
                   ),
                 ),
               ),
-              const SliverPadding(padding: EdgeInsets.only(bottom: AppSpacing.x3l)),
+              const SliverPadding(
+                padding: EdgeInsets.only(bottom: AppSpacing.x3l),
+              ),
             ],
           );
         },

@@ -61,8 +61,7 @@ class _ProductImageGalleryState extends State<ProductImageGallery> {
               controller: _controller,
               itemCount: urls.length,
               onPageChanged: (value) => setState(() => _index = value),
-              itemBuilder: (context, index) =>
-                  EditorialImage(url: urls[index]),
+              itemBuilder: (context, index) => EditorialImage(url: urls[index]),
             ),
           ),
         ),
@@ -94,8 +93,9 @@ class _ProductImageGalleryState extends State<ProductImageGallery> {
                         ),
                       ),
                       child: ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(AppRadius.thumbnail),
+                        borderRadius: BorderRadius.circular(
+                          AppRadius.thumbnail,
+                        ),
                         child: EditorialImage(url: urls[i]),
                       ),
                     ),

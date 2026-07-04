@@ -39,7 +39,8 @@ abstract class GoldLedgerEntry with _$GoldLedgerEntry {
     @JsonKey(name: 'entry_type') required String entryType,
     @JsonKey(name: 'grams_delta') required String gramsDelta,
     @JsonKey(name: 'amount_paise') int? amountPaise,
-    @JsonKey(name: 'gold_rate_per_gram_paise') required int goldRatePerGramPaise,
+    @JsonKey(name: 'gold_rate_per_gram_paise')
+    required int goldRatePerGramPaise,
     @JsonKey(name: 'source_type') required String sourceType,
     @JsonKey(name: 'source_id') required String sourceId,
     @JsonKey(name: 'posted_at') required String postedAt,
@@ -74,7 +75,8 @@ abstract class RedeemableProductsResponse with _$RedeemableProductsResponse {
 }
 
 @freezed
-abstract class PendingContributionsResponse with _$PendingContributionsResponse {
+abstract class PendingContributionsResponse
+    with _$PendingContributionsResponse {
   const factory PendingContributionsResponse({
     required List<PendingContribution> pending,
   }) = _PendingContributionsResponse;

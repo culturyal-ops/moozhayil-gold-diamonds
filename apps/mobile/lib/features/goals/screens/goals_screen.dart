@@ -32,7 +32,8 @@ class GoalsScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: AppColors.maroon,
         foregroundColor: AppColors.pureWhite,
-        onPressed: () => _startCreate(context, ref, auth.value?.user?.kycStatus),
+        onPressed: () =>
+            _startCreate(context, ref, auth.value?.user?.kycStatus),
         icon: const Icon(Icons.add),
         label: const Text('New Plan'),
       ),
@@ -47,7 +48,8 @@ class GoalsScreen extends ConsumerWidget {
                 EmptyState(
                   icon: Icons.flag_outlined,
                   headline: 'Start your jewellery savings journey.',
-                  body: 'Save monthly with Aura Plan or explore our other schemes.',
+                  body:
+                      'Save monthly with Aura Plan or explore our other schemes.',
                   ctaLabel: 'Explore Schemes',
                   onCtaTap: () => context.go(AppRoutes.goldenWish),
                 ),

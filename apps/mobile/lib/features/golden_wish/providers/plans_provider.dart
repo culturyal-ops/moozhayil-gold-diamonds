@@ -29,7 +29,9 @@ class PlansRepository {
       );
       final interests = response.data!['interests'] as List<dynamic>? ?? [];
       return interests
-          .map((item) => (item as Map<String, dynamic>)['scheme_type'] as String)
+          .map(
+            (item) => (item as Map<String, dynamic>)['scheme_type'] as String,
+          )
           .toList();
     } on DioException catch (error) {
       throw ApiException.fromDio(error);

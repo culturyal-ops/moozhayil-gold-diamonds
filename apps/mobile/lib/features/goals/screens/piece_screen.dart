@@ -59,7 +59,9 @@ class PieceScreen extends ConsumerWidget {
             EditorialGhostCta(
               label: 'Skip for now',
               onTap: () {
-                ref.read(goalCreateDraftStoreProvider.notifier).setProduct(
+                ref
+                    .read(goalCreateDraftStoreProvider.notifier)
+                    .setProduct(
                       id: 'browse-later',
                       name: 'Browse catalog later',
                     );

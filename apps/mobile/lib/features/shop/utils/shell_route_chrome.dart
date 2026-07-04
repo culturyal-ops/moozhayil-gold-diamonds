@@ -14,8 +14,9 @@ class GoldenWishPlanRoute {
 
   static String? slugFrom(String path) {
     final normalized = normalize(path);
-    final match =
-        RegExp(r'^/golden-wish/plans/([^/]+)$').firstMatch(normalized);
+    final match = RegExp(
+      r'^/golden-wish/plans/([^/]+)$',
+    ).firstMatch(normalized);
     return match?.group(1);
   }
 
@@ -48,9 +49,7 @@ bool shellUsesSubRouteAppBar(String path) {
 }
 
 bool shellUsesMinimalAppBar(String path) {
-  final browse = ShopBrowseRoute.tryParse(
-    GoldenWishPlanRoute.normalize(path),
-  );
+  final browse = ShopBrowseRoute.tryParse(GoldenWishPlanRoute.normalize(path));
   return browse?.kind == ShopBrowseKind.product;
 }
 

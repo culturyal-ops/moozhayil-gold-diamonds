@@ -113,8 +113,10 @@ class AppNavigationDrawer extends StatelessWidget {
                           child: _DrawerNavItem(
                             label: _primary[i].label,
                             route: _primary[i].route,
-                            isActive:
-                                _isRouteActive(location, _primary[i].route),
+                            isActive: _isRouteActive(
+                              location,
+                              _primary[i].route,
+                            ),
                             primary: true,
                           ),
                         ),
@@ -131,8 +133,10 @@ class AppNavigationDrawer extends StatelessWidget {
                           child: _DrawerNavItem(
                             label: _secondary[i].label,
                             route: _secondary[i].route,
-                            isActive:
-                                _isRouteActive(location, _secondary[i].route),
+                            isActive: _isRouteActive(
+                              location,
+                              _secondary[i].route,
+                            ),
                             primary: false,
                             showChevron: _secondary[i].label == 'Help',
                           ),
@@ -346,10 +350,7 @@ class _DrawerNavItem extends StatelessWidget {
 }
 
 class _DrawerShowroomCard extends StatelessWidget {
-  const _DrawerShowroomCard({
-    required this.onVisitStore,
-    required this.onCall,
-  });
+  const _DrawerShowroomCard({required this.onVisitStore, required this.onCall});
 
   final VoidCallback onVisitStore;
   final VoidCallback onCall;
@@ -397,9 +398,7 @@ class _DrawerShowroomCard extends StatelessWidget {
           ),
           Text(
             'Mon–Sat · 10am–7pm',
-            style: AppTypography.uiBodySM.copyWith(
-              color: AppColors.textMuted,
-            ),
+            style: AppTypography.uiBodySM.copyWith(color: AppColors.textMuted),
           ),
           const SizedBox(height: AppSpacing.md),
           Row(
@@ -413,10 +412,7 @@ class _DrawerShowroomCard extends StatelessWidget {
               ),
               const SizedBox(width: AppSpacing.sm),
               Expanded(
-                child: _DrawerFooterAction(
-                  label: 'Call',
-                  onTap: onCall,
-                ),
+                child: _DrawerFooterAction(label: 'Call', onTap: onCall),
               ),
             ],
           ),

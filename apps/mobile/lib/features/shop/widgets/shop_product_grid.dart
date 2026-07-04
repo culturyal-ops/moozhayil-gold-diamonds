@@ -8,11 +8,7 @@ import '../../vault/widgets/vault_aware_product_card.dart';
 
 /// Shop-standard product grid — matches [ShopCatalogSection] layout.
 class ShopProductGrid extends StatelessWidget {
-  const ShopProductGrid({
-    super.key,
-    required this.products,
-    this.pieceLabel,
-  });
+  const ShopProductGrid({super.key, required this.products, this.pieceLabel});
 
   final List<Product> products;
   final String? pieceLabel;

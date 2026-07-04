@@ -4,10 +4,7 @@ import '../constants/colors.dart';
 
 /// Subtle gold pulse for loading states — not a generic spinner.
 class GoldPulse extends StatefulWidget {
-  const GoldPulse({
-    super.key,
-    this.size = 8,
-  });
+  const GoldPulse({super.key, this.size = 8});
 
   final double size;
 
@@ -15,7 +12,8 @@ class GoldPulse extends StatefulWidget {
   State<GoldPulse> createState() => _GoldPulseState();
 }
 
-class _GoldPulseState extends State<GoldPulse> with SingleTickerProviderStateMixin {
+class _GoldPulseState extends State<GoldPulse>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _opacity;
 
@@ -26,9 +24,10 @@ class _GoldPulseState extends State<GoldPulse> with SingleTickerProviderStateMix
       vsync: this,
       duration: const Duration(milliseconds: 1400),
     )..repeat(reverse: true);
-    _opacity = Tween<double>(begin: 0.35, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _opacity = Tween<double>(
+      begin: 0.35,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override

@@ -99,10 +99,7 @@ class DreamVaultScreen extends ConsumerWidget {
           );
         },
         loading: () => const Center(
-          child: LoadingShimmer(
-            width: double.infinity,
-            height: AppSpacing.x3l,
-          ),
+          child: LoadingShimmer(width: double.infinity, height: AppSpacing.x3l),
         ),
         error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
       ),
@@ -137,9 +134,7 @@ class _DreamVaultIntro extends StatelessWidget {
       padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
         color: AppColors.burgundyDeep,
-        border: Border(
-          left: BorderSide(color: AppColors.gold, width: 3),
-        ),
+        border: Border(left: BorderSide(color: AppColors.gold, width: 3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

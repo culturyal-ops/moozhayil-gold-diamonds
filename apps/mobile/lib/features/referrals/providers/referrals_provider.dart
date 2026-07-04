@@ -78,8 +78,9 @@ class ReferralActions extends _$ReferralActions {
   FutureOr<void> build() {}
 
   Future<ApplyReferralResponse> apply(String referralCode) async {
-    final response =
-        await ref.read(referralsRepositoryProvider).apply(referralCode);
+    final response = await ref
+        .read(referralsRepositoryProvider)
+        .apply(referralCode);
     ref.invalidate(referralHistoryProvider);
     return response;
   }

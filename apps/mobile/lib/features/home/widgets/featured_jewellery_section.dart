@@ -47,7 +47,7 @@ class FeaturedJewellerySection extends ConsumerWidget {
               scrollDirection: Axis.horizontal,
               clipBehavior: Clip.none,
               itemCount: items.length,
-              separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.md),
+              separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.md),
               itemBuilder: (context, index) {
                 final product = items[index];
                 return SizedBox(

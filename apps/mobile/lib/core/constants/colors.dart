@@ -1,78 +1,53 @@
 import 'package:flutter/material.dart';
 
-
-
 /// Luxury jewellery retail palette — crisp white base, burgundy + gold accents.
 
 abstract final class AppColors {
-
   // Core surfaces
 
   /// Crisp pure white. Primary app background.
 
   static const Color paper = Color(0xFFFFFFFF);
 
-
-
   /// Secondary app background — barely warm grey-white.
 
   static const Color pearl = Color(0xFFFAFAF8);
-
-
 
   /// Warm ivory — small cards/panels only, never full pages.
 
   static const Color ivory = Color(0xFFFDFBF7);
 
-
-
   /// Navigation drawer — crisp white.
 
   static const Color drawerSurface = Color(0xFFFFFFFF);
-
-
 
   /// Pure white. Product images and elevated cards.
 
   static const Color bgWhite = Color(0xFFFFFFFF);
 
-
-
   /// Rich dark brown black. Hero overlays, drawer, footer.
 
   static const Color ink = Color(0xFF17120F);
-
-
 
   /// Brand burgundy — primary brand colour.
 
   static const Color brandBurgundy = Color(0xFF741323);
 
-
-
   /// Alias for scheme cards and CTAs.
 
   static const Color brandPrimary = brandBurgundy;
-
-
 
   /// Deep wine — full-bleed editorial statement panels.
 
   static const Color burgundyDeep = Color(0xFF7A1022);
 
-
-
   /// Darkest oxblood — footer ground and pattern base.
 
   static const Color burgundyDark = Color(0xFF410D1A);
 
-
-
   /// Cream — type and surfaces over burgundy grounds only.
 
   static const Color cream = Color(0xFFF4EDE3);
-
-
 
   // Text
 
@@ -82,15 +57,11 @@ abstract final class AppColors {
 
   static const Color textMuted = Color(0xFF8A837A);
 
-
-
   // Gold accent
 
   static const Color gold = Color(0xFFB88A3B);
 
   static const Color goldLight = Color(0xFFD4B483);
-
-
 
   // Borders
 
@@ -100,8 +71,6 @@ abstract final class AppColors {
 
   static const Color borderStrong = Color(0xFFD8D0C6);
 
-
-
   // Glass
 
   static const Color glassSurface = Color(0xF2FFFFFF);
@@ -109,8 +78,6 @@ abstract final class AppColors {
   static const Color glassBorder = Color(0xFFE5E0D8);
 
   static const Color shadowSoft = Color(0x0F17120F);
-
-
 
   // Legacy aliases — map old beige defaults to white retail surfaces
 
@@ -167,7 +134,4 @@ abstract final class AppColors {
   static const Color shimmerBase = bgWhite;
 
   static const Color shimmerHighlight = border;
-
 }
-
-

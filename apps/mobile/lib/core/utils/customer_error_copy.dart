@@ -33,6 +33,5 @@ abstract final class CustomerErrorCopy {
     return _generic;
   }
 
-  static const _generic =
-      'Something went wrong. Please try again in a moment.';
+  static const _generic = 'Something went wrong. Please try again in a moment.';
 }

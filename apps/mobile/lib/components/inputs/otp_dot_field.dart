@@ -122,7 +122,9 @@ class _OtpDot extends StatelessWidget {
       child: filled
           ? Text(
               '•',
-              style: AppTypography.uiBodySM.copyWith(color: AppColors.pureWhite),
+              style: AppTypography.uiBodySM.copyWith(
+                color: AppColors.pureWhite,
+              ),
             )
           : null,
     );

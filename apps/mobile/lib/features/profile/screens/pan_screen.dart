@@ -67,7 +67,9 @@ class _PanScreenState extends ConsumerState<PanScreen> {
             const SizedBox(height: AppSpacing.sm),
             Text(
               'Required for high-value transactions above ₹2,00,000 and enhanced verification.',
-              style: AppTypography.uiBodySM.copyWith(color: AppColors.slateMist),
+              style: AppTypography.uiBodySM.copyWith(
+                color: AppColors.slateMist,
+              ),
             ),
             const SizedBox(height: AppSpacing.lg),
             AppTextInput(

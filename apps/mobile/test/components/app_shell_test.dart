@@ -101,7 +101,8 @@ void main() {
       ),
       redeemableProductsProvider.overrideWith((ref) async => const []),
       ordersListProvider.overrideWith(
-        (ref, status) async => const OrdersListResponse(data: [], hasMore: false),
+        (ref, status) async =>
+            const OrdersListResponse(data: [], hasMore: false),
       ),
       userAddressesProvider.overrideWith((ref) async => const []),
       paymentMethodsProvider.overrideWith((ref) async => const []),
@@ -143,8 +144,10 @@ void main() {
         (ref) async => const ReferralHistoryResponse(referrals: []),
       ),
       storesListProvider.overrideWith(
-        (ref, ({String? q, double? lat, double? lng, int? radiusKm}) args) async =>
-            const StoresListResponse(stores: []),
+        (
+          ref,
+          ({String? q, double? lat, double? lng, int? radiusKm}) args,
+        ) async => const StoresListResponse(stores: []),
       ),
     ],
     child: const MoozhayilApp(),
@@ -306,9 +309,6 @@ class _SignedInAuthController extends AuthController {
   final User user;
 
   @override
-  Future<AuthState> build() async => AuthState(
-        step: AuthFlowStep.signedIn,
-        user: user,
-        phone: user.phone,
-      );
+  Future<AuthState> build() async =>
+      AuthState(step: AuthFlowStep.signedIn, user: user, phone: user.phone);
 }

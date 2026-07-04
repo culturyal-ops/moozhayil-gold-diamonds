@@ -62,16 +62,14 @@ class _EditorialFaqSectionState extends State<EditorialFaqSection> {
           Column(
             children: [
               InkWell(
-                onTap: () => setState(() => _openIndex = _openIndex == i ? null : i),
+                onTap: () =>
+                    setState(() => _openIndex = _openIndex == i ? null : i),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          _items[i].q,
-                          style: AppTypography.uiBodySM,
-                        ),
+                        child: Text(_items[i].q, style: AppTypography.uiBodySM),
                       ),
                       AnimatedRotation(
                         turns: _openIndex == i ? 0.25 : 0,

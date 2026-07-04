@@ -65,10 +65,8 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
           )
         : null;
 
-    final title = catalogRef?.maybeWhen(
-          data: (ref) => ref?.name,
-          orElse: () => null,
-        ) ??
+    final title =
+        catalogRef?.maybeWhen(data: (ref) => ref?.name, orElse: () => null) ??
         switch (browseKind) {
           CatalogBrowseKind.category => 'Category',
           CatalogBrowseKind.collection => 'Collection',
@@ -76,8 +74,9 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
           null => 'Catalogue',
         };
 
-    final eyebrow =
-        browseKind != null ? catalogBrowseEyebrow(browseKind) : 'Shop';
+    final eyebrow = browseKind != null
+        ? catalogBrowseEyebrow(browseKind)
+        : 'Shop';
 
     return ColoredBox(
       color: AppColors.paper,
@@ -96,10 +95,7 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
               ShopSectionInset(
                 top: 12,
                 bottom: 8,
-                child: ShopSectionHeader(
-                  title: title,
-                  subtitle: eyebrow,
-                ),
+                child: ShopSectionHeader(title: title, subtitle: eyebrow),
               ),
               ShopSectionInset(
                 top: 0,

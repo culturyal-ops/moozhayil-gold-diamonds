@@ -13,10 +13,7 @@ import 'shop_section.dart';
 
 /// Compact 2-column occasion browse — shop discovery, not Home carousel.
 class ShopOccasionsGrid extends StatelessWidget {
-  const ShopOccasionsGrid({
-    super.key,
-    required this.occasions,
-  });
+  const ShopOccasionsGrid({super.key, required this.occasions});
 
   final List<CatalogRef> occasions;
 
@@ -56,10 +53,7 @@ class ShopOccasionsGrid extends StatelessWidget {
                     return;
                   }
                   context.push(
-                    AppRoutes.shopOccasion.replaceFirst(
-                      ':occasionId',
-                      item.id,
-                    ),
+                    AppRoutes.shopOccasion.replaceFirst(':occasionId', item.id),
                   );
                 },
               );

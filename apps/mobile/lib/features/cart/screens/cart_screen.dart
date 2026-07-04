@@ -116,10 +116,7 @@ class CartScreen extends ConsumerWidget {
         );
       },
       loading: () => const Center(
-        child: LoadingShimmer(
-          width: double.infinity,
-          height: AppSpacing.x3l,
-        ),
+        child: LoadingShimmer(width: double.infinity, height: AppSpacing.x3l),
       ),
       error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
     );
@@ -158,8 +155,7 @@ class _CartLineCard extends StatelessWidget {
                 : CachedNetworkImage(
                     imageUrl: product.primaryImage!,
                     fit: BoxFit.cover,
-                    errorWidget: (_, _, _) =>
-                        const ProductImagePlaceholder(),
+                    errorWidget: (_, _, _) => const ProductImagePlaceholder(),
                   ),
           ),
           const SizedBox(width: AppSpacing.md),
@@ -260,7 +256,9 @@ class _CartFooter extends ConsumerWidget {
           ],
           const SizedBox(height: AppSpacing.md),
           PrimaryButton(
-            label: hasUnavailable ? 'Remove unavailable items' : 'Proceed to checkout',
+            label: hasUnavailable
+                ? 'Remove unavailable items'
+                : 'Proceed to checkout',
             isFullWidth: true,
             isDisabled: hasUnavailable || summary.itemCount == 0,
             onTap: hasUnavailable

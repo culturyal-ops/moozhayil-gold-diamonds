@@ -57,10 +57,7 @@ class MyPlansScreen extends ConsumerWidget {
               children: [
                 _SummaryBanner(summary: response.summary),
                 const SizedBox(height: AppSpacing.lg),
-                const SectionHeader(
-                  eyebrow: 'Active',
-                  title: 'Your plans',
-                ),
+                const SectionHeader(eyebrow: 'Active', title: 'Your plans'),
                 const SizedBox(height: AppSpacing.md),
                 ...response.goals.map(
                   (goal) => Padding(

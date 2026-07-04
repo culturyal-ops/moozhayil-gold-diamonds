@@ -60,10 +60,7 @@ class ShopMasthead extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: AppSpacing.sm),
-              _RateChip(
-                rateDisplay: rateDisplay,
-                isLoading: isRateLoading,
-              ),
+              _RateChip(rateDisplay: rateDisplay, isLoading: isRateLoading),
             ],
           ),
           const SizedBox(height: AppSpacing.lg),

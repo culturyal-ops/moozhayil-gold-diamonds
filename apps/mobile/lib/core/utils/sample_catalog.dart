@@ -160,10 +160,7 @@ abstract final class SampleCatalog {
       purityDisplay: '916 (22K)',
       weightGrams: weight.replaceAll(' g', ''),
       weightDisplay: weight,
-      price: _priceBase.copyWith(
-        totalPaise: paise,
-        totalDisplay: priceDisplay,
-      ),
+      price: _priceBase.copyWith(totalPaise: paise, totalDisplay: priceDisplay),
       primaryImage: image,
       images: [
         ProductImage(id: '$id-1', url: image, type: 'primary', isPrimary: true),

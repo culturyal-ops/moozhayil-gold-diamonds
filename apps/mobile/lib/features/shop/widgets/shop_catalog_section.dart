@@ -13,13 +13,7 @@ class ShopCatalogSection extends StatefulWidget {
 
   final List<Product> products;
 
-  static const filters = [
-    'All',
-    'Necklaces',
-    'Earrings',
-    'Rings',
-    'Bangles',
-  ];
+  static const filters = ['All', 'Necklaces', 'Earrings', 'Rings', 'Bangles'];
 
   @override
   State<ShopCatalogSection> createState() => _ShopCatalogSectionState();

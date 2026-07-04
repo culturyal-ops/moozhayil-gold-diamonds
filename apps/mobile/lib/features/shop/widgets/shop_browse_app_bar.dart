@@ -33,10 +33,7 @@ class ShopBrowseAppBar extends ConsumerWidget implements PreferredSizeWidget {
     }
 
     final catalogRef = ref.watch(
-      catalogBrowseRefProvider((
-        kind: catalogKind,
-        id: route.resourceId!,
-      )),
+      catalogBrowseRefProvider((kind: catalogKind, id: route.resourceId!)),
     );
 
     final title = catalogRef.maybeWhen(

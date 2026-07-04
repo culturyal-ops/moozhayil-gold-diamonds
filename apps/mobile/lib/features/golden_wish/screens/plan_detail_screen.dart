@@ -106,7 +106,10 @@ class _PlanDetailScreenState extends ConsumerState<PlanDetailScreen> {
               children: [
                 SectionReveal(
                   index: 1,
-                  child: Text(plan.detailHeadline, style: AppTypography.headingLG),
+                  child: Text(
+                    plan.detailHeadline,
+                    style: AppTypography.headingLG,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.md),
                 SectionReveal(
@@ -129,36 +132,36 @@ class _PlanDetailScreenState extends ConsumerState<PlanDetailScreen> {
                 ),
                 const SizedBox(height: AppSpacing.md),
                 ...plan.highlights.asMap().entries.map(
-                      (entry) => SectionReveal(
-                        index: 4 + entry.key,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 7),
-                                child: Container(
-                                  width: 4,
-                                  height: 4,
-                                  color: accent.accent,
-                                ),
-                              ),
-                              const SizedBox(width: AppSpacing.sm),
-                              Expanded(
-                                child: Text(
-                                  entry.value,
-                                  style: AppTypography.uiBodySM.copyWith(
-                                    height: 1.5,
-                                    color: AppColors.textPrimary,
-                                  ),
-                                ),
-                              ),
-                            ],
+                  (entry) => SectionReveal(
+                    index: 4 + entry.key,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 7),
+                            child: Container(
+                              width: 4,
+                              height: 4,
+                              color: accent.accent,
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: Text(
+                              entry.value,
+                              style: AppTypography.uiBodySM.copyWith(
+                                height: 1.5,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                ),
                 if (!plan.enrollmentAvailable) ...[
                   const SizedBox(height: AppSpacing.lg),
                   SectionReveal(
@@ -245,7 +248,11 @@ class _PlanDetailScreenState extends ConsumerState<PlanDetailScreen> {
       showPremiumSnackBar(context, 'Interest registered. We will be in touch.');
     } catch (error) {
       if (!mounted) return;
-      showPremiumSnackBar(context, CustomerErrorCopy.message(error), haptic: false);
+      showPremiumSnackBar(
+        context,
+        CustomerErrorCopy.message(error),
+        haptic: false,
+      );
     } finally {
       if (mounted) setState(() => _submittingInterest = false);
     }

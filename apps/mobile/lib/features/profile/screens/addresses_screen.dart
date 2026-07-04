@@ -176,10 +176,7 @@ class _AddressesScreenState extends ConsumerState<AddressesScreen> {
           );
         },
         loading: () => const Center(
-          child: LoadingShimmer(
-            width: double.infinity,
-            height: AppSpacing.x3l,
-          ),
+          child: LoadingShimmer(width: double.infinity, height: AppSpacing.x3l),
         ),
         error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
       ),
@@ -206,15 +203,18 @@ class _AddressesScreenState extends ConsumerState<AddressesScreen> {
         return;
       }
 
-      await ref.read(addressActionsProvider.notifier).createAddress(
+      await ref
+          .read(addressActionsProvider.notifier)
+          .createAddress(
             label: _label.trim().isEmpty ? null : _label.trim(),
             fullName: _fullName.trim(),
             phone: _phone.trim(),
             line1: _line1.trim(),
             line2: _line2.trim().isEmpty ? null : _line2.trim(),
             city: _city.trim().isEmpty ? validation.city ?? '' : _city.trim(),
-            state:
-                _state.trim().isEmpty ? validation.state ?? '' : _state.trim(),
+            state: _state.trim().isEmpty
+                ? validation.state ?? ''
+                : _state.trim(),
             pincode: pincode,
           );
 

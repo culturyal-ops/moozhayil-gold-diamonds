@@ -101,10 +101,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ),
           Expanded(
             child: query.trim().length < 2
-                ? _DiscoveryPanel(
-                    recent: recent,
-                    onQuerySelected: _applyQuery,
-                  )
+                ? _DiscoveryPanel(recent: recent, onQuerySelected: _applyQuery)
                 : results.when(
                     data: (result) {
                       final filtered = applyShopBrowseFilters(
@@ -131,9 +128,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       }
 
                       return ListView(
-                        padding: const EdgeInsets.only(
-                          bottom: AppSpacing.x3l,
-                        ),
+                        padding: const EdgeInsets.only(bottom: AppSpacing.x3l),
                         children: [
                           ShopSectionInset(
                             top: 0,
@@ -170,7 +165,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         height: AppSpacing.x3l * 3,
                       ),
                     ),
-                    error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
+                    error: (error, _) =>
+                        ErrorState(body: CustomerErrorCopy.message(error)),
                   ),
           ),
         ],
@@ -180,10 +176,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 }
 
 class _DiscoveryPanel extends ConsumerWidget {
-  const _DiscoveryPanel({
-    required this.recent,
-    required this.onQuerySelected,
-  });
+  const _DiscoveryPanel({required this.recent, required this.onQuerySelected});
 
   final AsyncValue<List<String>> recent;
   final ValueChanged<String> onQuerySelected;
@@ -265,7 +258,8 @@ class _DiscoveryPanel extends ConsumerWidget {
               height: AppSpacing.xxl,
             ),
           ),
-          error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
+          error: (error, _) =>
+              ErrorState(body: CustomerErrorCopy.message(error)),
         ),
       ],
     );
@@ -273,10 +267,7 @@ class _DiscoveryPanel extends ConsumerWidget {
 }
 
 class _FilterPills extends StatelessWidget {
-  const _FilterPills({
-    required this.labels,
-    required this.onSelected,
-  });
+  const _FilterPills({required this.labels, required this.onSelected});
 
   final List<String> labels;
   final ValueChanged<int> onSelected;

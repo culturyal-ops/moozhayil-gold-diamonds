@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 
-
-
 import '../../../core/constants/colors.dart';
 
 import '../models/golden_wish_plan.dart';
 
-
-
 class PlanAccent {
-
   const PlanAccent({
-
     required this.accent,
 
     required this.background,
@@ -27,10 +21,7 @@ class PlanAccent {
     required this.ctaForeground,
 
     required this.monogram,
-
   });
-
-
 
   final Color accent;
 
@@ -48,106 +39,87 @@ class PlanAccent {
 
   final String monogram;
 
-
-
   static PlanAccent forPlan(GoldenWishPlanId id) => switch (id) {
+    GoldenWishPlanId.aura => const PlanAccent(
+      accent: AppColors.brandBurgundy,
 
-        GoldenWishPlanId.aura => const PlanAccent(
+      background: AppColors.bgWhite,
 
-            accent: AppColors.brandBurgundy,
+      borderColor: AppColors.borderGold,
 
-            background: AppColors.bgWhite,
+      titleColor: AppColors.textPrimary,
 
-            borderColor: AppColors.borderGold,
+      bodyColor: AppColors.textSecondary,
 
-            titleColor: AppColors.textPrimary,
+      ctaBackground: AppColors.brandBurgundy,
 
-            bodyColor: AppColors.textSecondary,
+      ctaForeground: AppColors.cream,
 
-            ctaBackground: AppColors.brandBurgundy,
+      monogram: 'A',
+    ),
 
-            ctaForeground: AppColors.cream,
+    GoldenWishPlanId.crest => const PlanAccent(
+      accent: AppColors.gold,
 
-            monogram: 'A',
+      background: AppColors.bgWhite,
 
-          ),
+      borderColor: AppColors.border,
 
-        GoldenWishPlanId.crest => const PlanAccent(
+      titleColor: AppColors.textPrimary,
 
-            accent: AppColors.gold,
+      bodyColor: AppColors.textSecondary,
 
-            background: AppColors.bgWhite,
+      ctaBackground: AppColors.ink,
 
-            borderColor: AppColors.border,
+      ctaForeground: AppColors.cream,
 
-            titleColor: AppColors.textPrimary,
+      monogram: 'C',
+    ),
 
-            bodyColor: AppColors.textSecondary,
+    GoldenWishPlanId.dhanam => const PlanAccent(
+      accent: AppColors.burgundyDeep,
 
-            ctaBackground: AppColors.ink,
+      background: AppColors.bgWhite,
 
-            ctaForeground: AppColors.cream,
+      borderColor: AppColors.border,
 
-            monogram: 'C',
+      titleColor: AppColors.textPrimary,
 
-          ),
+      bodyColor: AppColors.textSecondary,
 
-        GoldenWishPlanId.dhanam => const PlanAccent(
+      ctaBackground: AppColors.burgundyDeep,
 
-            accent: AppColors.burgundyDeep,
+      ctaForeground: AppColors.cream,
 
-            background: AppColors.bgWhite,
+      monogram: 'D',
+    ),
 
-            borderColor: AppColors.border,
+    GoldenWishPlanId.goldNidhi => const PlanAccent(
+      accent: AppColors.gold,
 
-            titleColor: AppColors.textPrimary,
+      background: AppColors.bgWhite,
 
-            bodyColor: AppColors.textSecondary,
+      borderColor: AppColors.borderGold,
 
-            ctaBackground: AppColors.burgundyDeep,
+      titleColor: AppColors.textPrimary,
 
-            ctaForeground: AppColors.cream,
+      bodyColor: AppColors.textSecondary,
 
-            monogram: 'D',
+      ctaBackground: AppColors.ink,
 
-          ),
+      ctaForeground: AppColors.cream,
 
-        GoldenWishPlanId.goldNidhi => const PlanAccent(
-
-            accent: AppColors.gold,
-
-            background: AppColors.bgWhite,
-
-            borderColor: AppColors.borderGold,
-
-            titleColor: AppColors.textPrimary,
-
-            bodyColor: AppColors.textSecondary,
-
-            ctaBackground: AppColors.ink,
-
-            ctaForeground: AppColors.cream,
-
-            monogram: 'S',
-
-          ),
-
-      };
-
-
+      monogram: 'S',
+    ),
+  };
 
   static String schemeTypeFor(GoldenWishPlanId id) => switch (id) {
+    GoldenWishPlanId.aura => 'aura',
 
-        GoldenWishPlanId.aura => 'aura',
+    GoldenWishPlanId.crest => 'crest',
 
-        GoldenWishPlanId.crest => 'crest',
+    GoldenWishPlanId.dhanam => 'dhanam',
 
-        GoldenWishPlanId.dhanam => 'dhanam',
-
-        GoldenWishPlanId.goldNidhi => 'gold_nidhi',
-
-      };
-
+    GoldenWishPlanId.goldNidhi => 'gold_nidhi',
+  };
 }
-
-

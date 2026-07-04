@@ -26,7 +26,8 @@ class AuraGoalPlanningScreen extends ConsumerStatefulWidget {
       _AuraGoalPlanningScreenState();
 }
 
-class _AuraGoalPlanningScreenState extends ConsumerState<AuraGoalPlanningScreen> {
+class _AuraGoalPlanningScreenState
+    extends ConsumerState<AuraGoalPlanningScreen> {
   var _occasion = 'wedding';
   final _budgetController = TextEditingController();
   DateTime _targetDate = DateTime.now().add(const Duration(days: 365));
@@ -60,7 +61,9 @@ class _AuraGoalPlanningScreenState extends ConsumerState<AuraGoalPlanningScreen>
     });
 
     try {
-      final response = await ref.read(auraActionsProvider.notifier).plan(
+      final response = await ref
+          .read(auraActionsProvider.notifier)
+          .plan(
             occasion: _occasion,
             targetDate: _targetDate.toIso8601String().split('T').first,
             budgetPaise: budgetRupees * 100,

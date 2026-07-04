@@ -26,9 +26,8 @@ abstract class UserAddress with _$UserAddress {
 
 @freezed
 abstract class AddressListResponse with _$AddressListResponse {
-  const factory AddressListResponse({
-    required List<UserAddress> addresses,
-  }) = _AddressListResponse;
+  const factory AddressListResponse({required List<UserAddress> addresses}) =
+      _AddressListResponse;
 
   factory AddressListResponse.fromJson(Map<String, dynamic> json) =>
       _$AddressListResponseFromJson(json);

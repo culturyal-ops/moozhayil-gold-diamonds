@@ -11,11 +11,7 @@ import '../../../core/constants/typography.dart';
 import '../../../core/models/goal.dart';
 
 class GoalCard extends StatelessWidget {
-  const GoalCard({
-    super.key,
-    required this.goal,
-    required this.onTap,
-  });
+  const GoalCard({super.key, required this.goal, required this.onTap});
 
   final Goal goal;
   final VoidCallback onTap;
@@ -50,9 +46,7 @@ class GoalCard extends StatelessWidget {
                 const SizedBox(height: AppSpacing.xxs),
                 Text(
                   SchemeLabels.customerName(goal.schemeType).toUpperCase(),
-                  style: AppTypography.uiMicro.copyWith(
-                    color: AppColors.gold,
-                  ),
+                  style: AppTypography.uiMicro.copyWith(color: AppColors.gold),
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(
@@ -78,11 +72,7 @@ class GoalCard extends StatelessWidget {
 }
 
 class CompletedGoalCard extends StatelessWidget {
-  const CompletedGoalCard({
-    super.key,
-    required this.goal,
-    required this.onTap,
-  });
+  const CompletedGoalCard({super.key, required this.goal, required this.onTap});
 
   final Goal goal;
   final VoidCallback onTap;

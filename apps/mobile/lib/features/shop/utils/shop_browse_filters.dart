@@ -53,11 +53,15 @@ List<Product> applyShopBrowseFilters(
 
   result.sort((a, b) {
     return switch (sort) {
-      ShopSortOption.priceLow =>
-        a.price.totalPaise.compareTo(b.price.totalPaise),
-      ShopSortOption.priceHigh =>
-        b.price.totalPaise.compareTo(a.price.totalPaise),
-      ShopSortOption.name => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+      ShopSortOption.priceLow => a.price.totalPaise.compareTo(
+        b.price.totalPaise,
+      ),
+      ShopSortOption.priceHigh => b.price.totalPaise.compareTo(
+        a.price.totalPaise,
+      ),
+      ShopSortOption.name => a.name.toLowerCase().compareTo(
+        b.name.toLowerCase(),
+      ),
       ShopSortOption.featured => 0,
     };
   });

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 import '../../../components/product/vault_icon_button.dart';
 import '../../core/animations/premium_pressable.dart';
 
@@ -17,18 +15,12 @@ import '../../core/utils/catalog_imagery.dart';
 
 import '../editorial/editorial_image.dart';
 
-
-
 enum ProductCardVariant { grid, list, horizontal }
-
-
 
 /// Image-first catalogue card with purity, weight, and optional Dream Vault heart.
 
 class ProductCard extends StatelessWidget {
-
   const ProductCard({
-
     super.key,
 
     this.product,
@@ -40,10 +32,7 @@ class ProductCard extends StatelessWidget {
     this.onTap,
 
     this.onVaultTap,
-
   });
-
-
 
   final Product? product;
 
@@ -53,79 +42,46 @@ class ProductCard extends StatelessWidget {
 
   final VoidCallback? onTap;
 
-
-
   final VoidCallback? onVaultTap;
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
     if (isLoading || product == null) {
-
       return const SizedBox.shrink();
-
     }
-
-
 
     final item = product!;
 
     return Semantics(
-
       button: true,
 
       label: item.name,
 
       child: PremiumPressable(
-
         onTap: onTap,
 
         child: variant == ProductCardVariant.list
-
-            ? _ListProductContent(
-
-                product: item,
-
-                onVaultTap: onVaultTap,
-
-              )
-
+            ? _ListProductContent(product: item, onVaultTap: onVaultTap)
             : _StackedProductContent(
-
                 product: item,
 
                 variant: variant,
 
                 onVaultTap: onVaultTap,
-
               ),
-
       ),
-
     );
-
   }
-
 }
 
-
-
 class _StackedProductContent extends StatelessWidget {
-
   const _StackedProductContent({
-
     required this.product,
 
     required this.variant,
 
     this.onVaultTap,
-
   });
-
-
 
   final Product product;
 
@@ -133,321 +89,188 @@ class _StackedProductContent extends StatelessWidget {
 
   final VoidCallback? onVaultTap;
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
-    final image = _ProductImage(
-
-      product: product,
-
-      onVaultTap: onVaultTap,
-
-    );
-
-
+    final image = _ProductImage(product: product, onVaultTap: onVaultTap);
 
     if (variant == ProductCardVariant.horizontal) {
-
       return SizedBox(
-
         width: AppSpacing.x3l * 3 + AppSpacing.lg,
 
         height: double.infinity,
 
         child: Column(
-
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-
             Expanded(flex: 4, child: image),
 
             Expanded(
-
               flex: 2,
 
               child: Padding(
-
                 padding: const EdgeInsets.only(top: AppSpacing.sm),
 
                 child: _ProductText(product: product),
-
               ),
-
             ),
-
           ],
-
         ),
-
       );
-
     }
 
-
-
     return Column(
-
       crossAxisAlignment: CrossAxisAlignment.start,
 
       mainAxisSize: MainAxisSize.min,
 
       children: [
-
-        AspectRatio(
-
-          aspectRatio: 3 / 4,
-
-          child: image,
-
-        ),
+        AspectRatio(aspectRatio: 3 / 4, child: image),
 
         Padding(
-
           padding: const EdgeInsets.only(top: 10),
 
           child: _ProductText(product: product),
-
         ),
-
       ],
-
     );
-
   }
-
 }
 
-
-
 class _ListProductContent extends StatelessWidget {
-
-  const _ListProductContent({
-
-    required this.product,
-
-    this.onVaultTap,
-
-  });
-
-
+  const _ListProductContent({required this.product, this.onVaultTap});
 
   final Product product;
 
   final VoidCallback? onVaultTap;
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
     return Row(
-
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-
         SizedBox(
-
           width: AppSpacing.x3l + AppSpacing.xl,
 
           height: AppSpacing.x3l + AppSpacing.xl,
 
-          child: _ProductImage(
-
-            product: product,
-
-            onVaultTap: onVaultTap,
-
-          ),
-
+          child: _ProductImage(product: product, onVaultTap: onVaultTap),
         ),
 
         const SizedBox(width: AppSpacing.md),
 
         Expanded(child: _ProductText(product: product)),
-
       ],
-
     );
-
   }
-
 }
 
-
-
 class _ProductImage extends StatelessWidget {
-
-  const _ProductImage({
-
-    required this.product,
-
-    this.onVaultTap,
-
-  });
-
-
+  const _ProductImage({required this.product, this.onVaultTap});
 
   final Product product;
 
   final VoidCallback? onVaultTap;
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
     return ColoredBox(
-
       color: AppColors.pearl,
 
       child: Stack(
-
         fit: StackFit.expand,
 
         children: [
-
           EditorialImage(
-
             url: CatalogImagery.resolveProduct(
               product.primaryImage,
               product.id,
             ),
-
           ),
 
           if (!product.stockAvailable)
-
             ColoredBox(
-
               color: AppColors.ink.withValues(alpha: 0.35),
 
               child: Center(
-
                 child: Text(
-
                   'Out of stock',
 
-                  style: AppTypography.uiLabel.copyWith(
-
-                    color: AppColors.paper,
-
-                  ),
-
+                  style: AppTypography.uiLabel.copyWith(color: AppColors.paper),
                 ),
-
               ),
-
             ),
 
           if (product.badges.contains('new'))
-
             Positioned(
-
               left: AppSpacing.xs,
 
               top: AppSpacing.xs,
 
               child: Container(
-
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
 
                 color: AppColors.gold,
 
                 child: Text(
-
                   'NEW',
 
                   style: AppTypography.uiMicro.copyWith(
-
                     fontSize: 7,
 
                     color: AppColors.ink,
 
                     letterSpacing: 7 * 0.15,
-
                   ),
-
                 ),
-
               ),
-
             ),
 
           if (onVaultTap != null)
-
             Positioned(
-
               right: AppSpacing.xs,
 
               top: AppSpacing.xs,
 
               child: Container(
+                width: 30,
 
-                  width: 30,
+                height: 30,
 
-                  height: 30,
+                alignment: Alignment.center,
 
-                  alignment: Alignment.center,
+                color: AppColors.paper.withValues(alpha: 0.92),
 
-                  color: AppColors.paper.withValues(alpha: 0.92),
+                child: VaultIconButton(
+                  isInVault: product.isInVault,
 
-                  child: VaultIconButton(
+                  onTap: onVaultTap,
 
-                    isInVault: product.isInVault,
-
-                    onTap: onVaultTap,
-
-                    size: 14,
-
-                  ),
-
+                  size: 14,
                 ),
-
+              ),
             ),
-
         ],
-
       ),
-
     );
-
   }
-
 }
 
-
-
 class _ProductText extends StatelessWidget {
-
   const _ProductText({required this.product});
-
-
 
   final Product product;
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
     return Column(
-
       crossAxisAlignment: CrossAxisAlignment.start,
 
       mainAxisSize: MainAxisSize.min,
 
       children: [
-
         Text(
-
           product.name,
 
           style: AppTypography.productName,
@@ -455,47 +278,30 @@ class _ProductText extends StatelessWidget {
           maxLines: 2,
 
           overflow: TextOverflow.ellipsis,
-
         ),
 
         const SizedBox(height: AppSpacing.xxs),
 
         Text(
-
           '${product.purityDisplay} · ${product.weightDisplay}',
 
           style: AppTypography.uiCaption.copyWith(
-
             color: AppColors.textSecondary,
-
           ),
 
           maxLines: 1,
 
           overflow: TextOverflow.ellipsis,
-
         ),
 
         const SizedBox(height: AppSpacing.xxs),
 
         Text(
-
           product.price.totalDisplay,
 
-          style: AppTypography.priceMD.copyWith(
-
-            color: AppColors.textPrimary,
-
-          ),
-
+          style: AppTypography.priceMD.copyWith(color: AppColors.textPrimary),
         ),
-
       ],
-
     );
-
   }
-
 }
-
-

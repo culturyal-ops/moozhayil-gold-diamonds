@@ -107,7 +107,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
           ? 'gold_balance'
           : _paymentMethod;
 
-      final response = await ref.read(orderActionsProvider.notifier).placeOrder(
+      final response = await ref
+          .read(orderActionsProvider.notifier)
+          .placeOrder(
             items: items,
             deliveryAddressId: addressId,
             paymentMethod: method,
@@ -131,7 +133,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
           return;
         }
 
-        final captured = await ref.read(razorpayServiceProvider).pay(
+        final captured = await ref
+            .read(razorpayServiceProvider)
+            .pay(
               context: context,
               checkout: _razorpayCheckout,
               keyId: keyId,
@@ -206,18 +210,21 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                         .where((address) => address.isDefault)
                         .map((address) => address.id)
                         .firstOrNull;
-                    _selectedAddressId =
-                        defaultAddress ?? addressList.first.id;
+                    _selectedAddressId = defaultAddress ?? addressList.first.id;
                   }
 
                   return Column(
                     children: [
                       Expanded(
                         child: ListView(
-                          padding:
-                              const EdgeInsets.all(AppSpacing.screenPadding),
+                          padding: const EdgeInsets.all(
+                            AppSpacing.screenPadding,
+                          ),
                           children: [
-                            Text('Order summary', style: AppTypography.headingSM),
+                            Text(
+                              'Order summary',
+                              style: AppTypography.headingSM,
+                            ),
                             const SizedBox(height: AppSpacing.sm),
                             ...summary.items.map(
                               (item) => Padding(
@@ -242,11 +249,13 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                             ),
                             const Divider(color: AppColors.border),
                             AuraMcWaiverBanner(
-                              usingGoldBalance: _useGoldBalance &&
-                                  _paymentMethod != 'cod',
+                              usingGoldBalance:
+                                  _useGoldBalance && _paymentMethod != 'cod',
                             ),
-                            Text('Delivery address',
-                                style: AppTypography.headingSM),
+                            Text(
+                              'Delivery address',
+                              style: AppTypography.headingSM,
+                            ),
                             const SizedBox(height: AppSpacing.sm),
                             if (addressList.isEmpty)
                               Text(
@@ -256,9 +265,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                             else
                               RadioGroup<String>(
                                 groupValue: _selectedAddressId,
-                                onChanged: (value) => setState(
-                                  () => _selectedAddressId = value,
-                                ),
+                                onChanged: (value) =>
+                                    setState(() => _selectedAddressId = value),
                                 child: Column(
                                   children: [
                                     ...addressList.map(
@@ -312,8 +320,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                                   onChanged: _paymentMethod == 'cod'
                                       ? null
                                       : (value) => setState(
-                                            () => _useGoldBalance = value,
-                                          ),
+                                          () => _useGoldBalance = value,
+                                        ),
                                 );
                               },
                               loading: () => const SizedBox.shrink(),
@@ -341,7 +349,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                             ],
                             goldBalance.maybeWhen(
                               data: (balance) {
-                                if (!_useGoldBalance || _paymentMethod == 'cod') {
+                                if (!_useGoldBalance ||
+                                    _paymentMethod == 'cod') {
                                   return const SizedBox.shrink();
                                 }
 
@@ -423,8 +432,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                         ),
                       ),
                       Container(
-                        padding:
-                            const EdgeInsets.all(AppSpacing.screenPadding),
+                        padding: const EdgeInsets.all(AppSpacing.screenPadding),
                         decoration: const BoxDecoration(
                           color: AppColors.paper,
                           border: Border(
@@ -437,7 +445,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                         child: PrimaryButton(
                           label: _isPlacing ? 'Placing order…' : 'Place order',
                           isFullWidth: true,
-                          isDisabled: _isPlacing ||
+                          isDisabled:
+                              _isPlacing ||
                               _selectedAddressId == null ||
                               addressList.isEmpty,
                           onTap: _isPlacing || _selectedAddressId == null
@@ -449,7 +458,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                   );
                 },
                 loading: () => const Center(child: CircularProgressIndicator()),
-                error: (error, _) => ErrorState(body: CustomerErrorCopy.message(error)),
+                error: (error, _) =>
+                    ErrorState(body: CustomerErrorCopy.message(error)),
               );
             },
             loading: () => const Padding(
@@ -473,10 +483,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
 }
 
 class _AddressOption extends StatelessWidget {
-  const _AddressOption({
-    required this.address,
-    required this.selected,
-  });
+  const _AddressOption({required this.address, required this.selected});
 
   final UserAddress address;
   final bool selected;
@@ -505,10 +512,7 @@ class _AddressOption extends StatelessWidget {
 }
 
 class _PaymentOption extends StatelessWidget {
-  const _PaymentOption({
-    required this.label,
-    required this.value,
-  });
+  const _PaymentOption({required this.label, required this.value});
 
   final String label;
   final String value;

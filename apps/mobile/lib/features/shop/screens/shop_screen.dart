@@ -42,7 +42,8 @@ class ShopScreen extends ConsumerWidget {
       orElse: () => null,
     );
 
-    final bottomInset = MediaQuery.paddingOf(context).bottom +
+    final bottomInset =
+        MediaQuery.paddingOf(context).bottom +
         _bottomNavHeight +
         _scrollBottomInset;
 
@@ -78,10 +79,7 @@ class ShopScreen extends ConsumerWidget {
               child: ShopCollectionsRail(collections: collections),
             ),
 
-            const SectionReveal(
-              index: 4,
-              child: ShopUtilityStrip(),
-            ),
+            const SectionReveal(index: 4, child: ShopUtilityStrip()),
           ],
         ),
       ),

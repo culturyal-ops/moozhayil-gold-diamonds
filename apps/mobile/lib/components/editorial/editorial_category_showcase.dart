@@ -21,7 +21,8 @@ class EditorialCategoryShowcase extends StatelessWidget {
     ),
     (
       title: 'Earrings',
-      body: 'From classic studs to statement drops — hallmarked and hand-finished.',
+      body:
+          'From classic studs to statement drops — hallmarked and hand-finished.',
       key: 'earrings',
     ),
     (
@@ -61,7 +62,9 @@ class EditorialCategoryShowcase extends StatelessWidget {
             ),
             child: Text(
               'See all categories'.toUpperCase(),
-              style: AppTypography.uiLabel.copyWith(color: AppColors.textPrimary),
+              style: AppTypography.uiLabel.copyWith(
+                color: AppColors.textPrimary,
+              ),
             ),
           ),
         ),

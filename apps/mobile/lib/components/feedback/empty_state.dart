@@ -8,14 +8,10 @@ import '../../core/constants/typography.dart';
 
 import '../buttons/primary_button.dart';
 
-
-
 /// Polished empty-state display with editorial hierarchy.
 
 class EmptyState extends StatelessWidget {
-
   const EmptyState({
-
     super.key,
 
     required this.headline,
@@ -27,10 +23,7 @@ class EmptyState extends StatelessWidget {
     this.ctaLabel,
 
     this.onCtaTap,
-
   });
-
-
 
   final IconData? icon;
 
@@ -42,16 +35,10 @@ class EmptyState extends StatelessWidget {
 
   final VoidCallback? onCtaTap;
 
-
-
   @override
-
   Widget build(BuildContext context) {
-
     return Padding(
-
       padding: const EdgeInsets.fromLTRB(
-
         AppSpacing.xl,
 
         AppSpacing.xxl,
@@ -59,21 +46,16 @@ class EmptyState extends StatelessWidget {
         AppSpacing.xl,
 
         AppSpacing.lg,
-
       ),
 
       child: Column(
-
         mainAxisSize: MainAxisSize.min,
 
         crossAxisAlignment: CrossAxisAlignment.center,
 
         children: [
-
           if (icon != null) ...[
-
             Container(
-
               width: 56,
 
               height: 56,
@@ -86,65 +68,44 @@ class EmptyState extends StatelessWidget {
               ),
 
               child: Icon(icon, size: 22, color: AppColors.textSecondary),
-
             ),
 
             const SizedBox(height: AppSpacing.md),
-
           ],
 
           Text(
-
             headline,
 
             style: AppTypography.headingSM.copyWith(
-
               color: AppColors.textPrimary,
 
               fontWeight: FontWeight.w400,
-
             ),
 
             textAlign: TextAlign.center,
-
           ),
 
           if (body != null) ...[
-
             const SizedBox(height: AppSpacing.xs),
 
             Text(
-
               body!,
 
               style: AppTypography.uiBodySM.copyWith(
-
                 color: AppColors.textSecondary,
-
               ),
 
               textAlign: TextAlign.center,
-
             ),
-
           ],
 
           if (ctaLabel != null && onCtaTap != null) ...[
-
             const SizedBox(height: AppSpacing.lg),
 
             PrimaryButton(label: ctaLabel!, onTap: onCtaTap),
-
           ],
-
         ],
-
       ),
-
     );
-
   }
-
 }
-
-

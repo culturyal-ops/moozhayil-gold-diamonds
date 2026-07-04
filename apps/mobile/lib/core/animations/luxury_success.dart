@@ -42,8 +42,7 @@ class LuxurySuccessOverlay extends StatefulWidget {
   final bool majorSuccess;
   final Duration autoDismissHold;
 
-  bool get _hasActions =>
-      primaryActionLabel != null && onPrimaryAction != null;
+  bool get _hasActions => primaryActionLabel != null && onPrimaryAction != null;
 
   @override
   State<LuxurySuccessOverlay> createState() => _LuxurySuccessOverlayState();
@@ -79,13 +78,12 @@ class _LuxurySuccessOverlayState extends State<LuxurySuccessOverlay>
       vsync: this,
       duration: const Duration(milliseconds: 480),
     );
-    _actionsCtrl = AnimationController(
-      vsync: this,
-      duration: AppMotion.normal,
-    );
+    _actionsCtrl = AnimationController(vsync: this, duration: AppMotion.normal);
 
-    final ringCurved =
-        CurvedAnimation(parent: _ringCtrl, curve: Curves.easeOutCubic);
+    final ringCurved = CurvedAnimation(
+      parent: _ringCtrl,
+      curve: Curves.easeOutCubic,
+    );
 
     _ringScale = Tween<double>(begin: 0.28, end: 1.0).animate(ringCurved);
     _ringOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -100,7 +98,10 @@ class _LuxurySuccessOverlayState extends State<LuxurySuccessOverlay>
       begin: const Offset(0, 0.08),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _textCtrl, curve: Curves.easeOutCubic));
-    _actionsOpacity = CurvedAnimation(parent: _actionsCtrl, curve: Curves.easeIn);
+    _actionsOpacity = CurvedAnimation(
+      parent: _actionsCtrl,
+      curve: Curves.easeIn,
+    );
 
     _runSequence();
   }

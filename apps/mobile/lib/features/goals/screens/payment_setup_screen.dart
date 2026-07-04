@@ -51,10 +51,7 @@ class PaymentSetupScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: AppSpacing.xs),
-                  Text(
-                    draft.name,
-                    style: AppTypography.headingSM,
-                  ),
+                  Text(draft.name, style: AppTypography.headingSM),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     summary,

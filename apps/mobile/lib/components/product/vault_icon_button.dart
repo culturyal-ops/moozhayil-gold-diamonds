@@ -38,10 +38,7 @@ class _VaultIconButtonState extends State<VaultIconButton>
   void initState() {
     super.initState();
 
-    _ctrl = AnimationController(
-      vsync: this,
-      duration: AppMotion.heartSave,
-    );
+    _ctrl = AnimationController(vsync: this, duration: AppMotion.heartSave);
 
     _sparkle = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 30),
@@ -65,13 +62,17 @@ class _VaultIconButtonState extends State<VaultIconButton>
 
     final scaleAnim = TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 1.12)
-            .chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween(
+          begin: 1.0,
+          end: 1.12,
+        ).chain(CurveTween(curve: Curves.easeOut)),
         weight: 45,
       ),
       TweenSequenceItem(
-        tween: Tween(begin: 1.12, end: 1.0)
-            .chain(CurveTween(curve: Curves.easeOutCubic)),
+        tween: Tween(
+          begin: 1.12,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeOutCubic)),
         weight: 55,
       ),
     ]).animate(_ctrl);

@@ -101,6 +101,8 @@ class PushRegistrationService {
   }
 }
 
-final pushRegistrationServiceProvider = Provider<PushRegistrationService>((ref) {
+final pushRegistrationServiceProvider = Provider<PushRegistrationService>((
+  ref,
+) {
   return PushRegistrationService(ref.watch(apiServiceProvider));
 });

@@ -115,9 +115,10 @@ class _ButtonBodyState extends State<_ButtonBody>
       vsync: this,
       duration: AppAnimations.buttonPress,
     );
-    _scale = Tween<double>(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
-    );
+    _scale = Tween<double>(
+      begin: 1.0,
+      end: 0.97,
+    ).animate(CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut));
   }
 
   @override

@@ -9,10 +9,7 @@ import '../../../core/constants/spacing.dart';
 import '../../../core/constants/typography.dart';
 import '../../../core/routing/app_routes.dart';
 
-enum KycGateReason {
-  goalCreation,
-  contribution,
-}
+enum KycGateReason { goalCreation, contribution }
 
 extension KycGateReasonCopy on KycGateReason {
   String get headline {
@@ -43,10 +40,8 @@ Future<void> showKycGateBottomSheet({
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => KycGateBottomSheet(
-      reason: reason,
-      returnRoute: returnRoute,
-    ),
+    builder: (context) =>
+        KycGateBottomSheet(reason: reason, returnRoute: returnRoute),
   );
 }
 

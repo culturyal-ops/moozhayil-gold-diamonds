@@ -64,8 +64,7 @@ class AppBottomTabBar extends StatelessWidget {
                   AnimatedPositioned(
                     duration: AppMotion.navIndicator,
                     curve: AppMotion.standard,
-                    left: currentBranchIndex * tabWidth +
-                        (tabWidth - 24) / 2,
+                    left: currentBranchIndex * tabWidth + (tabWidth - 24) / 2,
                     top: 0,
                     child: Container(
                       width: 24,
@@ -96,11 +95,7 @@ class AppBottomTabBar extends StatelessWidget {
 }
 
 class _Tab extends StatelessWidget {
-  const _Tab({
-    required this.item,
-    required this.isActive,
-    required this.onTap,
-  });
+  const _Tab({required this.item, required this.isActive, required this.onTap});
 
   final TabItem item;
   final bool isActive;
@@ -108,8 +103,7 @@ class _Tab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        isActive ? AppIconography.active : AppIconography.inactive;
+    final color = isActive ? AppIconography.active : AppIconography.inactive;
     final navText = (item.navLabel ?? item.label).toUpperCase();
 
     return Semantics(

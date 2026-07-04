@@ -66,7 +66,8 @@ abstract class AuraDiscoverResponse with _$AuraDiscoverResponse {
   const factory AuraDiscoverResponse({
     required String intro,
     required List<Product> products,
-    @JsonKey(name: 'filters_applied') required AuraDiscoverFilters filtersApplied,
+    @JsonKey(name: 'filters_applied')
+    required AuraDiscoverFilters filtersApplied,
   }) = _AuraDiscoverResponse;
 
   factory AuraDiscoverResponse.fromJson(Map<String, dynamic> json) =>

@@ -32,7 +32,10 @@ void main() {
   Widget wrap(Widget child) {
     return MaterialApp(
       home: MediaQuery(
-        data: const MediaQueryData(size: Size(390, 844), padding: EdgeInsets.zero),
+        data: const MediaQueryData(
+          size: Size(390, 844),
+          padding: EdgeInsets.zero,
+        ),
         child: Scaffold(body: child),
       ),
     );

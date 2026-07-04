@@ -63,16 +63,10 @@ class GlassSurface extends StatelessWidget {
               gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFFFFFFFF),
-                  Color(0xFAFAFAF8),
-                ],
+                colors: [Color(0xFFFFFFFF), Color(0xFAFAFAF8)],
               ),
             ),
-            child: Padding(
-              padding: padding ?? EdgeInsets.zero,
-              child: child,
-            ),
+            child: Padding(padding: padding ?? EdgeInsets.zero, child: child),
           ),
         ),
       ),
@@ -111,10 +105,6 @@ class LuxuryCard extends StatelessWidget {
 
     if (onTap == null) return card;
 
-    return PremiumPressable(
-      onTap: onTap,
-      scaleEnd: 0.985,
-      child: card,
-    );
+    return PremiumPressable(onTap: onTap, scaleEnd: 0.985, child: card);
   }
 }

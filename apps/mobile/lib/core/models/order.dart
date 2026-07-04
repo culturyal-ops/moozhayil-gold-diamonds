@@ -73,7 +73,8 @@ abstract class PaymentBreakdown with _$PaymentBreakdown {
 abstract class OrderDetailResponse with _$OrderDetailResponse {
   const factory OrderDetailResponse({
     required Order order,
-    @JsonKey(name: 'payment_breakdown') required PaymentBreakdown paymentBreakdown,
+    @JsonKey(name: 'payment_breakdown')
+    required PaymentBreakdown paymentBreakdown,
   }) = _OrderDetailResponse;
 
   factory OrderDetailResponse.fromJson(Map<String, dynamic> json) =>

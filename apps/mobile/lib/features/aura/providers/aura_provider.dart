@@ -128,16 +128,12 @@ class AuraConversation extends _$AuraConversation {
   FutureOr<List<AuraConversationMessage>> build(String sessionId) => [];
 
   Future<AuraMessageResponse> sendMessage(String message) async {
-    final userMessage = AuraConversationMessage(
-      role: 'user',
-      content: message,
-    );
+    final userMessage = AuraConversationMessage(role: 'user', content: message);
     state = AsyncData([...?state.value, userMessage]);
 
-    final response = await ref.read(auraRepositoryProvider).postMessage(
-          sessionId: sessionId,
-          message: message,
-        );
+    final response = await ref
+        .read(auraRepositoryProvider)
+        .postMessage(sessionId: sessionId, message: message);
 
     final auraMessage = AuraConversationMessage(
       role: 'aura',
@@ -161,7 +157,9 @@ class AuraActions extends _$AuraActions {
     required String targetDate,
     required int budgetPaise,
   }) async {
-    return ref.read(auraRepositoryProvider).plan(
+    return ref
+        .read(auraRepositoryProvider)
+        .plan(
           occasion: occasion,
           targetDate: targetDate,
           budgetPaise: budgetPaise,
@@ -173,7 +171,9 @@ class AuraActions extends _$AuraActions {
     required String occasion,
     required int budgetPaise,
   }) async {
-    return ref.read(auraRepositoryProvider).discover(
+    return ref
+        .read(auraRepositoryProvider)
+        .discover(
           forPerson: forPerson,
           occasion: occasion,
           budgetPaise: budgetPaise,

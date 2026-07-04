@@ -69,7 +69,9 @@ class _AuraProductDiscoveryScreenState
     });
 
     try {
-      final response = await ref.read(auraActionsProvider.notifier).discover(
+      final response = await ref
+          .read(auraActionsProvider.notifier)
+          .discover(
             forPerson: _forPerson,
             occasion: _occasion,
             budgetPaise: budgetRupees * 100,

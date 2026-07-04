@@ -171,15 +171,13 @@ class _GoldenWishScreenState extends ConsumerState<GoldenWishScreen> {
                                   child: goal.status == 'completed'
                                       ? CompletedGoalCard(
                                           goal: goal,
-                                          onTap: () => context.push(
-                                            '/goals/${goal.id}',
-                                          ),
+                                          onTap: () =>
+                                              context.push('/goals/${goal.id}'),
                                         )
                                       : GoalCard(
                                           goal: goal,
-                                          onTap: () => context.push(
-                                            '/goals/${goal.id}',
-                                          ),
+                                          onTap: () =>
+                                              context.push('/goals/${goal.id}'),
                                         ),
                                 ),
                               )

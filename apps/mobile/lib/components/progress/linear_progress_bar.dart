@@ -37,8 +37,10 @@ class _LinearProgressBarState extends State<LinearProgressBar>
   void initState() {
     super.initState();
     _ctrl = AnimationController(vsync: this, duration: AppAnimations.ringFill);
-    _fill = Tween<double>(begin: 0, end: widget.percent.clamp(0, 100) / 100.0)
-        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
+    _fill = Tween<double>(
+      begin: 0,
+      end: widget.percent.clamp(0, 100) / 100.0,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
     _ctrl.forward();
   }
 

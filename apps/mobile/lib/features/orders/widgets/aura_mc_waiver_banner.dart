@@ -11,10 +11,7 @@ import '../../goals/providers/goals_provider.dart';
 /// Shows when the customer has an active Aura making-charge waiver and
 /// is paying with gold balance at checkout.
 class AuraMcWaiverBanner extends ConsumerWidget {
-  const AuraMcWaiverBanner({
-    super.key,
-    required this.usingGoldBalance,
-  });
+  const AuraMcWaiverBanner({super.key, required this.usingGoldBalance});
 
   final bool usingGoldBalance;
 

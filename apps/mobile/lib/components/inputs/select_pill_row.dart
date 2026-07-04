@@ -22,37 +22,41 @@ class SelectPillRow extends StatelessWidget {
     return Wrap(
       spacing: 6,
       runSpacing: 6,
-      children: options.map((option) {
-        final isActive = option.value == selected;
-        return GestureDetector(
-          onTap: () => onSelected(option.value),
-          behavior: HitTestBehavior.opaque,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeOutCubic,
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: 8,
-            ),
-            decoration: BoxDecoration(
-              color: isActive ? AppColors.brandBurgundy : AppColors.bgWhite,
-              border: Border.all(
-                color: isActive ? AppColors.brandBurgundy : AppColors.border,
-                width: 0.5,
+      children: options
+          .map((option) {
+            final isActive = option.value == selected;
+            return GestureDetector(
+              onTap: () => onSelected(option.value),
+              behavior: HitTestBehavior.opaque,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOutCubic,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: 8,
+                ),
+                decoration: BoxDecoration(
+                  color: isActive ? AppColors.brandBurgundy : AppColors.bgWhite,
+                  border: Border.all(
+                    color: isActive
+                        ? AppColors.brandBurgundy
+                        : AppColors.border,
+                    width: 0.5,
+                  ),
+                ),
+                child: Text(
+                  option.label.toUpperCase(),
+                  style: AppTypography.uiMicro.copyWith(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w500,
+                    color: isActive ? AppColors.cream : AppColors.textMuted,
+                    letterSpacing: 1.2,
+                  ),
+                ),
               ),
-            ),
-            child: Text(
-              option.label.toUpperCase(),
-              style: AppTypography.uiMicro.copyWith(
-                fontSize: 9,
-                fontWeight: FontWeight.w500,
-                color: isActive ? AppColors.cream : AppColors.textMuted,
-                letterSpacing: 1.2,
-              ),
-            ),
-          ),
-        );
-      }).toList(growable: false),
+            );
+          })
+          .toList(growable: false),
     );
   }
 }

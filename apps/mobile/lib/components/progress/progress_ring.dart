@@ -44,10 +44,13 @@ class _ProgressRingState extends State<ProgressRing>
   void initState() {
     super.initState();
     _ctrl = AnimationController(vsync: this, duration: AppAnimations.ringFill);
-    _progress = Tween<double>(
-      begin: 0,
-      end: widget.percent.clamp(0, 100) / 100.0,
-    ).animate(CurvedAnimation(parent: _ctrl, curve: AppAnimations.curveDefault));
+    _progress =
+        Tween<double>(
+          begin: 0,
+          end: widget.percent.clamp(0, 100) / 100.0,
+        ).animate(
+          CurvedAnimation(parent: _ctrl, curve: AppAnimations.curveDefault),
+        );
     _ctrl.forward();
   }
 
@@ -56,12 +59,13 @@ class _ProgressRingState extends State<ProgressRing>
     super.didUpdateWidget(old);
     if (old.percent != widget.percent) {
       final from = _progress.value;
-      _progress = Tween<double>(
-        begin: from,
-        end: widget.percent.clamp(0, 100) / 100.0,
-      ).animate(
-        CurvedAnimation(parent: _ctrl, curve: AppAnimations.curveDefault),
-      );
+      _progress =
+          Tween<double>(
+            begin: from,
+            end: widget.percent.clamp(0, 100) / 100.0,
+          ).animate(
+            CurvedAnimation(parent: _ctrl, curve: AppAnimations.curveDefault),
+          );
       _ctrl
         ..reset()
         ..forward();
@@ -97,9 +101,9 @@ class _ProgressRingState extends State<ProgressRing>
                 Text(
                   '${widget.percent.clamp(0, 100)}%',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: AppColors.obsidian,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: AppColors.obsidian,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
           ],
         ),

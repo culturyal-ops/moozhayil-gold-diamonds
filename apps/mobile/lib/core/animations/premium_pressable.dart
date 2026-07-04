@@ -35,9 +35,10 @@ class _PremiumPressableState extends State<PremiumPressable>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _scale = Tween<double>(begin: 1, end: widget.scaleEnd).animate(
-      CurvedAnimation(parent: _controller, curve: AppMotion.press),
-    );
+    _scale = Tween<double>(
+      begin: 1,
+      end: widget.scaleEnd,
+    ).animate(CurvedAnimation(parent: _controller, curve: AppMotion.press));
   }
 
   @override
@@ -64,10 +65,7 @@ class _PremiumPressableState extends State<PremiumPressable>
 
   @override
   Widget build(BuildContext context) {
-    final child = ScaleTransition(
-      scale: _scale,
-      child: widget.child,
-    );
+    final child = ScaleTransition(scale: _scale, child: widget.child);
 
     if (widget.onTap == null) return child;
 

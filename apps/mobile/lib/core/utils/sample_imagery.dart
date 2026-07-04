@@ -39,8 +39,7 @@ abstract final class SampleImagery {
   ];
 
   /// A statement on-body image for the primary home hero.
-  static String hero({int width = 1400}) =>
-      _url(_editorial.first, width);
+  static String hero({int width = 1400}) => _url(_editorial.first, width);
 
   /// Editorial portrait, chosen deterministically from [key].
   static String editorial(Object key, {int width = 1200}) =>

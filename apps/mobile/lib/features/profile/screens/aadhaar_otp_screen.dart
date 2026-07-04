@@ -37,7 +37,9 @@ class _AadhaarOtpScreenState extends ConsumerState<AadhaarOtpScreen> {
     });
 
     try {
-      await ref.read(kycFlowActionsProvider.notifier).verifyAadhaarOtp(_otp.trim());
+      await ref
+          .read(kycFlowActionsProvider.notifier)
+          .verifyAadhaarOtp(_otp.trim());
       if (mounted) {
         context.push(AppRoutes.profileKycPan);
       }
@@ -64,7 +66,9 @@ class _AadhaarOtpScreenState extends ConsumerState<AadhaarOtpScreen> {
             const SizedBox(height: AppSpacing.sm),
             Text(
               'Sent to the mobile number linked with your Aadhaar.',
-              style: AppTypography.uiBodySM.copyWith(color: AppColors.slateMist),
+              style: AppTypography.uiBodySM.copyWith(
+                color: AppColors.slateMist,
+              ),
             ),
             const SizedBox(height: AppSpacing.lg),
             AppTextInput(

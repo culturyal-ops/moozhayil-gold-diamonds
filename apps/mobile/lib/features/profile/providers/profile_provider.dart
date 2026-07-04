@@ -32,11 +32,7 @@ class ProfileRepository {
     try {
       final response = await _apiService.client.patch<Map<String, dynamic>>(
         '/user/me',
-        data: {
-          ?name,
-          ?email,
-          ?city,
-        },
+        data: {?name, ?email, ?city},
       );
       return User.fromJson(response.data!);
     } on DioException catch (error) {
@@ -57,8 +53,7 @@ Future<User> profileUser(Ref ref) async {
     throw const ApiException('Sign in to view profile');
   }
 
-  if (DevPreview.enabled &&
-      auth.value?.user?.id == DevPreview.previewUser.id) {
+  if (DevPreview.enabled && auth.value?.user?.id == DevPreview.previewUser.id) {
     return auth.value!.user!;
   }
 
@@ -75,11 +70,9 @@ class ProfileActions extends _$ProfileActions {
     String? email,
     String? city,
   }) async {
-    final user = await ref.read(profileRepositoryProvider).updateProfile(
-          name: name,
-          email: email,
-          city: city,
-        );
+    final user = await ref
+        .read(profileRepositoryProvider)
+        .updateProfile(name: name, email: email, city: city);
     ref.invalidate(profileUserProvider);
     await ref.read(authControllerProvider.notifier).refreshMe();
     return user;

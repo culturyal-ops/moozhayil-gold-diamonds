@@ -25,8 +25,9 @@ Future<void> handleVaultSave(
   }
 
   final auth = ref.read(authControllerProvider).value;
-  final response =
-      await ref.read(vaultActionsProvider.notifier).saveProduct(productId);
+  final response = await ref
+      .read(vaultActionsProvider.notifier)
+      .saveProduct(productId);
   ref.invalidate(effectiveVaultProductIdsProvider);
 
   if (!context.mounted) {

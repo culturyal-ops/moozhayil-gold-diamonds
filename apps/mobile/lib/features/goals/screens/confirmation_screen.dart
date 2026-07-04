@@ -18,8 +18,7 @@ class ConfirmationScreen extends ConsumerStatefulWidget {
   const ConfirmationScreen({super.key});
 
   @override
-  ConsumerState<ConfirmationScreen> createState() =>
-      _ConfirmationScreenState();
+  ConsumerState<ConfirmationScreen> createState() => _ConfirmationScreenState();
 }
 
 class _ConfirmationScreenState extends ConsumerState<ConfirmationScreen> {
@@ -31,7 +30,9 @@ class _ConfirmationScreenState extends ConsumerState<ConfirmationScreen> {
     final draft = ref.read(goalCreateDraftStoreProvider);
 
     try {
-      await ref.read(goalsRepositoryProvider).create(
+      await ref
+          .read(goalsRepositoryProvider)
+          .create(
             schemeType: draft.schemeType.apiValue,
             goalType: draft.goalType,
             name: draft.name.trim(),
@@ -87,10 +88,7 @@ class _ConfirmationScreenState extends ConsumerState<ConfirmationScreen> {
             const SizedBox(height: AppSpacing.md),
             Text(_summaryLine(scheme, amount)),
             const SizedBox(height: AppSpacing.sm),
-            Text(
-              _footerLine(scheme),
-              style: AppTypography.uiBodySM,
-            ),
+            Text(_footerLine(scheme), style: AppTypography.uiBodySM),
             if (scheme == GoldenWishSchemeType.aura) ...[
               const SizedBox(height: AppSpacing.sm),
               Text(
@@ -117,7 +115,8 @@ class _ConfirmationScreenState extends ConsumerState<ConfirmationScreen> {
   String _summaryLine(GoldenWishSchemeType scheme, int amount) =>
       switch (scheme) {
         GoldenWishSchemeType.aura => '₹$amount/mo · 11 monthly installments',
-        GoldenWishSchemeType.crest => '₹$amount advance · weight locked on payment',
+        GoldenWishSchemeType.crest =>
+          '₹$amount advance · weight locked on payment',
         GoldenWishSchemeType.dhanam =>
           '₹$amount booking advance · rate protection for 12 months',
         GoldenWishSchemeType.goldNidhi =>
@@ -125,10 +124,10 @@ class _ConfirmationScreenState extends ConsumerState<ConfirmationScreen> {
       };
 
   String _footerLine(GoldenWishSchemeType scheme) => switch (scheme) {
-        GoldenWishSchemeType.aura =>
-          'Aura: 0% making charges on jewellery when paying with My Gold during '
+    GoldenWishSchemeType.aura =>
+      'Aura: 0% making charges on jewellery when paying with My Gold during '
           'your redemption window (days 332–352), after 11 installments. '
           'Trusted since 1969.',
-        _ => 'Trusted since 1969',
-      };
+    _ => 'Trusted since 1969',
+  };
 }

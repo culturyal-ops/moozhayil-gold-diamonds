@@ -109,7 +109,8 @@ class OtpScreen extends ConsumerWidget {
 
   String _errorHeadline(Object? error) {
     if (error is ApiException &&
-        (error.code == 'PROVIDER_UNAVAILABLE' || error.code == 'RATE_LIMITED')) {
+        (error.code == 'PROVIDER_UNAVAILABLE' ||
+            error.code == 'RATE_LIMITED')) {
       return 'We couldn\u2019t send a code';
     }
 
@@ -119,7 +120,8 @@ class OtpScreen extends ConsumerWidget {
   Future<void> _retryAfterError(WidgetRef ref) async {
     final error = ref.read(authControllerProvider).error;
     if (error is ApiException &&
-        (error.code == 'PROVIDER_UNAVAILABLE' || error.code == 'RATE_LIMITED')) {
+        (error.code == 'PROVIDER_UNAVAILABLE' ||
+            error.code == 'RATE_LIMITED')) {
       await ref.read(authControllerProvider.notifier).sendOtp();
       return;
     }

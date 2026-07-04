@@ -45,12 +45,12 @@ class _PaymentMethodsScreenState extends ConsumerState<PaymentMethodsScreen> {
 
     setState(() => _isAdding = true);
     try {
-      final verified =
-          await ref.read(paymentMethodActionsProvider.notifier).verifyUpi(upiId);
-      await ref.read(paymentMethodActionsProvider.notifier).addUpi(
-            upiId: upiId,
-            displayLabel: verified.displayLabel,
-          );
+      final verified = await ref
+          .read(paymentMethodActionsProvider.notifier)
+          .verifyUpi(upiId);
+      await ref
+          .read(paymentMethodActionsProvider.notifier)
+          .addUpi(upiId: upiId, displayLabel: verified.displayLabel);
       _upiController.clear();
       if (mounted) {
         showPremiumSnackBar(context, 'Payment method added');

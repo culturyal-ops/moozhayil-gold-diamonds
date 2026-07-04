@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/motion.dart';
+
 /// Minimal page indicator for home carousels.
 class CarouselDots extends StatelessWidget {
   const CarouselDots({

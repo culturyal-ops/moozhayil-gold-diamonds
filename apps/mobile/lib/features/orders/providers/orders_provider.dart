@@ -58,9 +58,7 @@ class OrdersRepository {
           'payment_method_id': ?paymentMethodId,
           'use_gold_balance_grams': ?useGoldBalanceGrams,
         },
-        options: Options(
-          headers: {'Idempotency-Key': _idempotencyKey()},
-        ),
+        options: Options(headers: {'Idempotency-Key': _idempotencyKey()}),
       );
       return CreateOrderResponse.fromJson(response.data!);
     } on DioException catch (error) {
@@ -113,7 +111,9 @@ class OrderActions extends _$OrderActions {
     String? paymentMethodId,
     String? useGoldBalanceGrams,
   }) async {
-    final response = await ref.read(ordersRepositoryProvider).create(
+    final response = await ref
+        .read(ordersRepositoryProvider)
+        .create(
           items: items,
           deliveryAddressId: deliveryAddressId,
           paymentMethod: paymentMethod,
@@ -126,8 +126,9 @@ class OrderActions extends _$OrderActions {
   }
 
   Future<CancelOrderResponse> cancelOrder(String orderId, String reason) async {
-    final response =
-        await ref.read(ordersRepositoryProvider).cancel(orderId, reason);
+    final response = await ref
+        .read(ordersRepositoryProvider)
+        .cancel(orderId, reason);
     ref.invalidate(ordersListProvider());
     ref.invalidate(orderDetailProvider(orderId));
     return response;

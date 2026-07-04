@@ -61,7 +61,8 @@ class NotificationsScreen extends ConsumerWidget {
                 return const EmptyState(
                   icon: Icons.notifications_outlined,
                   headline: 'You\'re all caught up.',
-                  body: 'We\'ll notify you about installments, milestones, and orders.',
+                  body:
+                      'We\'ll notify you about installments, milestones, and orders.',
                 );
               }
 
@@ -120,10 +121,7 @@ class NotificationsScreen extends ConsumerWidget {
 }
 
 class _NotificationCard extends StatelessWidget {
-  const _NotificationCard({
-    required this.notification,
-    required this.onTap,
-  });
+  const _NotificationCard({required this.notification, required this.onTap});
 
   final AppNotification notification;
   final VoidCallback onTap;
@@ -134,33 +132,34 @@ class _NotificationCard extends StatelessWidget {
       onTap: onTap,
       color: notification.isRead ? AppColors.bgWhite : AppColors.paper,
       child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      notification.title,
-                      style: AppTypography.uiBodyMD.copyWith(
-                        fontWeight:
-                            notification.isRead ? FontWeight.normal : FontWeight.w600,
-                      ),
-                    ),
+              Expanded(
+                child: Text(
+                  notification.title,
+                  style: AppTypography.uiBodyMD.copyWith(
+                    fontWeight: notification.isRead
+                        ? FontWeight.normal
+                        : FontWeight.w600,
                   ),
-                  if (!notification.isRead)
-                    Container(
-                      width: 8,
-                      height: 8,
-                      decoration: const BoxDecoration(
-                        color: AppColors.gold,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                ],
+                ),
               ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(notification.body, style: AppTypography.uiBodySM),
+              if (!notification.isRead)
+                Container(
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: AppColors.gold,
+                    shape: BoxShape.circle,
+                  ),
+                ),
             ],
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(notification.body, style: AppTypography.uiBodySM),
+        ],
       ),
     );
   }

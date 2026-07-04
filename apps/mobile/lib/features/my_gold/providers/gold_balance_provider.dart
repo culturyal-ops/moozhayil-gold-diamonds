@@ -28,10 +28,7 @@ class GoldBalanceRepository {
     try {
       final response = await _apiService.client.get<Map<String, dynamic>>(
         '/gold-balance/ledger',
-        queryParameters: {
-          'goal_id': ?goalId,
-          'limit': 20,
-        },
+        queryParameters: {'goal_id': ?goalId, 'limit': 20},
       );
       return GoldLedgerResponse.fromJson(response.data!);
     } on DioException catch (error) {

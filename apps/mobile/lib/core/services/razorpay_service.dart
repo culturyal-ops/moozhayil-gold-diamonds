@@ -78,18 +78,20 @@ class RazorpayCheckout {
 
   void dispose() => _razorpay.clear();
 
-  void _onSuccess(PaymentSuccessResponse response) =>
-      _completer?.complete(RazorpaySuccess(
-        paymentId: response.paymentId ?? '',
-        orderId: response.orderId ?? '',
-        signature: response.signature ?? '',
-      ));
+  void _onSuccess(PaymentSuccessResponse response) => _completer?.complete(
+    RazorpaySuccess(
+      paymentId: response.paymentId ?? '',
+      orderId: response.orderId ?? '',
+      signature: response.signature ?? '',
+    ),
+  );
 
-  void _onError(PaymentFailureResponse response) =>
-      _completer?.complete(RazorpayFailure(
-        message: response.message ?? 'Payment failed',
-        code: response.code ?? 0,
-      ));
+  void _onError(PaymentFailureResponse response) => _completer?.complete(
+    RazorpayFailure(
+      message: response.message ?? 'Payment failed',
+      code: response.code ?? 0,
+    ),
+  );
 
   // External wallets complete asynchronously via webhook — treat as cancelled
   // for UX; the backend will reconcile via Razorpay webhook.
@@ -149,7 +151,11 @@ class RazorpayService {
 
       case RazorpayFailure(:final message):
         if (context.mounted) {
-          showPremiumSnackBar(context, 'Payment failed: $message', haptic: false);
+          showPremiumSnackBar(
+            context,
+            'Payment failed: $message',
+            haptic: false,
+          );
         }
         return false;
 

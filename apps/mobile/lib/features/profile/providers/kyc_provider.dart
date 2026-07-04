@@ -103,11 +103,8 @@ Future<KycStatusResponse> kycStatus(Ref ref) async {
     return const KycStatusResponse(kycStatus: 'not_started');
   }
 
-  if (DevPreview.enabled &&
-      auth.value?.user?.id == DevPreview.previewUser.id) {
-    return KycStatusResponse(
-      kycStatus: auth.value!.user!.kycStatus,
-    );
+  if (DevPreview.enabled && auth.value?.user?.id == DevPreview.previewUser.id) {
+    return KycStatusResponse(kycStatus: auth.value!.user!.kycStatus);
   }
 
   return ref.watch(kycRepositoryProvider).status();
@@ -123,8 +120,9 @@ class KycFlowActions extends _$KycFlowActions {
   String? get aadhaarSessionId => _aadhaarSessionId;
 
   Future<AadhaarOtpSession> sendAadhaarOtp(String aadhaarNumber) async {
-    final session =
-        await ref.read(kycRepositoryProvider).sendAadhaarOtp(aadhaarNumber);
+    final session = await ref
+        .read(kycRepositoryProvider)
+        .sendAadhaarOtp(aadhaarNumber);
     _aadhaarSessionId = session.sessionId;
     ref.invalidate(kycStatusProvider);
     return session;
@@ -136,10 +134,9 @@ class KycFlowActions extends _$KycFlowActions {
       throw const ApiException('Aadhaar session expired. Please resend OTP.');
     }
 
-    await ref.read(kycRepositoryProvider).verifyAadhaarOtp(
-          sessionId: sessionId,
-          otp: otp,
-        );
+    await ref
+        .read(kycRepositoryProvider)
+        .verifyAadhaarOtp(sessionId: sessionId, otp: otp);
     ref.invalidate(kycStatusProvider);
   }
 

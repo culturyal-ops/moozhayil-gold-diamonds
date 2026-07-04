@@ -48,9 +48,10 @@ class _LuxuryImageState extends State<LuxuryImage>
   void initState() {
     super.initState();
     _ctrl = AnimationController(vsync: this, duration: widget.revealDuration);
-    _sigma = Tween<double>(begin: widget.revealBlur, end: 0.0).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.easeOut),
-    );
+    _sigma = Tween<double>(
+      begin: widget.revealBlur,
+      end: 0.0,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
     _opacity = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _ctrl,

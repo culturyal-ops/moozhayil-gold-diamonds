@@ -130,10 +130,7 @@ class _BrandCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            EditorialImage(
-              url: imageUrl,
-              alignment: brand.imageAlignment,
-            ),
+            EditorialImage(url: imageUrl, alignment: brand.imageAlignment),
             DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(

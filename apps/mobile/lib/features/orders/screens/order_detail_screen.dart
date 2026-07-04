@@ -54,7 +54,10 @@ class OrderDetailScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Text(item.productName, style: AppTypography.uiBodyMD),
+                        child: Text(
+                          item.productName,
+                          style: AppTypography.uiBodyMD,
+                        ),
                       ),
                       Text(item.unitPriceDisplay, style: AppTypography.priceMD),
                     ],
@@ -68,12 +71,14 @@ class OrderDetailScreen extends ConsumerWidget {
               if (response.paymentBreakdown.goldAppliedPaise > 0)
                 _SummaryRow(
                   label: 'Gold applied',
-                  value: '₹${(response.paymentBreakdown.goldAppliedPaise / 100).round()}',
+                  value:
+                      '₹${(response.paymentBreakdown.goldAppliedPaise / 100).round()}',
                 ),
               if (response.paymentBreakdown.cashPaidPaise > 0)
                 _SummaryRow(
                   label: 'Cash paid',
-                  value: '₹${(response.paymentBreakdown.cashPaidPaise / 100).round()}',
+                  value:
+                      '₹${(response.paymentBreakdown.cashPaidPaise / 100).round()}',
                 ),
               if (canCancel) ...[
                 const SizedBox(height: AppSpacing.xl),

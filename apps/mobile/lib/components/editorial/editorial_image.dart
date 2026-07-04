@@ -83,10 +83,8 @@ class _EditorialImageState extends State<EditorialImage>
       imageUrl: src,
       fit: widget.fit,
       alignment: widget.alignment,
-      placeholder: (_, _) => const LoadingShimmer(
-        width: double.infinity,
-        height: double.infinity,
-      ),
+      placeholder: (_, _) =>
+          const LoadingShimmer(width: double.infinity, height: double.infinity),
       imageBuilder: (context, imageProvider) {
         _onImageReady();
         return FadeTransition(

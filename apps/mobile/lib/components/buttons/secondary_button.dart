@@ -50,9 +50,10 @@ class _SecondaryButtonState extends State<SecondaryButton>
       vsync: this,
       duration: AppAnimations.buttonPress,
     );
-    _scale = Tween<double>(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
-    );
+    _scale = Tween<double>(
+      begin: 1.0,
+      end: 0.97,
+    ).animate(CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut));
   }
 
   @override
@@ -111,8 +112,9 @@ class _SecondaryButtonState extends State<SecondaryButton>
                           height: 20,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(_textColor),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              _textColor,
+                            ),
                           ),
                         )
                       : Text(
