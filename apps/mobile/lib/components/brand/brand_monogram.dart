@@ -50,15 +50,10 @@ class BrandMonogram extends StatelessWidget {
     );
   }
 
-  Widget _wordmark({double fontSize = 18}) {
+  Widget _wordmark({double fontSize = 17}) {
     return Text(
       'Moozhayil',
-      style: AppTypography.headingSM.copyWith(
-        fontSize: fontSize,
-        fontWeight: FontWeight.w500,
-        letterSpacing: fontSize * 0.08,
-        color: AppColors.textPrimary,
-      ),
+      style: AppTypography.brandWordmark.copyWith(fontSize: fontSize),
     );
   }
 }

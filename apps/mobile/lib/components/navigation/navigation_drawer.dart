@@ -12,7 +12,7 @@ import '../../core/constants/spacing.dart';
 import '../../core/constants/typography.dart';
 import '../../core/routing/app_routes.dart';
 import '../../core/utils/contact_launcher.dart';
-import '../brand/brand_monogram.dart';
+import '../brand/brand_lockup.dart';
 import '../icons/app_icon.dart';
 import '../icons/app_icons.dart';
 
@@ -209,21 +209,7 @@ class _DrawerHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const BrandMonogram(height: 24),
-                  const SizedBox(width: AppSpacing.sm),
-                  Text(
-                    'Moozhayil',
-                    style: AppTypography.uiBodyMD.copyWith(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.2,
-                      color: AppColors.textPrimary,
-                    ),
-                  ),
-                ],
-              ),
+              const BrandLockup.compact(),
               if (userName != 'Guest') ...[
                 const SizedBox(height: AppSpacing.xs),
                 Text(

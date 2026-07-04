@@ -64,6 +64,13 @@ abstract final class AppTypography {
     height: 1.2,
   );
 
+  /// Header lockup wordmark — Cormorant paired with the flat monogram.
+  static final TextStyle brandWordmark = _cormorant(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    height: 1.0,
+  );
+
   /// Screen titles — serif display only for hero/editorial headlines.
   static final TextStyle screenTitle = _cormorant(
     fontSize: 32,

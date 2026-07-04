@@ -7,7 +7,7 @@ import '../../core/constants/iconography.dart';
 import '../../core/constants/spacing.dart';
 import '../../core/constants/typography.dart';
 import '../../core/routing/app_routes.dart';
-import '../brand/brand_monogram.dart';
+import '../brand/brand_lockup.dart';
 import '../icons/app_icon.dart';
 import '../icons/app_icons.dart';
 import 'heart_icon.dart';
@@ -106,32 +106,15 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
             icon: AppIcons.menu,
             onPressed: onMenuPressed,
             semanticLabel: 'Open navigation menu',
+            utility: true,
           ),
           _IconButton(
             icon: AppIcons.search,
             onPressed: () => context.push('${AppRoutes.shop}/search'),
             semanticLabel: 'Search',
+            utility: true,
           ),
-          Expanded(
-            child: Center(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BrandMonogram(height: 30),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Moozhayil',
-                    style: AppTypography.uiBodyMD.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.4,
-                      color: AppColors.textPrimary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const Expanded(child: Center(child: BrandLockup())),
           _DreamVaultIconButton(
             hasSaved: vaultHasSaved,
             onPressed: () => context.push(AppRoutes.dreamVault),
@@ -206,11 +189,13 @@ class _IconButton extends StatelessWidget {
     required this.icon,
     required this.onPressed,
     required this.semanticLabel,
+    this.utility = false,
   });
 
   final IconData icon;
   final VoidCallback? onPressed;
   final String semanticLabel;
+  final bool utility;
 
   @override
   Widget build(BuildContext context) {
@@ -226,8 +211,12 @@ class _IconButton extends StatelessWidget {
           children: [
             AppIcon(
               icon,
-              size: AppIconography.sizeSm,
-              color: AppIconography.subtle,
+              size: utility
+                  ? AppIconography.sizeNavUtility
+                  : AppIconography.sizeSm,
+              color: utility
+                  ? AppIconography.navUtility
+                  : AppIconography.subtle,
             ),
           ],
         ),
