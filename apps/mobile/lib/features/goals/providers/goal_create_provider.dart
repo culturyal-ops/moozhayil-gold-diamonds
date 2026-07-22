@@ -85,7 +85,12 @@ class GoalCreateDraft {
     if (name.trim().isEmpty) return false;
     if (monthlyAmountPaise < schemeType.minAmountPaise) return false;
     if (monthlyAmountPaise % schemeType.stepPaise != 0) return false;
-    if (durationMonths != schemeType.defaultDurationMonths) return false;
+    // Open-ended (gold_nidhi) has no fixed duration constraint.
+    // For all other schemes, the duration must match the fixed scheme duration.
+    if (!schemeType.isOpenEnded &&
+        durationMonths != schemeType.defaultDurationMonths) {
+      return false;
+    }
     return true;
   }
 

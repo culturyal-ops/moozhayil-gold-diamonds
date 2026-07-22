@@ -1,137 +1,124 @@
 import 'package:flutter/material.dart';
 
-/// Luxury jewellery retail palette — crisp white base, burgundy + gold accents.
+/// Moozhayil — Heritage jewellery palette.
+/// Built on the palette of aged ivory, deep burgundy oxblood, and 22KT gold.
+/// Every colour choice references the physical experience of the atelier:
+/// — Paper: the white of freshly pressed velvet display cloth
+/// — Ink: the depth of polished rosewood vitrines
+/// — Gold: the warmth of hallmarked 22KT, not chrome yellow
+/// — Burgundy: the lining of a Moozhayil jewellery box
 
 abstract final class AppColors {
-  // Core surfaces
+  // ── Core surfaces ─────────────────────────────────────────────────────────
 
-  /// Crisp pure white. Primary app background.
+  /// Warm white — the colour of pressed velvet display cloth.
+  static const Color paper = Color(0xFFFEFCF9);
 
-  static const Color paper = Color(0xFFFFFFFF);
+  /// Aged ivory — secondary surface, cards on white ground.
+  static const Color pearl = Color(0xFFF8F5F0);
 
-  /// Secondary app background — barely warm grey-white.
+  /// Antique linen — tertiary surface, subtle panel warmth.
+  static const Color ivory = Color(0xFFF4EDE3);
 
-  static const Color pearl = Color(0xFFFAFAF8);
+  /// Navigation drawer surface.
+  static const Color drawerSurface = Color(0xFFFEFCF9);
 
-  /// Warm ivory — small cards/panels only, never full pages.
-
-  static const Color ivory = Color(0xFFFDFBF7);
-
-  /// Navigation drawer — crisp white.
-
-  static const Color drawerSurface = Color(0xFFFFFFFF);
-
-  /// Pure white. Product images and elevated cards.
-
+  /// Pure white for product photography backgrounds.
   static const Color bgWhite = Color(0xFFFFFFFF);
 
-  /// Rich dark brown black. Hero overlays, drawer, footer.
+  /// Deep rosewood — the colour of the atelier interior.
+  /// Primary dark surface, hero overlays, footer.
+  static const Color ink = Color(0xFF14100D);
 
-  static const Color ink = Color(0xFF17120F);
+  // ── Brand ─────────────────────────────────────────────────────────────────
 
-  /// Brand burgundy — primary brand colour.
+  /// Oxblood burgundy — the lining of a Moozhayil box.
+  static const Color brandBurgundy = Color(0xFF6B1020);
 
-  static const Color brandBurgundy = Color(0xFF741323);
-
-  /// Alias for scheme cards and CTAs.
-
+  /// Alias for primary CTAs.
   static const Color brandPrimary = brandBurgundy;
 
-  /// Deep wine — full-bleed editorial statement panels.
+  /// Deeper burgundy — full-bleed editorial panels.
+  static const Color burgundyDeep = Color(0xFF5C0D1A);
 
-  static const Color burgundyDeep = Color(0xFF7A1022);
+  /// Darkest — footer ground, pattern base.
+  static const Color burgundyDark = Color(0xFF3A0910);
 
-  /// Darkest oxblood — footer ground and pattern base.
+  /// Warm cream — type and elements over dark grounds only.
+  static const Color cream = Color(0xFFF2E8DC);
 
-  static const Color burgundyDark = Color(0xFF410D1A);
+  // ── Gold — the heart of everything ───────────────────────────────────────
 
-  /// Cream — type and surfaces over burgundy grounds only.
+  /// 22KT hallmark gold. Warm, rich, never chrome.
+  static const Color gold = Color(0xFFC49A3C);
 
-  static const Color cream = Color(0xFFF4EDE3);
+  /// Lighter gold for text on dark grounds.
+  static const Color goldLight = Color(0xFFDDB96A);
 
-  // Text
+  /// Deep gold for pressed states.
+  static const Color goldDeep = Color(0xFFA07E2E);
 
-  static const Color textPrimary = Color(0xFF17120F);
+  /// Gold at 15% opacity — the faintest trace of metal on a surface.
+  static const Color goldTrace = Color(0x26C49A3C);
 
-  static const Color textSecondary = Color(0xFF6F6862);
+  // ── Text ──────────────────────────────────────────────────────────────────
 
-  static const Color textMuted = Color(0xFF8A837A);
+  static const Color textPrimary = Color(0xFF14100D);
+  static const Color textSecondary = Color(0xFF635C54);
+  static const Color textMuted = Color(0xFF9A9189);
+  static const Color textOnDark = Color(0xFFF2E8DC);
 
-  // Gold accent
+  // ── Borders ───────────────────────────────────────────────────────────────
 
-  static const Color gold = Color(0xFFB88A3B);
+  /// Hairline — barely visible warmth against white.
+  static const Color border = Color(0xFFEAE3D8);
 
-  static const Color goldLight = Color(0xFFD4B483);
+  /// Gold border — for panels and cards that reference the metal.
+  static const Color borderGold = Color(0xFFD4B87A);
 
-  // Borders
+  /// Strong — for active states, dividers.
+  static const Color borderStrong = Color(0xFFD6CCBF);
 
-  static const Color border = Color(0xFFE8E2D8);
+  // ── Glass / overlay ───────────────────────────────────────────────────────
 
-  static const Color borderGold = Color(0xFFD4C4A8);
+  static const Color glassSurface = Color(0xF4FEFCF9);
+  static const Color glassBorder = Color(0xFFE5DDD2);
+  static const Color shadowSoft = Color(0x1214100D);
+  static const Color shadowMedium = Color(0x1F14100D);
 
-  static const Color borderStrong = Color(0xFFD8D0C6);
+  // ── Feedback ──────────────────────────────────────────────────────────────
 
-  // Glass
+  static const Color successFill = Color(0xFF1A6647);
+  static const Color warningFill = Color(0xFF8C6A20);
+  static const Color errorFill = Color(0xFF8C2020);
 
-  static const Color glassSurface = Color(0xF2FFFFFF);
+  static const Color disabledBg = Color(0xFFF0EDE8);
+  static const Color disabledText = Color(0xFFB8B0A6);
 
-  static const Color glassBorder = Color(0xFFE5E0D8);
+  static const Color shimmerBase = Color(0xFFF4F0EB);
+  static const Color shimmerHighlight = Color(0xFFE8E2D8);
 
-  static const Color shadowSoft = Color(0x0F17120F);
-
-  // Legacy aliases — map old beige defaults to white retail surfaces
+  // ── Legacy aliases — keep existing code compiling ────────────────────────
 
   static const Color maroon = brandBurgundy;
-
   static const Color maroonDeep = ink;
-
   static const Color maroonSoft = pearl;
-
   static const Color maroonMuted = textSecondary;
-
   static const Color obsidian = textPrimary;
-
   static const Color deepMahogany = ink;
-
   static const Color slateMist = textMuted;
-
   static const Color warmIvory = paper;
-
   static const Color offWhite = paper;
-
   static const Color champagneVeil = pearl;
-
   static const Color pureWhite = bgWhite;
-
   static const Color smokeLine = border;
-
   static const Color antiqueGold = gold;
-
-  static const Color antiqueGoldPressed = Color(0xFFA07F48);
-
-  static const Color blushClay = Color(0xFFB0866A);
-
-  static const Color sageWhisper = Color(0xFF8C8472);
-
+  static const Color antiqueGoldPressed = goldDeep;
+  static const Color blushClay = Color(0xFFA07060);
+  static const Color sageWhisper = Color(0xFF8A8070);
   static const Color vaultDusk = pearl;
-
   static const Color starlightGold = gold;
-
   static const Color moonveil = pearl;
-
   static const Color nebulaEdge = border;
-
-  static const Color successFill = Color(0x1F8C8472);
-
-  static const Color warningFill = Color(0x1FB8965A);
-
-  static const Color errorFill = Color(0x1FB0866A);
-
-  static const Color disabledBg = Color(0xFFF5F4F2);
-
-  static const Color disabledText = textMuted;
-
-  static const Color shimmerBase = bgWhite;
-
-  static const Color shimmerHighlight = border;
 }
+

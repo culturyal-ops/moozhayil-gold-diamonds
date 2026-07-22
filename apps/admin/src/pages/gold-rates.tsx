@@ -17,8 +17,8 @@ interface RateHistoryRow {
 export function GoldRatesPage() {
   const [history, setHistory] = useState<RateHistoryRow[]>([]);
   const [purity, setPurity] = useState("22k");
-  const [rate, setRate] = useState("650000");
-  const [reason, setReason] = useState("Manual override");
+  const [rate, setRate] = useState("");
+  const [reason, setReason] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,6 +44,15 @@ export function GoldRatesPage() {
   }, [load]);
 
   const applyOverride = async () => {
+    const rateValue = Number(rate);
+    if (!rate.trim() || isNaN(rateValue) || rateValue <= 0) {
+      setMessage("Enter a valid rate in paise before applying.");
+      return;
+    }
+    if (!reason.trim()) {
+      setMessage("A reason is required for the audit trail.");
+      return;
+    }
     setSaving(true);
     setMessage(null);
     try {
@@ -54,11 +63,13 @@ export function GoldRatesPage() {
         },
         body: JSON.stringify({
           purity,
-          rate_per_gram_paise: Number(rate),
+          rate_per_gram_paise: rateValue,
           reason,
         }),
       });
       setMessage("Gold rate override applied.");
+      setRate("");
+      setReason("");
       await load();
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "Override failed");

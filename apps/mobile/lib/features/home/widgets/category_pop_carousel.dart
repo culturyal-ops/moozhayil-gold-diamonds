@@ -226,7 +226,21 @@ class _CategoryCard extends StatelessWidget {
 
         child: DecoratedBox(
           decoration: BoxDecoration(
-            boxShadow: isFocused ? const [AppShadows.md] : null,
+            borderRadius: BorderRadius.circular(2),
+            boxShadow: isFocused
+                ? [
+                    BoxShadow(
+                      color: AppColors.ink.withValues(alpha: 0.16),
+                      blurRadius: 16,
+                      offset: const Offset(0, 6),
+                    ),
+                    BoxShadow(
+                      color: AppColors.gold.withValues(alpha: 0.08),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
+                    ),
+                  ]
+                : null,
           ),
 
           child: Stack(
@@ -247,10 +261,11 @@ class _CategoryCard extends StatelessWidget {
                     colors: [
                       Colors.transparent,
 
-                      AppColors.ink.withValues(alpha: 0.62),
+                      AppColors.brandBurgundy.withValues(alpha: 0.58),
+                      AppColors.brandBurgundy.withValues(alpha: 0.80),
                     ],
 
-                    stops: const [0.48, 1.0],
+                    stops: const [0.45, 0.80, 1.0],
                   ),
                 ),
               ),
@@ -274,11 +289,13 @@ class _CategoryCard extends StatelessWidget {
                           category.name,
 
                           style: AppTypography.uiBodyMD.copyWith(
-                            color: AppColors.cream,
+                            color: AppColors.ivory,
 
-                            fontSize: 16,
+                            fontSize: 17,
 
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
+                            
+                            letterSpacing: 0.04,
                           ),
                         ),
                       ),

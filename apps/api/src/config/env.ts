@@ -10,7 +10,7 @@ const redisUrlSchema = z
 
 const envSchema = z.object({
   NODE_ENV: z
-    .enum(["development", "test", "production"])
+    .enum(["development", "test", "staging", "production"])
     .default("development"),
   PORT: z.coerce.number().int().positive().default(3080),
   DATABASE_URL: z.string().url().startsWith("postgresql://"),
@@ -203,6 +203,24 @@ export function loadEnv(input: NodeJS.ProcessEnv = process.env): Env {
     assertProductionInfrastructure(data);
   }
 
+  // Staging must also have real secrets (no dev fallbacks) but may use
+  // mock providers while infrastructure is being set up.
+  if (data.NODE_ENV === "staging") {
+    const missingSecrets = [
+      data.JWT_SECRET ? null : "JWT_SECRET",
+      data.JWT_REFRESH_SECRET ? null : "JWT_REFRESH_SECRET",
+      data.OTP_HASH_SECRET ? null : "OTP_HASH_SECRET",
+      data.PII_ENCRYPTION_SECRET ? null : "PII_ENCRYPTION_SECRET",
+      data.ADMIN_JWT_SECRET ? null : "ADMIN_JWT_SECRET",
+    ].filter(Boolean);
+
+    if (missingSecrets.length > 0) {
+      throw new Error(
+        `Invalid environment configuration: staging requires real secrets. Missing: ${missingSecrets.join(", ")}`,
+      );
+    }
+  }
+
   if (data.NODE_ENV !== "production" && data.NODE_ENV !== "test") {
     if (
       data.PAYMENT_PROVIDER_MODE === "live" &&
@@ -210,6 +228,23 @@ export function loadEnv(input: NodeJS.ProcessEnv = process.env): Env {
     ) {
       throw new Error(
         "PAYMENT_PROVIDER_MODE=live requires RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET",
+      );
+    }
+
+    // Warn loudly if any secret is absent — the dev fallback strings are weak
+    // and must never be used in a staging / preview environment.
+    const usingFallback = [
+      !data.JWT_SECRET && "JWT_SECRET",
+      !data.JWT_REFRESH_SECRET && "JWT_REFRESH_SECRET",
+      !data.OTP_HASH_SECRET && "OTP_HASH_SECRET",
+      !data.PII_ENCRYPTION_SECRET && "PII_ENCRYPTION_SECRET",
+      !data.ADMIN_JWT_SECRET && "ADMIN_JWT_SECRET",
+    ].filter(Boolean);
+
+    if (usingFallback.length > 0) {
+      console.warn(
+        `[env] WARNING: using insecure development fallback secrets for: ${usingFallback.join(", ")}. ` +
+          "Set these env vars before exposing this server to a network.",
       );
     }
   }

@@ -30,6 +30,19 @@ abstract class AuthState with _$AuthState {
 class AuthController extends _$AuthController {
   @override
   Future<AuthState> build() async {
+    // In debug/dev-preview mode skip the network call entirely so the emulator
+    // never blocks on a missing backend during development.
+    if (DevPreview.enabled) {
+      unawaited(
+        ref.read(pushRegistrationServiceProvider).registerDeviceIfNeeded(),
+      );
+      return AuthState(
+        step: AuthFlowStep.signedIn,
+        user: DevPreview.previewUser,
+        phone: DevPreview.previewUser.phone,
+      );
+    }
+
     final user = await ref.read(authServiceProvider).restoreSession();
     if (user != null) {
       unawaited(
@@ -39,17 +52,6 @@ class AuthController extends _$AuthController {
         step: AuthFlowStep.signedIn,
         user: user,
         phone: user.phone,
-      );
-    }
-
-    if (DevPreview.enabled) {
-      unawaited(
-        ref.read(pushRegistrationServiceProvider).registerDeviceIfNeeded(),
-      );
-      return AuthState(
-        step: AuthFlowStep.signedIn,
-        user: DevPreview.previewUser,
-        phone: DevPreview.previewUser.phone,
       );
     }
 

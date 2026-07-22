@@ -93,9 +93,9 @@ class _NavigationShellState extends ConsumerState<NavigationShell> {
 
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: AppColors.bgWhite,
+      backgroundColor: AppColors.warmIvory,
       extendBody: !hideBottomNav,
-      drawerScrimColor: const Color(0x6617120F),
+      drawerScrimColor: AppColors.ink.withValues(alpha: 0.68),
       appBar: appBar,
       drawer: AppNavigationDrawer(userName: userName, memberSince: memberSince),
       body: Column(

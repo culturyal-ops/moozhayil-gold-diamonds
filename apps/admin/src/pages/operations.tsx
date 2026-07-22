@@ -33,8 +33,12 @@ export function OperationsPage() {
     phone: "",
     latitude: "",
     longitude: "",
+    open_time: "10:00",
+    close_time: "20:00",
+    closed_sunday: true,
   });
   const [error, setError] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   async function refresh() {
@@ -60,19 +64,25 @@ export function OperationsPage() {
 
   async function handleCreatePincode(event: React.FormEvent) {
     event.preventDefault();
-    await createServiceablePincode({
-      pincode: pincodeForm.pincode,
-      city: pincodeForm.city,
-      state: pincodeForm.state,
-      serviceable: true,
-      pickup_available: true,
-      estimated_delivery_days: Number(pincodeForm.estimated_delivery_days),
-    });
-    setPincodeForm({ pincode: "", city: "", state: "", estimated_delivery_days: "3" });
-    await refresh();
+    setActionError(null);
+    try {
+      await createServiceablePincode({
+        pincode: pincodeForm.pincode,
+        city: pincodeForm.city,
+        state: pincodeForm.state,
+        serviceable: true,
+        pickup_available: true,
+        estimated_delivery_days: Number(pincodeForm.estimated_delivery_days),
+      });
+      setPincodeForm({ pincode: "", city: "", state: "", estimated_delivery_days: "3" });
+      await refresh();
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : "Failed to add pincode");
+    }
   }
 
   async function handleImportPincodes() {
+    setActionError(null);
     const rows = importText
       .split("\n")
       .map((line) => line.trim())
@@ -89,44 +99,67 @@ export function OperationsPage() {
         };
       });
 
-    await importServiceablePincodes(rows);
-    setImportText("");
-    await refresh();
+    try {
+      await importServiceablePincodes(rows);
+      setImportText("");
+      await refresh();
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : "Import failed");
+    }
   }
 
   async function handleCreateStore(event: React.FormEvent) {
     event.preventDefault();
-    await createStoreLocation({
-      name: storeForm.name,
-      address: storeForm.address,
-      city: storeForm.city,
-      state: storeForm.state,
-      pincode: storeForm.pincode,
-      phone: storeForm.phone,
-      latitude: Number(storeForm.latitude),
-      longitude: Number(storeForm.longitude),
-      opening_hours: {
-        mon: { open: "10:00", close: "20:00" },
-        tue: { open: "10:00", close: "20:00" },
-        wed: { open: "10:00", close: "20:00" },
-        thu: { open: "10:00", close: "20:00" },
-        fri: { open: "10:00", close: "20:00" },
-        sat: { open: "10:00", close: "20:00" },
-        sun: { closed: true },
-      },
-      is_active: true,
-    });
-    setStoreForm({
-      name: "",
-      address: "",
-      city: "",
-      state: "",
-      pincode: "",
-      phone: "",
-      latitude: "",
-      longitude: "",
-    });
-    await refresh();
+    setActionError(null);
+    const daySchedule = { open: storeForm.open_time, close: storeForm.close_time };
+    try {
+      await createStoreLocation({
+        name: storeForm.name,
+        address: storeForm.address,
+        city: storeForm.city,
+        state: storeForm.state,
+        pincode: storeForm.pincode,
+        phone: storeForm.phone,
+        latitude: Number(storeForm.latitude),
+        longitude: Number(storeForm.longitude),
+        opening_hours: {
+          mon: daySchedule,
+          tue: daySchedule,
+          wed: daySchedule,
+          thu: daySchedule,
+          fri: daySchedule,
+          sat: daySchedule,
+          sun: storeForm.closed_sunday ? { closed: true } : daySchedule,
+        },
+        is_active: true,
+      });
+      setStoreForm({
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        pincode: "",
+        phone: "",
+        latitude: "",
+        longitude: "",
+        open_time: "10:00",
+        close_time: "20:00",
+        closed_sunday: true,
+      });
+      await refresh();
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : "Failed to add store");
+    }
+  }
+
+  async function handleDeletePincode(id: string) {
+    setActionError(null);
+    try {
+      await deleteServiceablePincode(id);
+      await refresh();
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : "Failed to delete pincode");
+    }
   }
 
   return (
@@ -137,6 +170,7 @@ export function OperationsPage() {
       />
 
       {error ? <p className="error-text">{error}</p> : null}
+      {actionError ? <p className="error-text">{actionError}</p> : null}
       {loading ? <p>Loading…</p> : null}
 
       <Panel title="Serviceable pincodes">
@@ -207,7 +241,7 @@ export function OperationsPage() {
                   <Button
                     type="button"
                     variant="secondary"
-                    onClick={() => void deleteServiceablePincode(row.id).then(refresh)}
+                    onClick={() => void handleDeletePincode(row.id)}
                   >
                     Delete
                   </Button>
@@ -228,6 +262,28 @@ export function OperationsPage() {
           <Input label="Phone" value={storeForm.phone} onChange={(event) => setStoreForm((current) => ({ ...current, phone: event.target.value }))} />
           <Input label="Latitude" value={storeForm.latitude} onChange={(event) => setStoreForm((current) => ({ ...current, latitude: event.target.value }))} />
           <Input label="Longitude" value={storeForm.longitude} onChange={(event) => setStoreForm((current) => ({ ...current, longitude: event.target.value }))} />
+          <Input
+            label="Opening time (HH:MM)"
+            value={storeForm.open_time}
+            onChange={(event) => setStoreForm((current) => ({ ...current, open_time: event.target.value }))}
+          />
+          <Input
+            label="Closing time (HH:MM)"
+            value={storeForm.close_time}
+            onChange={(event) => setStoreForm((current) => ({ ...current, close_time: event.target.value }))}
+          />
+          <div className="field">
+            <label className="field__label">
+              <input
+                type="checkbox"
+                checked={storeForm.closed_sunday}
+                onChange={(event) =>
+                  setStoreForm((current) => ({ ...current, closed_sunday: event.target.checked }))
+                }
+              />{" "}
+              Closed on Sunday
+            </label>
+          </div>
           <Button type="submit">Add store</Button>
         </form>
 

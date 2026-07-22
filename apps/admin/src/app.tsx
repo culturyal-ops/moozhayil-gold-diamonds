@@ -24,7 +24,15 @@ import { SettingsPage } from "./pages/settings";
 import { CustomerDetailPage, UsersPage } from "./pages/users";
 import { OperationsPage } from "./pages/operations";
 
-function RequireAuth({ children }: { children: React.ReactNode }) {
+function RequireAuth({
+  children,
+  sessionVersion,
+}: {
+  children: React.ReactNode;
+  sessionVersion: number;
+}) {
+  // sessionVersion is read to force re-evaluation when credentials change.
+  void sessionVersion;
   return loadSession() ? <>{children}</> : <Navigate to="/login" replace />;
 }
 
@@ -33,7 +41,10 @@ function ProtectedPage({ children }: { children: React.ReactNode }) {
 }
 
 export function App() {
-  const [, setTick] = useState(0);
+  // sessionVersion tracks session changes (login, logout, step-up token issuance)
+  // so RequireAuth and session-gated pages re-render when credentials change.
+  const [sessionVersion, setSessionVersion] = useState(0);
+  const bumpSession = () => setSessionVersion((v) => v + 1);
 
   useEffect(() => {
     void api("/v1/health").catch(() => undefined);
@@ -44,7 +55,7 @@ export function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route
         element={
-          <RequireAuth>
+          <RequireAuth sessionVersion={sessionVersion}>
             <AdminShell />
           </RequireAuth>
         }
@@ -213,7 +224,7 @@ export function App() {
           path="settings"
           element={
             <ProtectedPage>
-              <SettingsPage onSessionChange={() => setTick((value) => value + 1)} />
+              <SettingsPage onSessionChange={bumpSession} />
             </ProtectedPage>
           }
         />

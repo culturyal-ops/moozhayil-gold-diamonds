@@ -172,10 +172,10 @@ class _HeroSlide extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      AppColors.ink.withValues(alpha: 0.45),
-                      AppColors.ink.withValues(alpha: 0.88),
+                      AppColors.brandBurgundy.withValues(alpha: 0.42),
+                      AppColors.brandBurgundy.withValues(alpha: 0.88),
                     ],
-                    stops: const [0.35, 0.72, 1.0],
+                    stops: const [0.35, 0.70, 1.0],
                   ),
                 ),
               ),
@@ -197,10 +197,10 @@ class _HeroSlide extends StatelessWidget {
                         child: Text(
                           'MOOZHAYIL',
                           style: AppTypography.uiMicro.copyWith(
-                            color: AppColors.goldLight,
+                            color: AppColors.gold,
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
-                            letterSpacing: 2.2,
+                            letterSpacing: 2.4,
                           ),
                         ),
                       )
@@ -208,10 +208,10 @@ class _HeroSlide extends StatelessWidget {
                       Text(
                         'MOOZHAYIL',
                         style: AppTypography.uiMicro.copyWith(
-                          color: AppColors.goldLight,
+                          color: AppColors.gold,
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
-                          letterSpacing: 2.2,
+                          letterSpacing: 2.4,
                         ),
                       ),
                     const SizedBox(height: 6),
@@ -223,9 +223,10 @@ class _HeroSlide extends StatelessWidget {
                         child: Text(
                           lineOne,
                           style: AppTypography.headingLG.copyWith(
-                            color: AppColors.cream,
-                            fontSize: 36,
-                            height: 1.02,
+                            color: AppColors.ivory,
+                            fontSize: 38,
+                            height: 1.05,
+                            letterSpacing: 0.05,
                           ),
                         ),
                       )
@@ -233,9 +234,10 @@ class _HeroSlide extends StatelessWidget {
                       Text(
                         lineOne,
                         style: AppTypography.headingLG.copyWith(
-                          color: AppColors.cream,
-                          fontSize: 36,
-                          height: 1.02,
+                          color: AppColors.ivory,
+                          fontSize: 38,
+                          height: 1.05,
+                          letterSpacing: 0.05,
                         ),
                       ),
                     if (lineTwo != null)
@@ -247,16 +249,16 @@ class _HeroSlide extends StatelessWidget {
                               child: Text(
                                 lineTwo,
                                 style: AppTypography.displayItalic(
-                                  34,
-                                  color: AppColors.cream,
+                                  36,
+                                  color: AppColors.ivory,
                                 ),
                               ),
                             )
                           : Text(
                               lineTwo,
                               style: AppTypography.displayItalic(
-                                34,
-                                color: AppColors.cream,
+                                36,
+                                color: AppColors.ivory,
                               ),
                             ),
                     if (banner.ctaLabel != null && onCta != null)
@@ -273,13 +275,18 @@ class _HeroSlide extends StatelessWidget {
                                   onTap: onCta,
                                   scaleEnd: AppMotion.pressScale,
                                   child: Container(
-                                    height: 46,
+                                    height: 50,
                                     padding: const EdgeInsets.symmetric(
-                                      horizontal: AppSpacing.lg,
+                                      horizontal: AppSpacing.xl,
                                     ),
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                      color: AppColors.brandBurgundy,
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          AppColors.ivory,
+                                          AppColors.ivory.withValues(alpha: 0.95),
+                                        ],
+                                      ),
                                       border: Border.all(
                                         color: AppColors.gold.withValues(
                                           alpha: 0.45,
@@ -289,10 +296,16 @@ class _HeroSlide extends StatelessWidget {
                                       boxShadow: [
                                         BoxShadow(
                                           color: AppColors.ink.withValues(
-                                            alpha: 0.18,
+                                            alpha: 0.22),
+                                          blurRadius: 16,
+                                          offset: const Offset(0, 6),
+                                        ),
+                                        BoxShadow(
+                                          color: AppColors.gold.withValues(
+                                            alpha: 0.12,
                                           ),
-                                          blurRadius: 10,
-                                          offset: const Offset(0, 4),
+                                          blurRadius: 8,
+                                          offset: const Offset(0, 2),
                                         ),
                                       ],
                                     ),
@@ -302,8 +315,8 @@ class _HeroSlide extends StatelessWidget {
                                           .copyWith(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w500,
-                                            color: AppColors.cream,
-                                            letterSpacing: 1.8,
+                                            color: AppColors.brandBurgundy,
+                                            letterSpacing: 2.4,
                                           ),
                                     ),
                                   ),

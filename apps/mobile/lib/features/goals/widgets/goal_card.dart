@@ -81,7 +81,7 @@ class CompletedGoalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return EditorialPanel(
       onTap: onTap,
-      color: AppColors.bgWhite,
+      color: AppColors.warmIvory,
       child: Row(
         children: [
           const Icon(Icons.check, color: AppColors.gold, size: 20),

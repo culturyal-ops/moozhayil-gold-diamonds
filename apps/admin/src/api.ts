@@ -66,9 +66,14 @@ export async function api<T>(
 
   if (!response.ok) {
     const body = (await response.json().catch(() => ({}))) as {
+      error?: { message?: string; code?: string };
       message?: string;
     };
-    const message = body.message ?? `Request failed (${response.status})`;
+    // API returns { error: { code, message } } — fall back to legacy shape.
+    const message =
+      body.error?.message ??
+      body.message ??
+      `Request failed (${response.status})`;
 
     if (response.status === 401 && !path.includes("/auth/login")) {
       clearSession();

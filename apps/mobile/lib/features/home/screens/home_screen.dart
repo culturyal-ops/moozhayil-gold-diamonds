@@ -56,7 +56,7 @@ class HomeScreen extends ConsumerWidget {
         _scrollBottomInset;
 
     return ColoredBox(
-      color: AppColors.paper,
+      color: AppColors.warmIvory,
       child: SingleChildScrollView(
         padding: EdgeInsets.only(bottom: bottomInset),
         child: Column(
@@ -143,22 +143,36 @@ class _HomeAdvisorCard extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
-          color: AppColors.burgundyDeep,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.brandBurgundy,
+              AppColors.brandBurgundy.withValues(alpha: 0.92),
+            ],
+          ),
           border: Border(
-            left: BorderSide(color: AppColors.gold, width: 4),
+            left: BorderSide(color: AppColors.gold, width: 3),
             top: BorderSide(
-              color: AppColors.gold.withValues(alpha: 0.3),
+              color: AppColors.gold.withValues(alpha: 0.28),
               width: 0.5,
             ),
             right: BorderSide(
-              color: AppColors.gold.withValues(alpha: 0.3),
+              color: AppColors.gold.withValues(alpha: 0.28),
               width: 0.5,
             ),
             bottom: BorderSide(
-              color: AppColors.gold.withValues(alpha: 0.3),
+              color: AppColors.gold.withValues(alpha: 0.28),
               width: 0.5,
             ),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.brandBurgundy.withValues(alpha: 0.24),
+              blurRadius: 16,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,14 +249,14 @@ class _HomeShowroomCard extends StatelessWidget {
             EditorialImage(
               url: SampleImagery.editorial('showroom-pala', width: 1200),
             ),
-            DecoratedBox(
+              DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    AppColors.ink.withValues(alpha: 0.82),
-                    AppColors.ink.withValues(alpha: 0.35),
+                    AppColors.brandBurgundy.withValues(alpha: 0.88),
+                    AppColors.brandBurgundy.withValues(alpha: 0.42),
                   ],
                 ),
               ),

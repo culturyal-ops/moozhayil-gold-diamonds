@@ -48,7 +48,7 @@ class ShopScreen extends ConsumerWidget {
         _scrollBottomInset;
 
     return ColoredBox(
-      color: AppColors.paper,
+      color: AppColors.warmIvory,
       child: SingleChildScrollView(
         padding: EdgeInsets.only(bottom: bottomInset),
         child: Column(

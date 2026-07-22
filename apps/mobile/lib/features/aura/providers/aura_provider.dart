@@ -128,22 +128,31 @@ class AuraConversation extends _$AuraConversation {
   FutureOr<List<AuraConversationMessage>> build(String sessionId) => [];
 
   Future<AuraMessageResponse> sendMessage(String message) async {
+    final previousMessages = state.value ?? [];
     final userMessage = AuraConversationMessage(role: 'user', content: message);
-    state = AsyncData([...?state.value, userMessage]);
+    state = AsyncData([...previousMessages, userMessage]);
 
-    final response = await ref
-        .read(auraRepositoryProvider)
-        .postMessage(sessionId: sessionId, message: message);
+    try {
+      final response = await ref
+          .read(auraRepositoryProvider)
+          .postMessage(sessionId: sessionId, message: message);
 
-    final auraMessage = AuraConversationMessage(
-      role: 'aura',
-      content: response.response.text,
-      action: response.response.action,
-      products: response.response.products,
-    );
+      final auraMessage = AuraConversationMessage(
+        role: 'aura',
+        content: response.response.text,
+        action: response.response.action,
+        products: response.response.products,
+      );
 
-    state = AsyncData([...?state.value, auraMessage]);
-    return response;
+      state = AsyncData([...?state.value, auraMessage]);
+      return response;
+    } catch (error, stackTrace) {
+      // Roll back the user message so the conversation isn't left in a broken
+      // state with a dangling unanswered message.
+      state = AsyncData(previousMessages);
+      // Rethrow so the UI can display an appropriate error to the user.
+      Error.throwWithStackTrace(error, stackTrace);
+    }
   }
 }
 

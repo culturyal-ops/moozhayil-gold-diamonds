@@ -78,13 +78,20 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       height: AppSpacing.topBarHeight + MediaQuery.of(context).padding.top,
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       decoration: BoxDecoration(
-        color: AppColors.bgWhite,
+        color: AppColors.ivory,
         border: Border(
           bottom: BorderSide(
-            color: AppColors.border.withValues(alpha: 0.65),
+            color: AppColors.gold.withValues(alpha: 0.12),
             width: 0.35,
           ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.ink.withValues(alpha: 0.03),
+            blurRadius: 8,
+            offset: const Offset(0, 1),
+          ),
+        ],
       ),
       child: SizedBox(
         height: AppSpacing.topBarHeight,

@@ -51,19 +51,14 @@ class GlassSurface extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: AppColors.glassSurface,
+              color: AppColors.ivory.withValues(alpha: 0.92),
               border: Border(
                 top: showTopBorder
-                    ? const BorderSide(color: AppColors.glassBorder, width: 0.5)
+                    ? BorderSide(color: AppColors.gold.withValues(alpha: 0.12), width: 0.5)
                     : BorderSide.none,
                 bottom: showBottomBorder
-                    ? const BorderSide(color: AppColors.glassBorder, width: 0.5)
+                    ? BorderSide(color: AppColors.gold.withValues(alpha: 0.12), width: 0.5)
                     : BorderSide.none,
-              ),
-              gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xFFFFFFFF), Color(0xFAFAFAF8)],
               ),
             ),
             child: Padding(padding: padding ?? EdgeInsets.zero, child: child),
@@ -95,10 +90,24 @@ class LuxuryCard extends StatelessWidget {
       width: double.infinity,
       padding: padding ?? const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color ?? AppColors.bgWhite,
+        color: color ?? AppColors.ivory,
         borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: AppColors.border, width: 0.5),
-        boxShadow: const [AppShadows.sm],
+        border: Border.all(
+          color: AppColors.gold.withValues(alpha: 0.12), 
+          width: 0.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.ink.withValues(alpha: 0.06),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+          BoxShadow(
+            color: AppColors.gold.withValues(alpha: 0.04),
+            blurRadius: 20,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
       child: child,
     );

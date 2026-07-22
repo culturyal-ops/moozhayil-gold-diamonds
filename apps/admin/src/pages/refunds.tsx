@@ -24,6 +24,7 @@ export function RefundsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [refundReasons, setRefundReasons] = useState<Record<string, string>>({});
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -49,6 +50,11 @@ export function RefundsPage() {
   }, [load]);
 
   const initiateRefund = async (orderId: string) => {
+    const reason = (refundReasons[orderId] ?? "").trim();
+    if (!reason) {
+      setMessage("Please enter a refund reason before initiating.");
+      return;
+    }
     setMessage(null);
     try {
       await api(`/v1/admin/orders/${orderId}/refund`, {
@@ -57,9 +63,14 @@ export function RefundsPage() {
           "Idempotency-Key": `refund:${orderId}`,
           "X-Admin-Step-Up": localStorage.getItem("moozhayil_step_up") ?? "",
         },
-        body: JSON.stringify({ reason: "Admin refund" }),
+        body: JSON.stringify({ reason }),
       });
       setMessage("Refund initiated.");
+      setRefundReasons((prev) => {
+        const next = { ...prev };
+        delete next[orderId];
+        return next;
+      });
       await load();
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "Refund failed");
@@ -107,13 +118,28 @@ export function RefundsPage() {
                         </StatusBadge>
                       </td>
                       <td>
-                        <Button
-                          type="button"
-                          variant="secondary"
-                          onClick={() => void initiateRefund(order.id)}
-                        >
-                          Initiate refund
-                        </Button>
+                        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                          <input
+                            type="text"
+                            className="field__input"
+                            placeholder="Reason (required)"
+                            value={refundReasons[order.id] ?? ""}
+                            onChange={(e) =>
+                              setRefundReasons((prev) => ({
+                                ...prev,
+                                [order.id]: e.target.value,
+                              }))
+                            }
+                            style={{ minWidth: "180px" }}
+                          />
+                          <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={() => void initiateRefund(order.id)}
+                          >
+                            Initiate refund
+                          </Button>
+                        </div>
                       </td>
                     </tr>
                   ))}

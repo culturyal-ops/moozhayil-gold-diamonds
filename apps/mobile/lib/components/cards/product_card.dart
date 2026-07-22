@@ -209,9 +209,18 @@ class _ProductImage extends StatelessWidget {
               top: AppSpacing.xs,
 
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
 
-                color: AppColors.gold,
+                decoration: BoxDecoration(
+                  color: AppColors.gold,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.gold.withValues(alpha: 0.32),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
 
                 child: Text(
                   'NEW',
@@ -221,7 +230,8 @@ class _ProductImage extends StatelessWidget {
 
                     color: AppColors.ink,
 
-                    letterSpacing: 7 * 0.15,
+                    letterSpacing: 7 * 0.18,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -234,13 +244,26 @@ class _ProductImage extends StatelessWidget {
               top: AppSpacing.xs,
 
               child: Container(
-                width: 30,
+                width: 32,
 
-                height: 30,
+                height: 32,
 
                 alignment: Alignment.center,
 
-                color: AppColors.paper.withValues(alpha: 0.92),
+                decoration: BoxDecoration(
+                  color: AppColors.warmIvory.withValues(alpha: 0.94),
+                  border: Border.all(
+                    color: AppColors.gold.withValues(alpha: 0.12),
+                    width: 0.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.ink.withValues(alpha: 0.08),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
 
                 child: VaultIconButton(
                   isInVault: product.isInVault,

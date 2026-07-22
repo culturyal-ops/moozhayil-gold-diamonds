@@ -107,12 +107,27 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
           ? 'gold_balance'
           : _paymentMethod;
 
+      // Compute how many grams of gold balance to redeem (server validates
+      // against the user's actual balance).
+      String? useGoldBalanceGrams;
+      if (_useGoldBalance && _paymentMethod != 'cod') {
+        final balance = ref.read(goldBalanceProvider).value;
+        if (balance != null) {
+          final totalGrams = double.tryParse(balance.totalGrams) ?? 0;
+          if (totalGrams > 0) {
+            // Send the full balance and let the server cap it at order value.
+            useGoldBalanceGrams = balance.totalGrams;
+          }
+        }
+      }
+
       final response = await ref
           .read(orderActionsProvider.notifier)
           .placeOrder(
             items: items,
             deliveryAddressId: addressId,
             paymentMethod: method,
+            useGoldBalanceGrams: useGoldBalanceGrams,
           );
 
       if (!mounted) {
@@ -263,44 +278,46 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                                 style: AppTypography.uiBodySM,
                               )
                             else
-                              RadioGroup<String>(
-                                groupValue: _selectedAddressId,
-                                onChanged: (value) =>
-                                    setState(() => _selectedAddressId = value),
-                                child: Column(
-                                  children: [
-                                    ...addressList.map(
-                                      (address) => _AddressOption(
-                                        address: address,
-                                        selected:
-                                            _selectedAddressId == address.id,
+                              Column(
+                                children: [
+                                  ...addressList.map(
+                                    (address) => _AddressOption(
+                                      address: address,
+                                      selected:
+                                          _selectedAddressId == address.id,
+                                      onTap: () => setState(
+                                        () =>
+                                            _selectedAddressId = address.id,
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             const SizedBox(height: AppSpacing.lg),
                             Text('Payment', style: AppTypography.headingSM),
                             const SizedBox(height: AppSpacing.sm),
-                            RadioGroup<String>(
-                              groupValue: _paymentMethod,
-                              onChanged: (value) => setState(() {
-                                if (value == null) return;
-                                _paymentMethod = value;
-                                if (value == 'cod') _useGoldBalance = false;
-                              }),
-                              child: const Column(
-                                children: [
-                                  _PaymentOption(
-                                    label: 'UPI / Card',
-                                    value: 'upi',
-                                  ),
-                                  _PaymentOption(
-                                    label: 'Cash on delivery',
-                                    value: 'cod',
-                                  ),
-                                ],
-                              ),
+                            Column(
+                              children: [
+                                _PaymentOption(
+                                  label: 'UPI / Card',
+                                  value: 'upi',
+                                  groupValue: _paymentMethod,
+                                  onChanged: (value) => setState(() {
+                                    if (value == null) return;
+                                    _paymentMethod = value;
+                                  }),
+                                ),
+                                _PaymentOption(
+                                  label: 'Cash on delivery',
+                                  value: 'cod',
+                                  groupValue: _paymentMethod,
+                                  onChanged: (value) => setState(() {
+                                    if (value == null) return;
+                                    _paymentMethod = value;
+                                    _useGoldBalance = false;
+                                  }),
+                                ),
+                              ],
                             ),
                             goldBalance.when(
                               data: (balance) {
@@ -483,28 +500,38 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
 }
 
 class _AddressOption extends StatelessWidget {
-  const _AddressOption({required this.address, required this.selected});
+  const _AddressOption({
+    required this.address,
+    required this.selected,
+    required this.onTap,
+  });
 
   final UserAddress address;
   final bool selected;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: AppSpacing.sm),
-      decoration: BoxDecoration(
-        color: AppColors.bgWhite,
-        border: Border.all(
-          color: selected ? AppColors.gold : AppColors.borderStrong,
-          width: 0.5,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+        decoration: BoxDecoration(
+          color: AppColors.bgWhite,
+          border: Border.all(
+            color: selected ? AppColors.gold : AppColors.borderStrong,
+            width: 0.5,
+          ),
         ),
-      ),
-      child: RadioListTile<String>(
-        value: address.id,
-        title: Text(address.fullName, style: AppTypography.uiBodyMD),
-        subtitle: Text(
-          '${address.line1}, ${address.city} ${address.pincode}',
-          style: AppTypography.uiCaption,
+        child: RadioListTile<String>(
+          value: address.id,
+          groupValue: selected ? address.id : null,
+          onChanged: (_) => onTap(),
+          title: Text(address.fullName, style: AppTypography.uiBodyMD),
+          subtitle: Text(
+            '${address.line1}, ${address.city} ${address.pincode}',
+            style: AppTypography.uiCaption,
+          ),
         ),
       ),
     );
@@ -512,10 +539,17 @@ class _AddressOption extends StatelessWidget {
 }
 
 class _PaymentOption extends StatelessWidget {
-  const _PaymentOption({required this.label, required this.value});
+  const _PaymentOption({
+    required this.label,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
+  });
 
   final String label;
   final String value;
+  final String groupValue;
+  final ValueChanged<String?> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -523,6 +557,8 @@ class _PaymentOption extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(label, style: AppTypography.uiBodyMD),
       value: value,
+      groupValue: groupValue,
+      onChanged: onChanged,
     );
   }
 }

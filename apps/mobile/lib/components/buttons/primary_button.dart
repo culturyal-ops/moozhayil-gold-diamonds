@@ -52,7 +52,7 @@ class PrimaryButton extends StatelessWidget {
     height: 20,
     child: CircularProgressIndicator(
       strokeWidth: 2,
-      valueColor: AlwaysStoppedAnimation<Color>(AppColors.pureWhite),
+      valueColor: AlwaysStoppedAnimation<Color>(AppColors.cream),
     ),
   );
 
@@ -63,14 +63,16 @@ class PrimaryButton extends StatelessWidget {
         Icon(
           iconLeft,
           size: 18,
-          color: _isInteractive ? AppColors.pureWhite : AppColors.disabledText,
+          color: _isInteractive ? AppColors.cream : AppColors.disabledText,
         ),
         const SizedBox(width: AppSpacing.xs),
       ],
       Text(
         label,
         style: AppTypography.buttonLabel.copyWith(
-          color: _isInteractive ? AppColors.pureWhite : AppColors.disabledText,
+          color: _isInteractive ? AppColors.cream : AppColors.disabledText,
+          letterSpacing: 0.06,
+          fontWeight: FontWeight.w500,
         ),
       ),
       if (iconRight != null) ...[
@@ -78,7 +80,7 @@ class PrimaryButton extends StatelessWidget {
         Icon(
           iconRight,
           size: 18,
-          color: _isInteractive ? AppColors.pureWhite : AppColors.disabledText,
+          color: _isInteractive ? AppColors.cream : AppColors.disabledText,
         ),
       ],
     ],
@@ -145,7 +147,7 @@ class _ButtonBodyState extends State<_ButtonBody>
   @override
   Widget build(BuildContext context) {
     final bg = _pressed
-        ? AppColors.textPrimary.withValues(alpha: 0.88)
+        ? AppColors.brandBurgundy
         : widget.backgroundColor;
 
     return Semantics(
@@ -155,10 +157,28 @@ class _ButtonBodyState extends State<_ButtonBody>
         scale: _scale,
         child: AnimatedContainer(
           duration: AppAnimations.xs,
-          height: 48,
+          height: 52,
           decoration: BoxDecoration(
             color: bg,
             borderRadius: BorderRadius.circular(AppRadius.button),
+            border: Border.all(
+              color: AppColors.gold.withValues(alpha: 0.35),
+              width: 0.5,
+            ),
+            boxShadow: widget.onTap != null
+                ? [
+                    BoxShadow(
+                      color: AppColors.ink.withValues(alpha: 0.12),
+                      blurRadius: 16,
+                      offset: const Offset(0, 6),
+                    ),
+                    BoxShadow(
+                      color: AppColors.gold.withValues(alpha: 0.08),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ]
+                : null,
           ),
           child: Material(
             color: Colors.transparent,

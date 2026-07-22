@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Moozhayil</string>
+    <!--
+        Razorpay API key — set to your live key ID before building a release APK.
+        Format: rzp_live_XXXXXXXXXXXXXX
+        This value is read by the Razorpay SDK for UPI intent routing.
+    -->
+    <string name="razorpay_key_id">rzp_test_PLACEHOLDER</string>
+</resources>

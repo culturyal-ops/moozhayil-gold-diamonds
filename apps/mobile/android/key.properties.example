@@ -1,7 +1,23 @@
-# Copy to key.properties when ready to sign release builds.
-# Do not commit key.properties.
+# ─────────────────────────────────────────────────────────────────────────────
+# Android Release Signing — key.properties
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. Copy this file to android/key.properties  (git-ignored)
+# 2. Generate a keystore if you don't have one:
+#      keytool -genkey -v -keystore moozhayil-release.jks \
+#              -alias moozhayil -keyalg RSA -keysize 2048 -validity 10000
+# 3. Fill in the values below.
+# 4. Place the .jks file somewhere outside the repo (e.g. ~/keys/).
+# ─────────────────────────────────────────────────────────────────────────────
 
-storePassword=
-keyPassword=
-keyAlias=
+# Absolute or repo-relative path to the .jks file.
+# Example: /Users/you/keys/moozhayil-release.jks
 storeFile=
+
+# Password set when you created the keystore.
+storePassword=
+
+# Alias you chose during keytool -genkey (e.g. "moozhayil").
+keyAlias=
+
+# Password for this specific key (often same as storePassword).
+keyPassword=

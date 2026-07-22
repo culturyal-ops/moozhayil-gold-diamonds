@@ -48,10 +48,23 @@ class AppBottomTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassSurface(
-      showTopBorder: true,
-      blurSigma: 20,
-      elevated: true,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.ivory.withValues(alpha: 0.96),
+        border: Border(
+          top: BorderSide(
+            color: AppColors.gold.withValues(alpha: 0.12),
+            width: 0.5,
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.ink.withValues(alpha: 0.06),
+            blurRadius: 20,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
       child: SafeArea(
         top: false,
         child: SizedBox(
@@ -64,12 +77,20 @@ class AppBottomTabBar extends StatelessWidget {
                   AnimatedPositioned(
                     duration: AppMotion.navIndicator,
                     curve: AppMotion.standard,
-                    left: currentBranchIndex * tabWidth + (tabWidth - 24) / 2,
+                    left: currentBranchIndex * tabWidth + (tabWidth - 32) / 2,
                     top: 0,
                     child: Container(
-                      width: 24,
+                      width: 32,
                       height: 2,
-                      color: AppColors.gold,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.gold.withValues(alpha: 0.3),
+                            AppColors.gold,
+                            AppColors.gold.withValues(alpha: 0.3),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   Row(
@@ -103,7 +124,7 @@ class _Tab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isActive ? AppIconography.active : AppIconography.inactive;
+    final color = isActive ? AppColors.brandBurgundy : AppColors.textSecondary;
     final navText = (item.navLabel ?? item.label).toUpperCase();
 
     return Semantics(
@@ -134,8 +155,8 @@ class _Tab extends StatelessWidget {
               curve: AppMotion.standard,
               style: AppTypography.uiMicro.copyWith(
                 fontSize: 9,
-                fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
-                letterSpacing: 1.6,
+                fontWeight: isActive ? FontWeight.w500 : FontWeight.w400,
+                letterSpacing: 1.8,
                 color: color,
               ),
               child: Text(navText),

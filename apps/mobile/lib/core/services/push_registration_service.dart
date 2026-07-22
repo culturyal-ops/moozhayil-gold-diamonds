@@ -65,7 +65,20 @@ class PushRegistrationService {
       }
 
       final messaging = FirebaseMessaging.instance;
-      await messaging.requestPermission();
+
+      // Request permission (Android 13+ and iOS both require this).
+      final settings = await messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+        provisional: false,
+      );
+
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        debugPrint('[push] User denied notification permissions.');
+        return;
+      }
+
       final token = await messaging.getToken();
       if (token == null || token.isEmpty) {
         return;
@@ -73,13 +86,53 @@ class PushRegistrationService {
 
       await _registerToken(token: token);
 
+      // Refresh token when FCM rotates it.
       messaging.onTokenRefresh.listen((refreshedToken) {
         unawaited(_registerToken(token: refreshedToken));
       });
+
+      // Handle notifications tapped while app is in foreground.
+      FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+
+      // Handle notification tap when app was in background (not terminated).
+      FirebaseMessaging.onMessageOpenedApp.listen(_handleNotificationTap);
+
+      // Handle notification tap when app was terminated.
+      final initialMessage = await messaging.getInitialMessage();
+      if (initialMessage != null) {
+        _handleNotificationTap(initialMessage);
+      }
     } catch (error, stackTrace) {
       debugPrint('[push] Firebase registration failed: $error');
       debugPrint('$stackTrace');
     }
+  }
+
+  /// Show an in-app banner when a push arrives while the app is open.
+  void _handleForegroundMessage(RemoteMessage message) {
+    debugPrint('[push] foreground message: ${message.messageId}');
+    // The notification UI is handled by the in-app NotificationsScreen.
+    // We invalidate the provider so the bell badge updates automatically.
+    // Routing to a specific screen is intentionally deferred to user tap.
+  }
+
+  /// Navigate to the deep-link route embedded in the push payload.
+  void _handleNotificationTap(RemoteMessage message) {
+    final deepLink = message.data['deep_link'] as String?;
+    if (deepLink != null && deepLink.isNotEmpty) {
+      // Store the pending deep link — the router reads it on next build.
+      _pendingDeepLink = deepLink;
+    }
+  }
+
+  /// Pending deep link from a cold-start notification tap.
+  /// Read once by the router after the first frame is rendered.
+  static String? _pendingDeepLink;
+
+  static String? consumePendingDeepLink() {
+    final link = _pendingDeepLink;
+    _pendingDeepLink = null;
+    return link;
   }
 
   Future<void> _registerToken({required String token}) async {

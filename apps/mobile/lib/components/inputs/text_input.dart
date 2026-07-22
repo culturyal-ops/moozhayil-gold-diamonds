@@ -157,22 +157,30 @@ class _AppTextInputState extends State<AppTextInput> {
       hintText: widget.placeholder,
       hintStyle: AppTypography.uiBodyMD.copyWith(color: AppColors.slateMist),
       filled: true,
-      fillColor: _isFocused ? AppColors.bgWhite : AppColors.paper,
+      fillColor: _isFocused 
+          ? AppColors.pureWhite 
+          : AppColors.warmIvory.withValues(alpha: 0.5),
       contentPadding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.md,
         vertical: 14,
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppRadius.input),
-        borderSide: BorderSide.none,
+        borderSide: BorderSide(
+          color: AppColors.gold.withValues(alpha: 0.12),
+          width: 0.5,
+        ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppRadius.input),
-        borderSide: BorderSide.none,
+        borderSide: BorderSide(
+          color: AppColors.gold.withValues(alpha: 0.12),
+          width: 0.5,
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppRadius.input),
-        borderSide: BorderSide(color: borderColor, width: 1.5),
+        borderSide: BorderSide(color: AppColors.gold, width: 1),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppRadius.input),
